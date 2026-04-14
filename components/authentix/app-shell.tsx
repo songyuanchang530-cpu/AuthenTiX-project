@@ -173,7 +173,7 @@ export function AppShell({ children, activeItem = "video", pageTitle }: AppShell
             {/* AI Assistant Button */}
             <Link
               href="/ai-assistant"
-              className="flex items-center gap-2 rounded-full border border-violet-100 bg-violet-50 px-4 py-2 text-sm font-medium text-violet-600 shadow-sm transition-colors hover:bg-violet-100 dark:border-violet-800/30 dark:bg-violet-500/10 dark:text-violet-300 dark:hover:bg-violet-500/20"
+              className="flex items-center gap-2 rounded-full border border-[#0082FD]/20 bg-[#0082FD]/5 px-4 py-2 text-sm font-medium text-[#0082FD] shadow-sm transition-colors hover:border-[#0082FD]/40 hover:bg-[#0082FD]/10 dark:border-[#0082FD]/30 dark:bg-[#0082FD]/10 dark:hover:border-[#0082FD]/50 dark:hover:bg-[#0082FD]/20"
             >
               <Sparkles className="size-4" />
               AI 助手

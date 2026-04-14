@@ -16,8 +16,7 @@ import {
 
 export function AIAssistant() {
   return (
-    <div className="h-full rounded-3xl border border-slate-200/60 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900">
-      <div className="relative flex h-full flex-col overflow-hidden">
+    <div className="flex h-full w-full flex-1 flex-col overflow-hidden rounded-none border-none bg-transparent shadow-none">
         {/* Top Header Area */}
       <div className="flex items-center justify-between px-4 py-3">
         <Button
@@ -51,8 +50,8 @@ export function AIAssistant() {
           </Badge>
 
           {/* Main Icon */}
-          <div className="flex size-20 items-center justify-center rounded-2xl bg-gradient-to-br from-[#0082FD]/10 to-[#A459B5]/20 shadow-lg shadow-purple-500/10 dark:from-[#0082FD]/20 dark:to-[#A459B5]/30">
-            <Sparkles className="size-10 text-[#A459B5]" />
+          <div className="flex size-20 items-center justify-center rounded-2xl bg-gradient-to-br from-[#0082FD] to-[#A459B5] shadow-lg shadow-[#0082FD]/20">
+            <Sparkles className="size-10 text-white" />
           </div>
 
           {/* Greeting */}
@@ -69,21 +68,21 @@ export function AIAssistant() {
           <div className="flex flex-wrap items-center justify-center gap-2 pt-2">
             <Button
               variant="ghost"
-              className="h-9 gap-2 rounded-full border border-slate-200 bg-white px-4 text-sm font-medium text-slate-600 shadow-sm transition-all hover:border-[#0082FD]/30 hover:bg-[#0082FD]/5 hover:text-[#0082FD] dark:border-slate-700 dark:bg-slate-800/50 dark:text-slate-300 dark:hover:border-[#0082FD]/40 dark:hover:bg-[#0082FD]/10 dark:hover:text-[#0082FD]"
+              className="h-9 gap-2 rounded-full border border-[#0082FD]/20 bg-[#0082FD]/5 px-4 text-sm font-medium text-[#0082FD] shadow-sm transition-all hover:border-[#0082FD]/40 hover:bg-[#0082FD]/10 dark:border-[#0082FD]/30 dark:bg-[#0082FD]/10 dark:text-[#0082FD] dark:hover:border-[#0082FD]/50 dark:hover:bg-[#0082FD]/20"
             >
               <Zap className="size-4" />
               快捷扫描
             </Button>
             <Button
               variant="ghost"
-              className="h-9 gap-2 rounded-full border border-slate-200 bg-white px-4 text-sm font-medium text-slate-600 shadow-sm transition-all hover:border-[#A459B5]/30 hover:bg-[#A459B5]/5 hover:text-[#A459B5] dark:border-slate-700 dark:bg-slate-800/50 dark:text-slate-300 dark:hover:border-[#A459B5]/40 dark:hover:bg-[#A459B5]/10 dark:hover:text-[#A459B5]"
+              className="h-9 gap-2 rounded-full border border-[#0082FD]/20 bg-[#0082FD]/5 px-4 text-sm font-medium text-[#0082FD] shadow-sm transition-all hover:border-[#0082FD]/40 hover:bg-[#0082FD]/10 dark:border-[#0082FD]/30 dark:bg-[#0082FD]/10 dark:text-[#0082FD] dark:hover:border-[#0082FD]/50 dark:hover:bg-[#0082FD]/20"
             >
               <Search className="size-4" />
               查找风险
             </Button>
             <Button
               variant="ghost"
-              className="h-9 gap-2 rounded-full border border-slate-200 bg-white px-4 text-sm font-medium text-slate-600 shadow-sm transition-all hover:border-indigo-400/30 hover:bg-indigo-50 hover:text-indigo-600 dark:border-slate-700 dark:bg-slate-800/50 dark:text-slate-300 dark:hover:border-indigo-400/40 dark:hover:bg-indigo-500/10 dark:hover:text-indigo-400"
+              className="h-9 gap-2 rounded-full border border-[#0082FD]/20 bg-[#0082FD]/5 px-4 text-sm font-medium text-[#0082FD] shadow-sm transition-all hover:border-[#0082FD]/40 hover:bg-[#0082FD]/10 dark:border-[#0082FD]/30 dark:bg-[#0082FD]/10 dark:text-[#0082FD] dark:hover:border-[#0082FD]/50 dark:hover:bg-[#0082FD]/20"
             >
               <Lightbulb className="size-4" />
               解释结果
@@ -116,7 +115,7 @@ export function AIAssistant() {
             {/* Send Button */}
             <Button
               size="icon"
-              className="size-9 shrink-0 rounded-full bg-gradient-to-r from-[#0082FD] to-[#A459B5] text-white shadow-md shadow-purple-500/20 transition-all hover:opacity-90 hover:shadow-lg hover:shadow-purple-500/30"
+              className="size-9 shrink-0 rounded-full bg-[#0082FD] text-white shadow-md shadow-[#0082FD]/20 transition-all hover:bg-[#0082FD]/90 hover:shadow-lg hover:shadow-[#0082FD]/30"
               aria-label="Send message"
             >
               <ArrowUp className="size-5" />
@@ -127,7 +126,6 @@ export function AIAssistant() {
             AI 助手可能会出错，请核实重要信息。
           </p>
         </div>
-      </div>
       </div>
     </div>
   )
