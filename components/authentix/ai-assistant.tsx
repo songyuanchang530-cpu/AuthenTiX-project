@@ -16,7 +16,7 @@ import {
 
 export function AIAssistant() {
   return (
-    <div className="flex h-full w-full flex-1 flex-col overflow-hidden rounded-none border-none bg-transparent shadow-none">
+    <div className="m-2 flex h-[calc(100%-1rem)] w-[calc(100%-1rem)] flex-1 flex-col overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900 md:m-4 md:h-[calc(100%-2rem)] md:w-[calc(100%-2rem)] md:rounded-3xl">
         {/* Top Header Area */}
       <div className="flex items-center justify-between px-4 py-3">
         <Button
