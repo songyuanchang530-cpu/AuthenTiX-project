@@ -204,19 +204,19 @@ export function AppShell({ children, activeItem = "video", pageTitle }: AppShell
             <button
               onClick={handleAIToggle}
               className={cn(
-                "relative flex cursor-pointer items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-all duration-200 ease-out active:scale-95",
+                "flex cursor-pointer items-center rounded-full px-4 py-2 text-sm font-medium transition-all duration-200 ease-out active:scale-95",
                 isAIAssistantActive
                   ? "bg-gradient-to-r from-[#0082FD] to-[#A459B5] text-white shadow-md shadow-purple-500/20"
                   : "bg-slate-100 text-slate-500 shadow-none hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-400 dark:hover:bg-slate-700"
               )}
               aria-label={isAIAssistantActive ? "Close AI Assistant" : "Open AI Assistant"}
             >
-              {/* Always Online Indicator Dot */}
-              <span className="absolute -right-1 -top-1 flex size-3">
-                <span className="absolute inline-flex size-full animate-ping rounded-full bg-green-400 opacity-75"></span>
-                <span className="relative inline-flex size-3 rounded-full border-2 border-white bg-green-500 dark:border-slate-900"></span>
-              </span>
               <Sparkles className="size-4" />
+              {/* Inline Online Indicator Dot */}
+              <span className="relative ml-0.5 mr-2 flex h-2 w-2 items-center justify-center">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75"></span>
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500"></span>
+              </span>
               AI 助手
             </button>
 
