@@ -10,6 +10,7 @@ import {
   Video,
   AudioLines,
   FileText,
+  Sparkles,
   History,
   Settings,
   MoreHorizontal,
@@ -27,6 +28,7 @@ const navItems = [
   { icon: Video, label: "Video Fake Detect", id: "video", href: "/" },
   { icon: AudioLines, label: "Audio Fake Detect", id: "audio", href: "/audio-detect" },
   { icon: FileText, label: "Text Fake Detect", id: "text", href: "/text-detect" },
+  { icon: Sparkles, label: "AI 助手", id: "ai-assistant", href: "/ai-assistant" },
   { icon: History, label: "Detection History", id: "history", href: "/history" },
   { icon: Settings, label: "Protocol Settings", id: "settings", href: "/settings" },
 ]
