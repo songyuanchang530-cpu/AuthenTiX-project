@@ -3,8 +3,10 @@ import { AIAssistant } from "@/components/authentix/ai-assistant"
 
 export default function AIAssistantPage() {
   return (
-    <AppShell activeItem="ai-assistant" pageTitle="AI 助手">
-      <AIAssistant />
+    <AppShell activeItem="" pageTitle="AI 助手">
+      <div className="h-[calc(100vh-180px)] min-h-[500px]">
+        <AIAssistant />
+      </div>
     </AppShell>
   )
 }

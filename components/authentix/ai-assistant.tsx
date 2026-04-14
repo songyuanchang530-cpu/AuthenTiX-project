@@ -16,8 +16,9 @@ import {
 
 export function AIAssistant() {
   return (
-    <div className="relative flex h-full flex-col">
-      {/* Top Header Area */}
+    <div className="h-full rounded-3xl border border-slate-200/60 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900">
+      <div className="relative flex h-full flex-col overflow-hidden">
+        {/* Top Header Area */}
       <div className="flex items-center justify-between px-4 py-3">
         <Button
           variant="ghost"
@@ -94,7 +95,7 @@ export function AIAssistant() {
       {/* Fixed Bottom Input Area */}
       <div className="sticky bottom-0 px-4 pb-6 pt-4">
         <div className="mx-auto w-full max-w-3xl">
-          <div className="flex items-center gap-2 rounded-full border border-slate-200 bg-white px-2 py-2 shadow-lg shadow-slate-200/50 transition-all focus-within:border-[#0082FD]/40 focus-within:ring-2 focus-within:ring-[#0082FD]/20 dark:border-slate-700 dark:bg-slate-900 dark:shadow-none dark:focus-within:border-[#0082FD]/60 dark:focus-within:ring-[#0082FD]/30">
+          <div className="flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-2 py-2 shadow-lg shadow-slate-200/50 transition-all focus-within:border-[#0082FD]/40 focus-within:ring-2 focus-within:ring-[#0082FD]/20 dark:border-slate-700 dark:bg-slate-800/50 dark:shadow-none dark:focus-within:border-[#0082FD]/60 dark:focus-within:ring-[#0082FD]/30">
             {/* Attachment Button */}
             <Button
               variant="ghost"
@@ -126,6 +127,7 @@ export function AIAssistant() {
             AI 助手可能会出错，请核实重要信息。
           </p>
         </div>
+      </div>
       </div>
     </div>
   )

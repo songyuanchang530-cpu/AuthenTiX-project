@@ -28,7 +28,6 @@ const navItems = [
   { icon: Video, label: "Video Fake Detect", id: "video", href: "/" },
   { icon: AudioLines, label: "Audio Fake Detect", id: "audio", href: "/audio-detect" },
   { icon: FileText, label: "Text Fake Detect", id: "text", href: "/text-detect" },
-  { icon: Sparkles, label: "AI 助手", id: "ai-assistant", href: "/ai-assistant" },
   { icon: History, label: "Detection History", id: "history", href: "/history" },
   { icon: Settings, label: "Protocol Settings", id: "settings", href: "/settings" },
 ]
@@ -171,6 +170,15 @@ export function AppShell({ children, activeItem = "video", pageTitle }: AppShell
 
           {/* Right Utilities */}
           <div className="flex items-center gap-3">
+            {/* AI Assistant Button */}
+            <Link
+              href="/ai-assistant"
+              className="flex items-center gap-2 rounded-full border border-violet-100 bg-violet-50 px-4 py-2 text-sm font-medium text-violet-600 shadow-sm transition-colors hover:bg-violet-100 dark:border-violet-800/30 dark:bg-violet-500/10 dark:text-violet-300 dark:hover:bg-violet-500/20"
+            >
+              <Sparkles className="size-4" />
+              AI 助手
+            </Link>
+
             {/* Language Selector */}
             <button
               onClick={() => setLang(lang === "en" ? "zh" : "en")}
