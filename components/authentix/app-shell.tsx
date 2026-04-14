@@ -1,7 +1,8 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect, useCallback } from "react"
 import Link from "next/link"
+import { useRouter, usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
 import { useTheme } from "./theme-provider"
 import {
@@ -38,11 +39,40 @@ interface AppShellProps {
   pageTitle: string
 }
 
+const AI_ASSISTANT_PATH = "/ai-assistant"
+const PREVIOUS_VIEW_KEY = "authentix-previous-view"
+const DEFAULT_VIEW = "/"
+
 export function AppShell({ children, activeItem = "video", pageTitle }: AppShellProps) {
   const [sidebarOpen, setSidebarOpen] = useState(true)
   const [showMenu, setShowMenu] = useState(false)
   const [lang, setLang] = useState<"en" | "zh">("en")
   const { theme, toggleTheme } = useTheme()
+  const router = useRouter()
+  const pathname = usePathname()
+
+  const isAIAssistantActive = pathname === AI_ASSISTANT_PATH
+
+  // Save the current view when navigating away from AI Assistant
+  useEffect(() => {
+    if (!isAIAssistantActive && pathname) {
+      // Only save non-AI-assistant paths
+      localStorage.setItem(PREVIOUS_VIEW_KEY, pathname)
+    }
+  }, [pathname, isAIAssistantActive])
+
+  // Toggle handler with memory
+  const handleAIToggle = useCallback(() => {
+    if (isAIAssistantActive) {
+      // Currently on AI Assistant, go back to previous view
+      const previousView = localStorage.getItem(PREVIOUS_VIEW_KEY) || DEFAULT_VIEW
+      router.push(previousView)
+    } else {
+      // Not on AI Assistant, save current view and go to AI Assistant
+      localStorage.setItem(PREVIOUS_VIEW_KEY, pathname || DEFAULT_VIEW)
+      router.push(AI_ASSISTANT_PATH)
+    }
+  }, [isAIAssistantActive, pathname, router])
 
   return (
     <div className="flex min-h-screen bg-[#f5f3ff] dark:bg-[#0f0f1a]">
@@ -170,14 +200,20 @@ export function AppShell({ children, activeItem = "video", pageTitle }: AppShell
 
           {/* Right Utilities */}
           <div className="flex items-center gap-3">
-            {/* AI Assistant Button */}
-            <Link
-              href="/ai-assistant"
-              className="flex items-center gap-2 rounded-full border border-[#0082FD]/20 bg-[#0082FD]/5 px-4 py-2 text-sm font-medium text-[#0082FD] shadow-sm transition-colors hover:border-[#0082FD]/40 hover:bg-[#0082FD]/10 dark:border-[#0082FD]/30 dark:bg-[#0082FD]/10 dark:hover:border-[#0082FD]/50 dark:hover:bg-[#0082FD]/20"
+            {/* AI Assistant Toggle Button */}
+            <button
+              onClick={handleAIToggle}
+              className={cn(
+                "flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-all duration-200 ease-in-out active:scale-95",
+                isAIAssistantActive
+                  ? "bg-gradient-to-r from-[#0082FD] to-[#A459B5] text-white shadow-md shadow-purple-500/20"
+                  : "bg-slate-100 text-slate-500 shadow-none hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-400 dark:hover:bg-slate-700"
+              )}
+              aria-label={isAIAssistantActive ? "Close AI Assistant" : "Open AI Assistant"}
             >
               <Sparkles className="size-4" />
               AI 助手
-            </Link>
+            </button>
 
             {/* Language Selector */}
             <button
