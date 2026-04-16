@@ -21,14 +21,12 @@ const WeChatIcon = () => (
   </svg>
 )
 
-// Official Tencent QQ Penguin - Using official brand asset image for pixel-perfect accuracy
-// Features: plump black body, white belly, bright red scarf, yellow beak/feet, classic expressive eyes
+// Minimalist QQ Penguin - Clean white silhouette on brand blue background
+// Matches the high-end App-style aesthetic with pure white icon on #12B7F5 blue
 const QQIcon = () => (
-  <img 
-    src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Tencent_QQ.svg/1024px-Tencent_QQ.svg.png" 
-    alt="QQ" 
-    className="w-7 h-7 object-contain drop-shadow-sm" 
-  />
+  <svg className="w-6 h-6" viewBox="0 0 24 24" fill="white">
+    <path d="M12.003 2c-2.265 0-6.29 1.364-6.29 7.325v1.195S3.55 14.96 3.55 17.474c0 .665.17 1.025.281 1.025.114 0 .902-.484 1.748-2.072 0 0-.18 2.197 1.904 3.967 0 0-1.77.495-1.77 1.182 0 .686 4.078.43 6.29.43 2.239 0 6.29.256 6.29-.43 0-.687-1.77-1.182-1.77-1.182 2.085-1.77 1.904-3.967 1.904-3.967.846 1.588 1.634 2.072 1.746 2.072.111 0 .283-.36.283-1.025 0-2.514-2.166-6.954-2.166-6.954V9.325C18.29 3.364 14.268 2 12.003 2z"/>
+  </svg>
 )
 
 const GoogleIcon = () => (
@@ -438,8 +436,8 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
             <EnamelBadgeButton name="WeChat" bgClass="bg-[#07C160]">
               <WeChatIcon />
             </EnamelBadgeButton>
-            {/* QQ: WHITE bg, full-color penguin */}
-            <EnamelBadgeButton name="QQ" bgClass="bg-white dark:bg-slate-100" isWhiteBg>
+            {/* QQ: Official brand blue bg, white silhouette */}
+            <EnamelBadgeButton name="QQ" bgClass="bg-[#12B7F5]">
               <QQIcon />
             </EnamelBadgeButton>
             {/* Google: WHITE bg, multicolor G */}
