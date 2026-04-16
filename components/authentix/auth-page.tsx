@@ -148,13 +148,13 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
                   biometricState === "scanning-fingerprint"
                     ? "border-2 border-emerald-400 bg-emerald-50 text-emerald-600 dark:bg-emerald-950/50 dark:text-emerald-400"
                     : biometricState === "scanning-face" || biometricState === "verified"
-                      ? "border-2 border-emerald-500 bg-emerald-500 text-white shadow-sm dark:border-emerald-400 dark:bg-emerald-500"
+                      ? "bg-emerald-400/15 backdrop-blur-md border border-white/50 shadow-[inset_0_2px_4px_rgba(255,255,255,0.4),0_4px_12px_rgba(52,211,153,0.2)] dark:bg-emerald-500/10 dark:border-white/10 dark:shadow-[inset_0_1px_2px_rgba(255,255,255,0.1),0_4px_12px_rgba(16,185,129,0.15)]"
                       : "border-2 border-slate-200 bg-white text-slate-400 hover:border-slate-300 hover:text-slate-500 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-500 dark:hover:border-slate-600"
                 )}
                 aria-label="Start biometric authentication"
               >
                 {biometricState === "scanning-face" || biometricState === "verified" ? (
-                  <Check className="size-6 animate-in zoom-in-75 fade-in duration-200 ease-out" strokeWidth={2.5} />
+                  <Check className="size-6 text-emerald-600 dark:text-emerald-400 animate-in zoom-in-75 fade-in duration-200 ease-out" strokeWidth={3} />
                 ) : (
                   <Fingerprint className={cn("size-7 transition-transform duration-200", biometricState === "scanning-fingerprint" && "scale-95")} />
                 )}
@@ -169,13 +169,13 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
                   biometricState === "scanning-face"
                     ? "border-2 border-emerald-400 bg-emerald-50 text-emerald-600 dark:bg-emerald-950/50 dark:text-emerald-400"
                     : biometricState === "verified"
-                      ? "border-2 border-emerald-500 bg-emerald-500 text-white shadow-sm dark:border-emerald-400 dark:bg-emerald-500"
+                      ? "bg-emerald-400/15 backdrop-blur-md border border-white/50 shadow-[inset_0_2px_4px_rgba(255,255,255,0.4),0_4px_12px_rgba(52,211,153,0.2)] dark:bg-emerald-500/10 dark:border-white/10 dark:shadow-[inset_0_1px_2px_rgba(255,255,255,0.1),0_4px_12px_rgba(16,185,129,0.15)]"
                       : "border-2 border-slate-200 bg-white text-slate-400 hover:border-slate-300 hover:text-slate-500 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-500 dark:hover:border-slate-600"
                 )}
                 aria-label="Face recognition authentication"
               >
                 {biometricState === "verified" ? (
-                  <Check className="size-6 animate-in zoom-in-75 fade-in duration-200 ease-out" strokeWidth={2.5} />
+                  <Check className="size-6 text-emerald-600 dark:text-emerald-400 animate-in zoom-in-75 fade-in duration-200 ease-out" strokeWidth={3} />
                 ) : (
                   <ScanFace className={cn("size-7 transition-transform duration-200", biometricState === "scanning-face" && "scale-95")} />
                 )}
