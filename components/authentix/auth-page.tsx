@@ -144,17 +144,17 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
                 onClick={handleBiometricTap}
                 disabled={isScanning}
                 className={cn(
-                  "flex size-16 items-center justify-center rounded-full border transition-all duration-300",
+                  "flex size-16 items-center justify-center rounded-full transition-all duration-300",
                   biometricState === "scanning-fingerprint"
-                    ? "border-emerald-500/30 bg-emerald-500/10 text-emerald-600 animate-pulse dark:bg-emerald-500/15 dark:text-emerald-400"
+                    ? "border border-emerald-500/30 bg-emerald-500/10 text-emerald-600 animate-pulse dark:bg-emerald-500/15 dark:text-emerald-400"
                     : biometricState === "scanning-face" || biometricState === "verified"
-                      ? "border-emerald-500/30 bg-emerald-500/15 text-emerald-600 backdrop-blur-sm dark:bg-emerald-500/20 dark:text-emerald-400"
-                      : "border-slate-200 bg-white text-slate-400 hover:border-slate-300 hover:text-slate-500 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-500 dark:hover:border-slate-600"
+                      ? "bg-emerald-500/15 backdrop-blur-md border border-white/70 shadow-[0_4px_20px_rgba(16,185,129,0.25)] dark:bg-emerald-500/20 dark:border-white/15 dark:shadow-[0_4px_20px_rgba(16,185,129,0.15)]"
+                      : "border border-slate-200 bg-white text-slate-400 hover:border-slate-300 hover:text-slate-500 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-500 dark:hover:border-slate-600"
                 )}
                 aria-label="Start biometric authentication"
               >
                 {biometricState === "scanning-face" || biometricState === "verified" ? (
-                  <Check className="size-6 text-emerald-600 animate-in zoom-in-50 duration-300 ease-out dark:text-emerald-400" strokeWidth={3} />
+                  <Check className="size-6 text-emerald-600 dark:text-emerald-400 animate-in zoom-in-50 duration-300 ease-out" strokeWidth={3} />
                 ) : (
                   <Fingerprint className={cn("size-7", biometricState === "scanning-fingerprint" && "animate-pulse")} />
                 )}
@@ -165,17 +165,17 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
                 onClick={handleBiometricTap}
                 disabled={isScanning}
                 className={cn(
-                  "flex size-16 items-center justify-center rounded-full border transition-all duration-300",
+                  "flex size-16 items-center justify-center rounded-full transition-all duration-300",
                   biometricState === "scanning-face"
-                    ? "border-emerald-500/30 bg-emerald-500/10 text-emerald-600 animate-pulse dark:bg-emerald-500/15 dark:text-emerald-400"
+                    ? "border border-emerald-500/30 bg-emerald-500/10 text-emerald-600 animate-pulse dark:bg-emerald-500/15 dark:text-emerald-400"
                     : biometricState === "verified"
-                      ? "border-emerald-500/30 bg-emerald-500/15 text-emerald-600 backdrop-blur-sm dark:bg-emerald-500/20 dark:text-emerald-400"
-                      : "border-slate-200 bg-white text-slate-400 hover:border-slate-300 hover:text-slate-500 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-500 dark:hover:border-slate-600"
+                      ? "bg-emerald-500/15 backdrop-blur-md border border-white/70 shadow-[0_4px_20px_rgba(16,185,129,0.25)] dark:bg-emerald-500/20 dark:border-white/15 dark:shadow-[0_4px_20px_rgba(16,185,129,0.15)]"
+                      : "border border-slate-200 bg-white text-slate-400 hover:border-slate-300 hover:text-slate-500 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-500 dark:hover:border-slate-600"
                 )}
                 aria-label="Face recognition authentication"
               >
                 {biometricState === "verified" ? (
-                  <Check className="size-6 text-emerald-600 animate-in zoom-in-50 duration-300 ease-out dark:text-emerald-400" strokeWidth={3} />
+                  <Check className="size-6 text-emerald-600 dark:text-emerald-400 animate-in zoom-in-50 duration-300 ease-out" strokeWidth={3} />
                 ) : (
                   <ScanFace className={cn("size-7", biometricState === "scanning-face" && "animate-pulse")} />
                 )}
@@ -232,8 +232,8 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
               <ChevronDown className="pointer-events-none absolute right-3 top-1/2 size-5 -translate-y-1/2 text-slate-400" />
             </div>
 
-            {/* 2. Password/SMS Toggle Pill (Centered between inputs) */}
-            <div className="flex w-full justify-center">
+            {/* 2. Password/SMS Toggle Pill (Right-aligned to match input edges) */}
+            <div className="flex w-full justify-end">
               <div className="inline-flex items-center rounded-full bg-slate-100 p-0.5 dark:bg-slate-800">
                 <button
                   onClick={() => setPasswordMode("password")}
