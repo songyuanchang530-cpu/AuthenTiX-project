@@ -146,7 +146,7 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
                 className={cn(
                   "flex size-16 items-center justify-center rounded-full transition-all duration-200 ease-out",
                   biometricState === "scanning-fingerprint"
-                    ? "border-2 border-emerald-300/60 bg-emerald-50/50 text-emerald-500/80 dark:border-emerald-500/30 dark:bg-emerald-950/30 dark:text-emerald-400/70"
+                    ? "border-2 border-emerald-200/50 bg-emerald-50/30 text-emerald-400/60 dark:border-emerald-400/20 dark:bg-emerald-950/20 dark:text-emerald-300/50"
                     : biometricState === "scanning-face" || biometricState === "verified"
                       ? "bg-emerald-400/15 backdrop-blur-md border border-white/50 shadow-[inset_0_2px_4px_rgba(255,255,255,0.4),0_4px_12px_rgba(52,211,153,0.2)] dark:bg-emerald-500/10 dark:border-white/10 dark:shadow-[inset_0_1px_2px_rgba(255,255,255,0.1),0_4px_12px_rgba(16,185,129,0.15)]"
                       : "border-2 border-slate-200 bg-white text-slate-400 hover:border-slate-300 hover:text-slate-500 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-500 dark:hover:border-slate-600"
@@ -167,7 +167,7 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
                 className={cn(
                   "flex size-16 items-center justify-center rounded-full transition-all duration-200 ease-out",
                   biometricState === "scanning-face"
-                    ? "border-2 border-emerald-300/60 bg-emerald-50/50 text-emerald-500/80 dark:border-emerald-500/30 dark:bg-emerald-950/30 dark:text-emerald-400/70"
+                    ? "border-2 border-emerald-200/50 bg-emerald-50/30 text-emerald-400/60 dark:border-emerald-400/20 dark:bg-emerald-950/20 dark:text-emerald-300/50"
                     : biometricState === "verified"
                       ? "bg-emerald-400/15 backdrop-blur-md border border-white/50 shadow-[inset_0_2px_4px_rgba(255,255,255,0.4),0_4px_12px_rgba(52,211,153,0.2)] dark:bg-emerald-500/10 dark:border-white/10 dark:shadow-[inset_0_1px_2px_rgba(255,255,255,0.1),0_4px_12px_rgba(16,185,129,0.15)]"
                       : "border-2 border-slate-200 bg-white text-slate-400 hover:border-slate-300 hover:text-slate-500 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-500 dark:hover:border-slate-600"
@@ -189,14 +189,14 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
                 biometricsFullyVerified
                   ? "text-emerald-600 dark:text-emerald-400"
                   : isScanning
-                    ? "text-emerald-600/60 dark:text-emerald-400/60"
+                    ? "text-emerald-500/50 dark:text-emerald-400/40"
                     : "text-slate-400 dark:text-slate-500"
               )}
             >
               <span
                 className={cn(
                   "size-2 rounded-full transition-colors duration-300",
-                  biometricsFullyVerified ? "bg-emerald-500" : isScanning ? "bg-emerald-400/60 animate-pulse" : "bg-slate-300 dark:bg-slate-600"
+                  biometricsFullyVerified ? "bg-emerald-500" : isScanning ? "bg-emerald-300/50 animate-pulse dark:bg-emerald-400/40" : "bg-slate-300 dark:bg-slate-600"
                 )}
               />
               {biometricsFullyVerified 
