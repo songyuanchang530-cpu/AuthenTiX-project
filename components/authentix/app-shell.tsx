@@ -75,12 +75,12 @@ export function AppShell({ children, activeItem = "video", pageTitle }: AppShell
   }, [isAIAssistantActive, pathname, router])
 
   return (
-    <div className="flex min-h-screen bg-slate-50 dark:bg-slate-950">
-      {/* Sidebar */}
+    <div className="flex min-h-screen w-full relative items-start bg-slate-50 dark:bg-slate-950">
+      {/* Sidebar - Sticky to viewport, full height, independent scroll */}
       <aside
         className={cn(
-          "fixed left-0 top-0 z-40 flex h-screen flex-col border-r border-slate-200/60 bg-white/90 backdrop-blur-md transition-all duration-300 dark:border-slate-700/40 dark:bg-[#0f0f1a]/90",
-          sidebarOpen ? "w-64" : "w-0 overflow-hidden"
+          "sticky top-0 z-40 flex h-screen flex-col border-r border-slate-200/60 bg-white/90 backdrop-blur-xl transition-all duration-300 overflow-y-auto dark:border-slate-700/40 dark:bg-[#0f0f1a]/90",
+          sidebarOpen ? "w-64 min-w-[256px]" : "w-0 min-w-0 overflow-hidden"
         )}
         translate="no"
       >
@@ -113,25 +113,25 @@ export function AppShell({ children, activeItem = "video", pageTitle }: AppShell
                 key={item.id}
                 href={item.href}
                 className={cn(
-                  "group flex items-center gap-3 rounded-2xl px-4 py-3 text-left text-sm font-medium transition-all duration-200",
+                  "group flex items-center gap-3 rounded-2xl px-4 py-3 text-left text-sm font-medium transition-all duration-150",
                   isActive
-                    ? "bg-gradient-to-r from-[#0082FD]/10 to-[#A459B5]/10 shadow-sm"
-                    : "hover:bg-slate-100 dark:hover:bg-slate-800/50"
+                    ? "bg-blue-50 dark:bg-blue-900/20 shadow-sm"
+                    : "hover:bg-slate-100 active:bg-slate-200 dark:hover:bg-slate-800/50 dark:active:bg-slate-700/50"
                 )}
               >
                 <item.icon
                   className={cn(
-                    "size-5 transition-colors",
+                    "size-5 transition-colors duration-150",
                     isActive
-                      ? "text-[#0082FD]"
+                      ? "text-blue-600 dark:text-blue-400"
                       : "text-slate-400 group-hover:text-slate-600 dark:text-slate-500 dark:group-hover:text-slate-300"
                   )}
                 />
                 <span
                   className={cn(
-                    "transition-colors",
+                    "transition-colors duration-150",
                     isActive
-                      ? "bg-gradient-to-r from-[#0082FD] to-[#A459B5] bg-clip-text text-transparent font-semibold"
+                      ? "text-blue-600 dark:text-blue-400 font-semibold"
                       : "text-slate-600 group-hover:text-slate-800 dark:text-slate-400 dark:group-hover:text-slate-200"
                   )}
                 >
@@ -142,8 +142,8 @@ export function AppShell({ children, activeItem = "video", pageTitle }: AppShell
           })}
         </nav>
 
-        {/* Bottom section */}
-        <div className="mt-auto px-4 pb-4">
+        {/* Bottom section - Anchored to absolute bottom of sidebar */}
+        <div className="mt-auto mb-4 px-4 pb-4 flex-shrink-0">
           {/* Protocol Status */}
           <div className="mb-4 rounded-2xl bg-slate-50 p-4 dark:bg-slate-800/50">
             <p className="text-xs uppercase tracking-widest text-slate-400">
@@ -172,11 +172,11 @@ export function AppShell({ children, activeItem = "video", pageTitle }: AppShell
         </div>
       </aside>
 
-      {/* Main content area */}
+      {/* Main content area - Grows to fill remaining space */}
       <main
         className={cn(
           "relative flex min-h-screen flex-1 flex-col transition-all duration-300",
-          sidebarOpen ? "ml-64" : "ml-0"
+          // No margin needed - flexbox handles positioning
         )}
       >
         {/* Sticky Header */}
@@ -279,8 +279,11 @@ export function AppShell({ children, activeItem = "video", pageTitle }: AppShell
           </div>
         </header>
 
-        {/* Page Content */}
-        <div className="relative flex min-h-[calc(100vh-100px)] flex-1 flex-col px-8 pb-8 pt-6">
+        {/* Page Content - With Apple-tier entrance animation for perceived performance */}
+        <div 
+          key={pathname}
+          className="relative flex min-h-[calc(100vh-100px)] flex-1 flex-col px-8 pb-8 pt-6 animate-in fade-in slide-in-from-bottom-2 duration-300 ease-out fill-mode-forwards"
+        >
           {children}
         </div>
       </main>
