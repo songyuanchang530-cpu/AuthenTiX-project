@@ -173,6 +173,50 @@ interface AuthPageProps {
   onAuthenticate?: (keepSession?: boolean) => void
 }
 
+// Comprehensive i18n dictionary for EN/ZH localization
+const translations = {
+  en: {
+    subtitle: "NEXT-GEN MEDIA & COPYRIGHT PROTECTION",
+    login: "Login",
+    signup: "Sign Up",
+    tapAuth: "Tap to authenticate",
+    scanningFingerprint: "Scanning fingerprint...",
+    scanningFace: "Scanning Face ID...",
+    bioVerified: "Biometrics Verified",
+    orTrad: "Or Traditional",
+    emailPlace: "Enter your email address",
+    phonePlace: "Enter your phone number",
+    passToggle: "Password",
+    smsToggle: "SMS Code",
+    passPlace: "Enter your password",
+    smsPlace: "Enter 6-digit SMS code",
+    keepSession: "Keep Session",
+    forgot: "Forgot Access?",
+    authorize: "AUTHORIZE & ENTER",
+    quickAccess: "Quick Access"
+  },
+  zh: {
+    subtitle: "下一代媒体与版权保护",
+    login: "登录",
+    signup: "注册",
+    tapAuth: "点击验证",
+    scanningFingerprint: "正在扫描指纹...",
+    scanningFace: "正在扫描面容...",
+    bioVerified: "生物识别已验证",
+    orTrad: "或使用传统方式",
+    emailPlace: "请输入您的邮箱地址",
+    phonePlace: "请输入您的手机号码",
+    passToggle: "密码",
+    smsToggle: "验证码",
+    passPlace: "请输入您的密码",
+    smsPlace: "请输入 6 位验证码",
+    keepSession: "保持登录",
+    forgot: "忘记密码？",
+    authorize: "授权并进入",
+    quickAccess: "快捷登录"
+  }
+}
+
 export function AuthPage({ onAuthenticate }: AuthPageProps) {
   const [mode, setMode] = useState<"login" | "signup">("login")
   // Biometric states: "idle" | "scanning-fingerprint" | "scanning-face" | "verified"
@@ -183,8 +227,25 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   
+  // Language state - persisted to localStorage
+  const [lang, setLang] = useState<"en" | "zh">("en")
+  const t = translations[lang]
+  
   // Dark mode state - persisted to localStorage
   const [isDarkMode, setIsDarkMode] = useState(false)
+  
+  // Initialize language from localStorage
+  useEffect(() => {
+    const storedLang = localStorage.getItem("authentix-lang")
+    if (storedLang === "en" || storedLang === "zh") {
+      setLang(storedLang)
+    }
+  }, [])
+  
+  // Persist language changes to localStorage
+  useEffect(() => {
+    localStorage.setItem("authentix-lang", lang)
+  }, [lang])
   
   // Initialize dark mode from system preference or localStorage
   useEffect(() => {
@@ -233,25 +294,43 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
 
   return (
     <div className="relative flex min-h-screen w-full items-center justify-center bg-gradient-to-br from-slate-50 via-white to-slate-100 p-4 dark:from-[#0B0F19] dark:via-[#0D1117] dark:to-[#0B0F19]">
-      {/* Premium Theme Toggle - Fixed top-right with frosted glass aesthetic */}
-      <button
-        onClick={() => setIsDarkMode(!isDarkMode)}
-        className={cn(
-          "fixed top-6 right-6 z-50 flex h-12 w-12 items-center justify-center rounded-full transition-all duration-300",
-          "bg-white/60 dark:bg-slate-800/60 backdrop-blur-md",
-          "border border-slate-200/50 dark:border-slate-700/50",
-          "shadow-lg shadow-slate-200/20 dark:shadow-black/20",
-          "hover:scale-105 active:scale-95",
-          "hover:bg-white/80 dark:hover:bg-slate-800/80"
-        )}
-        aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
-      >
-        {isDarkMode ? (
-          <Moon className="h-6 w-6 text-slate-200 transition-transform duration-300 rotate-0" />
-        ) : (
-          <Sun className="h-6 w-6 text-slate-700 transition-transform duration-300 rotate-0" />
-        )}
-      </button>
+      {/* Top-Right Control Cluster - Language + Theme toggles with frosted glass aesthetic */}
+      <div className="fixed top-6 right-6 z-50 flex items-center gap-3">
+        {/* Language Toggle Button */}
+        <button
+          onClick={() => setLang(lang === "en" ? "zh" : "en")}
+          className={cn(
+            "flex h-12 w-12 items-center justify-center rounded-full transition-all duration-300",
+            "bg-white/50 dark:bg-slate-800/50 backdrop-blur-md",
+            "border border-slate-200/50 dark:border-slate-700/50",
+            "shadow-sm hover:scale-105 active:scale-95",
+            "text-sm font-semibold text-slate-700 dark:text-slate-200"
+          )}
+          aria-label={lang === "en" ? "Switch to Chinese" : "Switch to English"}
+        >
+          {lang === "en" ? "EN" : "中"}
+        </button>
+        
+        {/* Theme Toggle Button */}
+        <button
+          onClick={() => setIsDarkMode(!isDarkMode)}
+          className={cn(
+            "flex h-12 w-12 items-center justify-center rounded-full transition-all duration-300",
+            "bg-white/60 dark:bg-slate-800/60 backdrop-blur-md",
+            "border border-slate-200/50 dark:border-slate-700/50",
+            "shadow-lg shadow-slate-200/20 dark:shadow-black/20",
+            "hover:scale-105 active:scale-95",
+            "hover:bg-white/80 dark:hover:bg-slate-800/80"
+          )}
+          aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
+        >
+          {isDarkMode ? (
+            <Moon className="h-6 w-6 text-slate-200 transition-transform duration-300 rotate-0" />
+          ) : (
+            <Sun className="h-6 w-6 text-slate-700 transition-transform duration-300 rotate-0" />
+          )}
+        </button>
+      </div>
       <div className="mx-auto w-full max-w-[430px]">
         {/* Header */}
         <div className="mb-8 text-center">
@@ -259,7 +338,7 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
             AuthentiX
           </h1>
           <p className="mt-2 text-xs font-medium uppercase tracking-[0.2em] text-slate-400 dark:text-slate-500">
-            Next-Gen Media & Copyright Protection
+            {t.subtitle}
           </p>
         </div>
 
@@ -276,7 +355,7 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
                   : "text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300"
               )}
             >
-              Login
+              {t.login}
             </button>
             <button
               onClick={() => setMode("signup")}
@@ -287,7 +366,7 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
                   : "text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300"
               )}
             >
-              Sign Up
+              {t.signup}
             </button>
           </div>
 
@@ -355,12 +434,12 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
                 )}
               />
               {biometricsFullyVerified 
-                ? "Biometrics Verified" 
+                ? t.bioVerified 
                 : biometricState === "scanning-fingerprint" 
-                  ? "Scanning fingerprint..." 
+                  ? t.scanningFingerprint 
                   : biometricState === "scanning-face"
-                    ? "Scanning Face ID..."
-                    : "Tap to authenticate"}
+                    ? t.scanningFace
+                    : t.tapAuth}
             </p>
           </div>
 
@@ -368,7 +447,7 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
           <div className="mb-6 flex items-center gap-3">
             <div className="h-px flex-1 bg-slate-200 dark:bg-slate-700" />
             <span className="text-xs font-medium uppercase tracking-wider text-slate-400 dark:text-slate-500">
-              Or Traditional
+              {t.orTrad}
             </span>
             <div className="h-px flex-1 bg-slate-200 dark:bg-slate-700" />
           </div>
@@ -382,7 +461,7 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
                 type={passwordMode === "password" ? "email" : "tel"}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder={passwordMode === "password" ? "Enter your email address" : "Enter your phone number"}
+                placeholder={passwordMode === "password" ? t.emailPlace : t.phonePlace}
                 className={cn(
                   "h-12 w-full rounded-xl border border-transparent bg-[#F5F5F7] pl-11 text-sm text-slate-900 placeholder:text-slate-400 transition-all duration-200 focus:border-[#0082FD] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0082FD]/40 dark:bg-[#1F2532] dark:border-slate-700 dark:text-slate-100 dark:placeholder:text-slate-500 dark:focus:border-[#0082FD] dark:focus:bg-[#252C3B]",
                   // Extra right padding for Paper Plane in SMS mode
@@ -426,7 +505,7 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
                       : "text-slate-500 hover:text-slate-700 dark:text-slate-400"
                   )}
                 >
-                  Password
+                  {t.passToggle}
                 </button>
                 <button
                   onClick={() => setPasswordMode("sms")}
@@ -437,7 +516,7 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
                       : "text-slate-500 hover:text-slate-700 dark:text-slate-400"
                   )}
                 >
-                  SMS Code
+                  {t.smsToggle}
                 </button>
               </div>
             </div>
@@ -448,7 +527,7 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
                 type={passwordMode === "password" && !showPassword ? "password" : "text"}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder={passwordMode === "password" ? "Enter your password" : "Enter 6-digit SMS code"}
+                placeholder={passwordMode === "password" ? t.passPlace : t.smsPlace}
                 maxLength={passwordMode === "sms" ? 6 : undefined}
                 className="h-12 w-full rounded-xl border border-transparent bg-[#F5F5F7] px-4 pr-12 text-sm text-slate-900 placeholder:text-slate-400 transition-all duration-200 focus:border-[#0082FD] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0082FD]/40 dark:bg-[#1F2532] dark:border-slate-700 dark:text-slate-100 dark:placeholder:text-slate-500 dark:focus:border-[#0082FD] dark:focus:bg-[#252C3B]"
               />
@@ -474,13 +553,13 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
                 onChange={(e) => setKeepSession(e.target.checked)}
                 className="size-4 rounded border-slate-300 text-[#0082FD] focus:ring-[#0082FD] dark:border-slate-600"
               />
-              <span className="text-sm text-slate-600 dark:text-slate-400">Keep Session</span>
+              <span className="text-sm text-slate-600 dark:text-slate-400">{t.keepSession}</span>
             </label>
             <a
               href="#"
               className="text-sm font-medium text-[#0082FD] hover:underline"
             >
-              Forgot Access?
+              {t.forgot}
             </a>
           </div>
 
@@ -489,7 +568,7 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
             onClick={() => onAuthenticate?.(keepSession)}
             className="h-12 w-full rounded-full bg-gradient-to-r from-[#0082FD] to-[#A459B5] text-sm font-bold uppercase tracking-wider text-white shadow-lg shadow-purple-500/20 transition-all hover:scale-[0.98] hover:opacity-90 hover:shadow-xl active:scale-95"
           >
-            Authorize & Enter
+            {t.authorize}
           </button>
         </div>
 
@@ -499,7 +578,7 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
           <div className="mb-4 flex items-center gap-3">
             <div className="h-px flex-1 bg-slate-200 dark:bg-slate-800" />
             <span className="text-xs font-medium uppercase tracking-wider text-slate-400 dark:text-slate-600">
-              Quick Access
+              {t.quickAccess}
             </span>
             <div className="h-px flex-1 bg-slate-200 dark:bg-slate-800" />
           </div>
