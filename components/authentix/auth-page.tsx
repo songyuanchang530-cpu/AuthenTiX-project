@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { 
   Fingerprint, 
   ScanFace, 
@@ -10,6 +10,8 @@ import {
   Mail,
   Smartphone,
   Send,
+  Sun,
+  Moon,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 
@@ -180,6 +182,30 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
   const [keepSession, setKeepSession] = useState(false)
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  
+  // Dark mode state - persisted to localStorage
+  const [isDarkMode, setIsDarkMode] = useState(false)
+  
+  // Initialize dark mode from system preference or localStorage
+  useEffect(() => {
+    const stored = localStorage.getItem("authentix-theme")
+    if (stored) {
+      setIsDarkMode(stored === "dark")
+    } else {
+      // Default to system preference
+      setIsDarkMode(window.matchMedia("(prefers-color-scheme: dark)").matches)
+    }
+  }, [])
+  
+  // Apply dark mode class to document
+  useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.classList.add("dark")
+    } else {
+      document.documentElement.classList.remove("dark")
+    }
+    localStorage.setItem("authentix-theme", isDarkMode ? "dark" : "light")
+  }, [isDarkMode])
 
   const handleBiometricTap = () => {
     if (biometricState !== "idle") {
@@ -206,7 +232,26 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
   const isScanning = biometricState === "scanning-fingerprint" || biometricState === "scanning-face"
 
   return (
-    <div className="flex min-h-screen w-full items-center justify-center bg-gradient-to-br from-slate-50 via-white to-slate-100 p-4 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
+    <div className="relative flex min-h-screen w-full items-center justify-center bg-gradient-to-br from-slate-50 via-white to-slate-100 p-4 dark:from-[#0B0F19] dark:via-[#0D1117] dark:to-[#0B0F19]">
+      {/* Premium Theme Toggle - Fixed top-right with frosted glass aesthetic */}
+      <button
+        onClick={() => setIsDarkMode(!isDarkMode)}
+        className={cn(
+          "fixed top-6 right-6 z-50 flex h-12 w-12 items-center justify-center rounded-full transition-all duration-300",
+          "bg-white/60 dark:bg-slate-800/60 backdrop-blur-md",
+          "border border-slate-200/50 dark:border-slate-700/50",
+          "shadow-lg shadow-slate-200/20 dark:shadow-black/20",
+          "hover:scale-105 active:scale-95",
+          "hover:bg-white/80 dark:hover:bg-slate-800/80"
+        )}
+        aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
+      >
+        {isDarkMode ? (
+          <Moon className="h-6 w-6 text-slate-200 transition-transform duration-300 rotate-0" />
+        ) : (
+          <Sun className="h-6 w-6 text-slate-700 transition-transform duration-300 rotate-0" />
+        )}
+      </button>
       <div className="mx-auto w-full max-w-[430px]">
         {/* Header */}
         <div className="mb-8 text-center">
@@ -218,10 +263,10 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
           </p>
         </div>
 
-        {/* Main Auth Card */}
-        <div className="rounded-3xl bg-white p-6 shadow-xl shadow-slate-200/50 dark:bg-slate-900 dark:shadow-none md:p-8">
+        {/* Main Auth Card - Premium dark mode with elevated slate */}
+        <div className="rounded-3xl bg-white p-6 shadow-xl shadow-slate-200/50 dark:bg-[#161B26] dark:border dark:border-slate-800/50 dark:shadow-2xl dark:shadow-black/30 md:p-8">
           {/* Login/Signup Toggle */}
-          <div className="mb-6 flex items-center rounded-full bg-slate-100 p-1 dark:bg-slate-800">
+          <div className="mb-6 flex items-center rounded-full bg-slate-100 p-1 dark:bg-[#1F2532]">
             <button
               onClick={() => setMode("login")}
               className={cn(
@@ -339,7 +384,7 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder={passwordMode === "password" ? "Enter your email address" : "Enter your phone number"}
                 className={cn(
-                  "h-12 w-full rounded-xl border border-transparent bg-[#F5F5F7] pl-11 text-sm text-slate-900 placeholder:text-slate-400 transition-all duration-200 focus:border-[#0082FD] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0082FD]/40 dark:bg-slate-800/50 dark:text-white dark:placeholder:text-slate-500 dark:focus:border-[#0082FD] dark:focus:bg-slate-800",
+                  "h-12 w-full rounded-xl border border-transparent bg-[#F5F5F7] pl-11 text-sm text-slate-900 placeholder:text-slate-400 transition-all duration-200 focus:border-[#0082FD] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0082FD]/40 dark:bg-[#1F2532] dark:border-slate-700 dark:text-slate-100 dark:placeholder:text-slate-500 dark:focus:border-[#0082FD] dark:focus:bg-[#252C3B]",
                   // Extra right padding for Paper Plane in SMS mode
                   passwordMode === "sms" ? "pr-12" : "pr-4"
                 )}
@@ -371,7 +416,7 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
 
             {/* 2. Password/SMS Toggle Pill (Right-aligned to match input edges) */}
             <div className="flex w-full justify-end">
-              <div className="inline-flex items-center rounded-full bg-slate-100 p-0.5 dark:bg-slate-800">
+              <div className="inline-flex items-center rounded-full bg-slate-100 p-0.5 dark:bg-[#1F2532]">
                 <button
                   onClick={() => setPasswordMode("password")}
                   className={cn(
@@ -405,14 +450,14 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder={passwordMode === "password" ? "Enter your password" : "Enter 6-digit SMS code"}
                 maxLength={passwordMode === "sms" ? 6 : undefined}
-                className="h-12 w-full rounded-xl border border-transparent bg-[#F5F5F7] px-4 pr-12 text-sm text-slate-900 placeholder:text-slate-400 transition-all duration-200 focus:border-[#0082FD] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0082FD]/40 dark:bg-slate-800/50 dark:text-white dark:placeholder:text-slate-500 dark:focus:border-[#0082FD] dark:focus:bg-slate-800"
+                className="h-12 w-full rounded-xl border border-transparent bg-[#F5F5F7] px-4 pr-12 text-sm text-slate-900 placeholder:text-slate-400 transition-all duration-200 focus:border-[#0082FD] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0082FD]/40 dark:bg-[#1F2532] dark:border-slate-700 dark:text-slate-100 dark:placeholder:text-slate-500 dark:focus:border-[#0082FD] dark:focus:bg-[#252C3B]"
               />
               
               {/* Eye icon - ALWAYS visible on far right for password visibility toggle */}
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 p-1.5 rounded-full text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition-all duration-200"
+                className="absolute right-3 top-1/2 -translate-y-1/2 p-1.5 rounded-full text-slate-400 hover:text-slate-600 dark:text-slate-500 dark:hover:text-slate-300 hover:bg-slate-100 dark:hover:bg-[#2A3344] transition-all duration-200"
                 aria-label={showPassword ? "Hide password" : "Show password"}
               >
                 {showPassword ? <EyeOff className="size-5" /> : <Eye className="size-5" />}
