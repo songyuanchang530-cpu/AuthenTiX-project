@@ -7,7 +7,8 @@ import {
   Check, 
   Eye, 
   EyeOff, 
-  ChevronDown,
+  Mail,
+  Smartphone,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 
@@ -328,16 +329,21 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
 
           {/* Input Fields with Perfect Symmetry */}
           <div className="mt-4 flex flex-col gap-4">
-            {/* 1. Email/Phone Input */}
+            {/* 1. Email/Phone Input - Dynamic based on Password/SMS toggle */}
             <div className="relative">
               <input
-                type="text"
+                type={passwordMode === "password" ? "email" : "tel"}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="identity@authentix.io"
-                className="h-12 w-full rounded-xl border border-transparent bg-[#F5F5F7] px-4 pr-10 text-sm text-slate-900 placeholder:text-slate-400 transition-all duration-200 focus:border-[#0082FD] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0082FD]/40 dark:bg-slate-800/50 dark:text-white dark:placeholder:text-slate-500 dark:focus:border-[#0082FD] dark:focus:bg-slate-800"
+                placeholder={passwordMode === "password" ? "Enter your email address" : "Enter your phone number"}
+                className="h-12 w-full rounded-xl border border-transparent bg-[#F5F5F7] pl-11 pr-4 text-sm text-slate-900 placeholder:text-slate-400 transition-all duration-200 focus:border-[#0082FD] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0082FD]/40 dark:bg-slate-800/50 dark:text-white dark:placeholder:text-slate-500 dark:focus:border-[#0082FD] dark:focus:bg-slate-800"
               />
-              <ChevronDown className="pointer-events-none absolute right-3 top-1/2 size-5 -translate-y-1/2 text-slate-400" />
+              {/* Dynamic leading icon: Mail for password mode, Smartphone for SMS mode */}
+              {passwordMode === "password" ? (
+                <Mail className="pointer-events-none absolute left-3.5 top-1/2 size-5 -translate-y-1/2 text-slate-400 transition-all duration-200" />
+              ) : (
+                <Smartphone className="pointer-events-none absolute left-3.5 top-1/2 size-5 -translate-y-1/2 text-slate-400 transition-all duration-200" />
+              )}
             </div>
 
             {/* 2. Password/SMS Toggle Pill (Right-aligned to match input edges) */}
