@@ -57,7 +57,11 @@ const LucideSocialIcon = ({
   </button>
 )
 
-export function AuthPage() {
+interface AuthPageProps {
+  onAuthenticate?: () => void
+}
+
+export function AuthPage({ onAuthenticate }: AuthPageProps) {
   const [mode, setMode] = useState<"login" | "signup">("login")
   const [biometricsVerified, setBiometricsVerified] = useState(false)
   const [passwordMode, setPasswordMode] = useState<"password" | "sms">("password")
@@ -271,6 +275,7 @@ export function AuthPage() {
 
           {/* Submit Button */}
           <button
+            onClick={() => onAuthenticate?.()}
             className="h-12 w-full rounded-full bg-gradient-to-r from-[#0082FD] to-[#A459B5] text-sm font-bold uppercase tracking-wider text-white shadow-lg shadow-purple-500/20 transition-all hover:scale-[0.98] hover:opacity-90 hover:shadow-xl active:scale-95"
           >
             Authorize & Enter

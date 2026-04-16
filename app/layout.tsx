@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { ThemeProvider } from '@/components/authentix/theme-provider'
+import { AuthWrapper } from '@/components/authentix/auth-wrapper'
 import './globals.css'
 
 const inter = Inter({ 
@@ -45,7 +46,9 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} font-sans antialiased`} suppressHydrationWarning>
         <ThemeProvider>
-          {children}
+          <AuthWrapper>
+            {children}
+          </AuthWrapper>
         </ThemeProvider>
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
