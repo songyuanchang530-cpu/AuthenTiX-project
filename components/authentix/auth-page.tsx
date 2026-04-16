@@ -80,7 +80,7 @@ const MicrosoftIcon = () => (
 // Official TikTok logo - High-fidelity music note with precise stereoscopic glitch effect
 // Matches the official iOS App Store icon exactly: Cyan top-left, Red bottom-right, White center
 const TikTokIcon = () => (
-  <svg className="size-6" viewBox="0 0 48 48">
+  <svg className="size-6 relative left-[1px] top-[1px]" viewBox="0 0 48 48">
     {/* Layer 1: Cyan (#25F4EE) - offset 2px top-left */}
     <path 
       fill="#25F4EE" 
@@ -144,9 +144,9 @@ const XTwitterIconBlack = () => (
   </svg>
 )
 
-// Telegram paper plane icon - perfectly centered with balanced viewBox
+// Telegram paper plane icon - optically centered with force nudge
 const TelegramIcon = () => (
-  <svg className="size-6 -mr-0.5" viewBox="0 0 24 24" fill="white">
+  <svg className="size-6 relative -left-[1px] top-[0.5px]" viewBox="0 0 24 24" fill="white">
     <path d="M20.665 3.717l-17.73 6.837c-1.21.486-1.203 1.161-.222 1.462l4.552 1.42 10.532-6.645c.498-.303.953-.14.579.192l-8.533 7.701h-.002l.002.001-.314 4.692c.46 0 .663-.211.921-.46l2.211-2.15 4.599 3.397c.848.467 1.457.227 1.668-.785l3.019-14.228c.309-1.239-.473-1.8-1.282-1.434z"/>
   </svg>
 )
