@@ -12,10 +12,13 @@ import {
 import { cn } from "@/lib/utils"
 
 // Premium Gemstone Circular Icons - size-5/6 for proper fit
+// Official WeChat logo: Two overlapping chat bubbles with dots
 const WeChatIcon = () => (
-  <svg className="size-5" viewBox="0 0 24 24" fill="white">
-    <path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 01.213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.3.3 0 00.167-.054l1.903-1.114a.864.864 0 01.717-.098c1.014.247 2.075.378 3.137.378.383 0 .759-.019 1.131-.051a5.16 5.16 0 01-.162-1.26c0-3.403 3.291-6.19 7.34-6.19.324 0 .641.019.957.049-.62-3.4-4.236-6.005-8.566-6.005zm-2.91 5.25a.936.936 0 110-1.872.936.936 0 010 1.872zm4.48 0a.936.936 0 110-1.872.936.936 0 010 1.872z"/>
-    <path d="M23.965 14.552c0-3.155-3.082-5.715-6.885-5.715-3.803 0-6.885 2.56-6.885 5.715s3.082 5.715 6.885 5.715c.765 0 1.5-.097 2.19-.27a.67.67 0 01.558.075l1.46.858a.23.23 0 00.128.041.227.227 0 00.224-.226.445.445 0 00-.037-.166l-.3-1.14a.454.454 0 01.164-.514c1.424-1.058 2.498-2.65 2.498-4.373zm-8.888-1.248a.728.728 0 110-1.456.728.728 0 010 1.456zm4.007 0a.728.728 0 110-1.456.728.728 0 010 1.456z"/>
+  <svg className="size-5" viewBox="0 0 32 32" fill="white">
+    {/* Large bubble (back) with two dots */}
+    <path d="M13.6 4C7.5 4 2.5 8.1 2.5 13.2c0 2.9 1.6 5.5 4 7.2l-1 3.7 4.3-2.2c1.2.3 2.4.5 3.8.5.4 0 .9 0 1.3-.1-.3-.8-.4-1.7-.4-2.6C14.5 14.3 19.5 10 25.5 10c.4 0 .8 0 1.2.1C25.4 6.5 20 4 13.6 4zM9.1 10.5c-.7 0-1.3-.6-1.3-1.3s.6-1.3 1.3-1.3 1.3.6 1.3 1.3-.6 1.3-1.3 1.3zm8.5 0c-.7 0-1.3-.6-1.3-1.3s.6-1.3 1.3-1.3 1.3.6 1.3 1.3-.6 1.3-1.3 1.3z"/>
+    {/* Small bubble (front) with two dots */}
+    <path d="M29.5 19.7c0-4.2-4.3-7.7-9.5-7.7s-9.5 3.4-9.5 7.7c0 4.2 4.3 7.7 9.5 7.7 1.1 0 2.2-.2 3.2-.5l3.5 1.8-.8-3c2.1-1.4 3.6-3.5 3.6-6zm-12.3-.6c-.6 0-1-.5-1-1s.5-1 1-1 1 .5 1 1-.4 1-1 1zm5.6 0c-.6 0-1-.5-1-1s.5-1 1-1 1 .5 1 1-.4 1-1 1z"/>
   </svg>
 )
 
@@ -55,11 +58,15 @@ const MicrosoftIcon = () => (
   </svg>
 )
 
+// Official TikTok logo with cyan/red stereoscopic offset effect
 const TikTokIcon = () => (
-  <svg className="size-5" viewBox="0 0 24 24">
-    <path fill="#25F4EE" d="M9.37 23.5v-14.2h3.48v14.2c-1.09.05-2.3.05-3.48 0z"/>
-    <path fill="#FE2C55" d="M12.85 9.3v14.2c1.09.05 2.3.05 3.48 0V9.3h-3.48z"/>
-    <path fill="white" d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z"/>
+  <svg className="size-5" viewBox="0 0 32 32">
+    {/* Cyan offset layer (left/back) */}
+    <path fill="#25F4EE" d="M16.7 1h4.3c.3 2.5 1.3 4.4 3.1 5.7 1.1.8 2.4 1.3 3.9 1.5v4.2c-2.4-.1-4.4-.8-6-2v9.1c0 2.2-.6 4.2-1.8 5.9-1.7 2.4-4.3 3.8-7.2 3.6-2.1-.1-4-1-5.4-2.4-2.2-2.1-3.2-5.4-2.3-8.5.8-2.8 3.1-5 6.1-5.6v4.4c-.5.2-1 .4-1.4.7-1.4.9-2 2.6-1.5 4.1.5 1.7 2.1 2.8 3.8 2.8 2.3 0 4.1-1.8 4.1-4.1V1h.3z"/>
+    {/* Red offset layer (right/front) */}
+    <path fill="#FE2C55" d="M18 2.3h4.3c.3 2.5 1.3 4.4 3.1 5.7.4.3.9.6 1.4.8v3.5c-2-.3-3.7-.9-5.2-1.8v9c0 2.2-.6 4.2-1.8 5.9-1.7 2.4-4.3 3.8-7.2 3.6-1.4-.1-2.7-.5-3.8-1.2 1.9 1 4.2 1.3 6.3.7 2.7-.7 4.8-2.8 5.5-5.5.3-1.1.4-2.3.4-3.4v-9c1.6 1.1 3.5 1.8 5.6 1.9V8c-1.4-.2-2.7-.7-3.8-1.5-1.8-1.3-2.8-3.2-3.1-5.7h-1.7v.5z"/>
+    {/* White base layer (center) */}
+    <path fill="white" d="M17.3 1.6h4.3c.3 2.5 1.3 4.4 3.1 5.7 1.1.8 2.4 1.3 3.9 1.5v4.2c-2.4-.1-4.4-.8-6-2v9.1c0 2.2-.6 4.2-1.8 5.9-1.7 2.4-4.3 3.8-7.2 3.6-2.1-.1-4-1-5.4-2.4-2.2-2.1-3.2-5.4-2.3-8.5.8-2.8 3.1-5 6.1-5.6v4.4c-.5.2-1 .4-1.4.7-1.4.9-2 2.6-1.5 4.1.5 1.7 2.1 2.8 3.8 2.8 2.3 0 4.1-1.8 4.1-4.1V1.6h.3z"/>
   </svg>
 )
 
@@ -125,9 +132,11 @@ const GemstoneButton = ({
     className={cn(
       "relative flex size-10 items-center justify-center overflow-hidden rounded-full transition-all duration-300 sm:size-11",
       "hover:scale-110 hover:-translate-y-0.5 active:scale-95",
-      "border border-white/20 shadow-sm hover:shadow-md",
+      "border shadow-sm hover:shadow-md",
       "shadow-[inset_0_2px_4px_rgba(255,255,255,0.4)]",
       "dark:shadow-[inset_0_2px_4px_rgba(255,255,255,0.1)]",
+      // Default border color, can be overridden by gradientClass
+      "border-white/20",
       gradientClass
     )}
     title={name}
@@ -410,14 +419,14 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
             <GemstoneButton name="QQ" gradientClass="bg-gradient-to-br from-[#4ACDF8] to-[#12B7F5]">
               <QQIcon />
             </GemstoneButton>
-            <GemstoneButton name="Google" gradientClass="bg-gradient-to-br from-slate-50 to-slate-200 dark:from-slate-700 dark:to-slate-800">
+            <GemstoneButton name="Google" gradientClass="bg-slate-50 border-slate-200/80 shadow-[0_2px_8px_rgba(0,0,0,0.06)] dark:bg-slate-800 dark:border-slate-600">
               <GoogleIcon />
             </GemstoneButton>
             <GemstoneButton name="Apple" gradientClass="bg-gradient-to-br from-gray-700 to-black dark:from-gray-100 dark:to-gray-300">
               <span className="dark:hidden"><AppleIconWhite /></span>
               <span className="hidden dark:block"><AppleIconBlack /></span>
             </GemstoneButton>
-            <GemstoneButton name="Microsoft" gradientClass="bg-gradient-to-br from-slate-50 to-slate-200 dark:from-slate-700 dark:to-slate-800">
+            <GemstoneButton name="Microsoft" gradientClass="bg-slate-50 border-slate-200/80 shadow-[0_2px_8px_rgba(0,0,0,0.06)] dark:bg-slate-800 dark:border-slate-600">
               <MicrosoftIcon />
             </GemstoneButton>
             <GemstoneButton name="TikTok" gradientClass="bg-gradient-to-br from-gray-800 to-black">
