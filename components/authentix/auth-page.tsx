@@ -125,13 +125,13 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
                 className={cn(
                   "flex size-16 items-center justify-center rounded-full border-2 transition-all duration-300",
                   biometricsVerified
-                    ? "border-transparent bg-[#10B981] text-white"
+                    ? "border-transparent bg-emerald-500 text-white shadow-md shadow-emerald-500/30"
                     : "border-slate-200 bg-white text-slate-400 hover:border-slate-300 hover:text-slate-500 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-500 dark:hover:border-slate-600"
                 )}
                 aria-label="Fingerprint authentication"
               >
                 {biometricsVerified ? (
-                  <Check className="size-7" strokeWidth={3} />
+                  <Check className="size-6 animate-in zoom-in-50 duration-300 ease-out" strokeWidth={3} />
                 ) : (
                   <Fingerprint className="size-7" />
                 )}
@@ -143,13 +143,13 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
                 className={cn(
                   "flex size-16 items-center justify-center rounded-full border-2 transition-all duration-300",
                   biometricsVerified
-                    ? "border-transparent bg-[#10B981] text-white"
+                    ? "border-transparent bg-emerald-500 text-white shadow-md shadow-emerald-500/30"
                     : "border-slate-200 bg-white text-slate-400 hover:border-slate-300 hover:text-slate-500 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-500 dark:hover:border-slate-600"
                 )}
                 aria-label="Face recognition authentication"
               >
                 {biometricsVerified ? (
-                  <Check className="size-7" strokeWidth={3} />
+                  <Check className="size-6 animate-in zoom-in-50 duration-300 ease-out" strokeWidth={3} />
                 ) : (
                   <ScanFace className="size-7" />
                 )}
@@ -195,7 +195,7 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="identity@authentix.io"
-                className="h-12 w-full rounded-xl border border-slate-200 bg-white px-4 pr-10 text-sm text-slate-900 placeholder:text-slate-400 focus:border-[#0082FD] focus:outline-none focus:ring-2 focus:ring-[#0082FD]/20 dark:border-slate-700 dark:bg-slate-800 dark:text-white dark:placeholder:text-slate-500 dark:focus:border-[#0082FD]"
+                className="h-12 w-full rounded-xl border border-transparent bg-[#F5F5F7] px-4 pr-10 text-sm text-slate-900 placeholder:text-slate-400 transition-all duration-200 focus:border-[#0082FD] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0082FD]/40 dark:bg-slate-800/50 dark:text-white dark:placeholder:text-slate-500 dark:focus:border-[#0082FD] dark:focus:bg-slate-800"
               />
               <ChevronDown className="pointer-events-none absolute right-3 top-1/2 size-5 -translate-y-1/2 text-slate-400" />
             </div>
@@ -239,7 +239,7 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder={passwordMode === "password" ? "Enter your password" : "Enter SMS code"}
-                className="h-12 w-full rounded-xl border border-slate-200 bg-white px-4 pr-10 text-sm text-slate-900 placeholder:text-slate-400 focus:border-[#0082FD] focus:outline-none focus:ring-2 focus:ring-[#0082FD]/20 dark:border-slate-700 dark:bg-slate-800 dark:text-white dark:placeholder:text-slate-500 dark:focus:border-[#0082FD]"
+                className="h-12 w-full rounded-xl border border-transparent bg-[#F5F5F7] px-4 pr-10 text-sm text-slate-900 placeholder:text-slate-400 transition-all duration-200 focus:border-[#0082FD] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0082FD]/40 dark:bg-slate-800/50 dark:text-white dark:placeholder:text-slate-500 dark:focus:border-[#0082FD] dark:focus:bg-slate-800"
               />
               {passwordMode === "password" && (
                 <button
