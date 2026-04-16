@@ -63,34 +63,37 @@ interface AuthPageProps {
 
 export function AuthPage({ onAuthenticate }: AuthPageProps) {
   const [mode, setMode] = useState<"login" | "signup">("login")
-  // Sequential verification: 0 = none, 1 = fingerprint done, 2 = both done
-  const [verificationStep, setVerificationStep] = useState(0)
+  // Biometric states: "idle" | "scanning-fingerprint" | "scanning-face" | "verified"
+  const [biometricState, setBiometricState] = useState<"idle" | "scanning-fingerprint" | "scanning-face" | "verified">("idle")
   const [passwordMode, setPasswordMode] = useState<"password" | "sms">("password")
   const [showPassword, setShowPassword] = useState(false)
   const [keepSession, setKeepSession] = useState(false)
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
-  const handleFingerprintTap = () => {
-    if (verificationStep === 0) {
-      setVerificationStep(1)
-    } else if (verificationStep >= 1) {
-      // Reset if already verified (toggle behavior)
-      setVerificationStep(0)
+  const handleBiometricTap = () => {
+    if (biometricState !== "idle") {
+      // Reset if already in progress or verified
+      setBiometricState("idle")
+      return
     }
+    
+    // Start automated sequential scan
+    setBiometricState("scanning-fingerprint")
+    
+    // Step 2: After 800ms, start Face ID scan
+    setTimeout(() => {
+      setBiometricState("scanning-face")
+      
+      // Step 3: After another 800ms, both succeed
+      setTimeout(() => {
+        setBiometricState("verified")
+      }, 800)
+    }, 800)
   }
 
-  const handleFaceIdTap = () => {
-    // Only allow if fingerprint is already done
-    if (verificationStep === 1) {
-      setVerificationStep(2)
-    } else if (verificationStep === 2) {
-      // Reset to fingerprint only
-      setVerificationStep(1)
-    }
-  }
-
-  const biometricsFullyVerified = verificationStep === 2
+  const biometricsFullyVerified = biometricState === "verified"
+  const isScanning = biometricState === "scanning-fingerprint" || biometricState === "scanning-face"
 
   return (
     <div className="flex min-h-screen w-full items-center justify-center bg-gradient-to-br from-slate-50 via-white to-slate-100 p-4 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
@@ -136,42 +139,45 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
           {/* Biometric Zone */}
           <div className="mb-6 flex flex-col items-center">
             <div className="flex items-center gap-4">
-              {/* Fingerprint Button (Step 1) */}
+              {/* Fingerprint Button */}
               <button
-                onClick={handleFingerprintTap}
+                onClick={handleBiometricTap}
+                disabled={isScanning}
                 className={cn(
-                  "flex size-16 items-center justify-center rounded-full border-2 transition-all duration-300",
-                  verificationStep >= 1
-                    ? "border-transparent bg-gradient-to-br from-emerald-400 to-teal-500 text-white shadow-[0_4px_15px_rgba(16,185,129,0.25)]"
-                    : "border-slate-200 bg-white text-slate-400 hover:border-slate-300 hover:text-slate-500 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-500 dark:hover:border-slate-600"
+                  "flex size-16 items-center justify-center rounded-full border transition-all duration-300",
+                  biometricState === "scanning-fingerprint"
+                    ? "border-emerald-500/30 bg-emerald-500/10 text-emerald-600 animate-pulse dark:bg-emerald-500/15 dark:text-emerald-400"
+                    : biometricState === "scanning-face" || biometricState === "verified"
+                      ? "border-emerald-500/30 bg-emerald-500/15 text-emerald-600 backdrop-blur-sm dark:bg-emerald-500/20 dark:text-emerald-400"
+                      : "border-slate-200 bg-white text-slate-400 hover:border-slate-300 hover:text-slate-500 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-500 dark:hover:border-slate-600"
                 )}
-                aria-label="Fingerprint authentication"
+                aria-label="Start biometric authentication"
               >
-                {verificationStep >= 1 ? (
-                  <Check className="size-6 animate-in zoom-in-50 duration-300 ease-out" strokeWidth={3} />
+                {biometricState === "scanning-face" || biometricState === "verified" ? (
+                  <Check className="size-6 text-emerald-600 animate-in zoom-in-50 duration-300 ease-out dark:text-emerald-400" strokeWidth={3} />
                 ) : (
-                  <Fingerprint className="size-7" />
+                  <Fingerprint className={cn("size-7", biometricState === "scanning-fingerprint" && "animate-pulse")} />
                 )}
               </button>
 
-              {/* Face Recognition Button (Step 2 - requires Step 1) */}
+              {/* Face Recognition Button */}
               <button
-                onClick={handleFaceIdTap}
-                disabled={verificationStep === 0}
+                onClick={handleBiometricTap}
+                disabled={isScanning}
                 className={cn(
-                  "flex size-16 items-center justify-center rounded-full border-2 transition-all duration-300",
-                  verificationStep === 2
-                    ? "border-transparent bg-gradient-to-br from-emerald-400 to-teal-500 text-white shadow-[0_4px_15px_rgba(16,185,129,0.25)]"
-                    : verificationStep === 1
-                      ? "border-slate-200 bg-white text-slate-400 hover:border-slate-300 hover:text-slate-500 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-500 dark:hover:border-slate-600"
-                      : "cursor-not-allowed border-slate-100 bg-slate-50 text-slate-300 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-700"
+                  "flex size-16 items-center justify-center rounded-full border transition-all duration-300",
+                  biometricState === "scanning-face"
+                    ? "border-emerald-500/30 bg-emerald-500/10 text-emerald-600 animate-pulse dark:bg-emerald-500/15 dark:text-emerald-400"
+                    : biometricState === "verified"
+                      ? "border-emerald-500/30 bg-emerald-500/15 text-emerald-600 backdrop-blur-sm dark:bg-emerald-500/20 dark:text-emerald-400"
+                      : "border-slate-200 bg-white text-slate-400 hover:border-slate-300 hover:text-slate-500 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-500 dark:hover:border-slate-600"
                 )}
                 aria-label="Face recognition authentication"
               >
-                {verificationStep === 2 ? (
-                  <Check className="size-6 animate-in zoom-in-50 duration-300 ease-out" strokeWidth={3} />
+                {biometricState === "verified" ? (
+                  <Check className="size-6 text-emerald-600 animate-in zoom-in-50 duration-300 ease-out dark:text-emerald-400" strokeWidth={3} />
                 ) : (
-                  <ScanFace className="size-7" />
+                  <ScanFace className={cn("size-7", biometricState === "scanning-face" && "animate-pulse")} />
                 )}
               </button>
             </div>
@@ -181,17 +187,25 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
               className={cn(
                 "mt-3 flex items-center gap-1.5 text-sm font-medium transition-colors duration-300",
                 biometricsFullyVerified
-                  ? "text-emerald-500"
-                  : "text-slate-400 dark:text-slate-500"
+                  ? "text-emerald-600 dark:text-emerald-400"
+                  : isScanning
+                    ? "text-emerald-500/70"
+                    : "text-slate-400 dark:text-slate-500"
               )}
             >
               <span
                 className={cn(
                   "size-2 rounded-full transition-colors duration-300",
-                  biometricsFullyVerified ? "bg-emerald-500" : "bg-slate-300 dark:bg-slate-600"
+                  biometricsFullyVerified ? "bg-emerald-500" : isScanning ? "bg-emerald-400 animate-pulse" : "bg-slate-300 dark:bg-slate-600"
                 )}
               />
-              {biometricsFullyVerified ? "Biometrics Verified" : verificationStep === 1 ? "Now verify Face ID" : "Tap to authenticate"}
+              {biometricsFullyVerified 
+                ? "Biometrics Verified" 
+                : biometricState === "scanning-fingerprint" 
+                  ? "Scanning fingerprint..." 
+                  : biometricState === "scanning-face"
+                    ? "Scanning Face ID..."
+                    : "Tap to authenticate"}
             </p>
           </div>
 
@@ -205,35 +219,26 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
           </div>
 
           {/* Input Fields with Perfect Symmetry */}
-          <div className="relative mt-4 flex flex-col gap-6">
-            {/* Email/Phone Input */}
-            <div>
-              <label className="mb-1.5 block text-xs font-medium uppercase tracking-wider text-slate-500 dark:text-slate-400">
-                Email / Phone
-              </label>
-              <div className="relative">
-                <input
-                  type="text"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="identity@authentix.io"
-                  className="h-12 w-full rounded-xl border border-transparent bg-[#F5F5F7] px-4 pr-10 text-sm text-slate-900 placeholder:text-slate-400 transition-all duration-200 focus:border-[#0082FD] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0082FD]/40 dark:bg-slate-800/50 dark:text-white dark:placeholder:text-slate-500 dark:focus:border-[#0082FD] dark:focus:bg-slate-800"
-                />
-                <ChevronDown className="pointer-events-none absolute right-3 top-1/2 size-5 -translate-y-1/2 text-slate-400" />
-              </div>
+          <div className="mt-4 flex flex-col gap-4">
+            {/* 1. Email/Phone Input */}
+            <div className="relative">
+              <input
+                type="text"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="identity@authentix.io"
+                className="h-12 w-full rounded-xl border border-transparent bg-[#F5F5F7] px-4 pr-10 text-sm text-slate-900 placeholder:text-slate-400 transition-all duration-200 focus:border-[#0082FD] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0082FD]/40 dark:bg-slate-800/50 dark:text-white dark:placeholder:text-slate-500 dark:focus:border-[#0082FD] dark:focus:bg-slate-800"
+              />
+              <ChevronDown className="pointer-events-none absolute right-3 top-1/2 size-5 -translate-y-1/2 text-slate-400" />
             </div>
 
-            {/* Password/SMS Input */}
-            <div className="relative">
-              <label className="mb-1.5 block text-xs font-medium uppercase tracking-wider text-slate-500 dark:text-slate-400">
-                Password
-              </label>
-              {/* Password/SMS Toggle - Absolute positioned to not break flow */}
-              <div className="absolute right-0 top-[-2px] z-10 flex items-center rounded-full bg-slate-100 p-0.5 dark:bg-slate-800">
+            {/* 2. Password/SMS Toggle Pill (Centered between inputs) */}
+            <div className="flex w-full justify-center">
+              <div className="inline-flex items-center rounded-full bg-slate-100 p-0.5 dark:bg-slate-800">
                 <button
                   onClick={() => setPasswordMode("password")}
                   className={cn(
-                    "rounded-full px-3 py-1 text-xs font-medium transition-all",
+                    "rounded-full px-4 py-1.5 text-xs font-medium transition-all",
                     passwordMode === "password"
                       ? "bg-white text-slate-900 shadow-sm dark:bg-slate-700 dark:text-white"
                       : "text-slate-500 hover:text-slate-700 dark:text-slate-400"
@@ -244,7 +249,7 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
                 <button
                   onClick={() => setPasswordMode("sms")}
                   className={cn(
-                    "rounded-full px-3 py-1 text-xs font-medium transition-all",
+                    "rounded-full px-4 py-1.5 text-xs font-medium transition-all",
                     passwordMode === "sms"
                       ? "bg-white text-slate-900 shadow-sm dark:bg-slate-700 dark:text-white"
                       : "text-slate-500 hover:text-slate-700 dark:text-slate-400"
@@ -253,25 +258,27 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
                   SMS Code
                 </button>
               </div>
-              <div className="relative">
-                <input
-                  type={passwordMode === "password" && !showPassword ? "password" : "text"}
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  placeholder={passwordMode === "password" ? "Enter your password" : "Enter SMS code"}
-                  className="h-12 w-full rounded-xl border border-transparent bg-[#F5F5F7] px-4 pr-10 text-sm text-slate-900 placeholder:text-slate-400 transition-all duration-200 focus:border-[#0082FD] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0082FD]/40 dark:bg-slate-800/50 dark:text-white dark:placeholder:text-slate-500 dark:focus:border-[#0082FD] dark:focus:bg-slate-800"
-                />
-                {passwordMode === "password" && (
-                  <button
-                    type="button"
-                    onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-300"
-                    aria-label={showPassword ? "Hide password" : "Show password"}
-                  >
-                    {showPassword ? <EyeOff className="size-5" /> : <Eye className="size-5" />}
-                  </button>
-                )}
-              </div>
+            </div>
+
+            {/* 3. Password/SMS Input */}
+            <div className="relative">
+              <input
+                type={passwordMode === "password" && !showPassword ? "password" : "text"}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder={passwordMode === "password" ? "Enter your password" : "Enter SMS code"}
+                className="h-12 w-full rounded-xl border border-transparent bg-[#F5F5F7] px-4 pr-10 text-sm text-slate-900 placeholder:text-slate-400 transition-all duration-200 focus:border-[#0082FD] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0082FD]/40 dark:bg-slate-800/50 dark:text-white dark:placeholder:text-slate-500 dark:focus:border-[#0082FD] dark:focus:bg-slate-800"
+              />
+              {passwordMode === "password" && (
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-300"
+                  aria-label={showPassword ? "Hide password" : "Show password"}
+                >
+                  {showPassword ? <EyeOff className="size-5" /> : <Eye className="size-5" />}
+                </button>
+              )}
             </div>
           </div>
 
