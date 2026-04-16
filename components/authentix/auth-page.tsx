@@ -11,40 +11,39 @@ import {
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 
-// Premium Gemstone Circular Icons - size-5/6 for proper fit
-// Official WeChat logo: Two overlapping chat bubbles with dots
+// Official WeChat logo: Two overlapping chat bubbles with eye dots
 const WeChatIcon = () => (
-  <svg className="size-6" viewBox="0 0 32 32" fill="white">
-    {/* Large bubble (back) with two dots */}
-    <path d="M13.6 4C7.5 4 2.5 8.1 2.5 13.2c0 2.9 1.6 5.5 4 7.2l-1 3.7 4.3-2.2c1.2.3 2.4.5 3.8.5.4 0 .9 0 1.3-.1-.3-.8-.4-1.7-.4-2.6C14.5 14.3 19.5 10 25.5 10c.4 0 .8 0 1.2.1C25.4 6.5 20 4 13.6 4zM9.1 10.5c-.7 0-1.3-.6-1.3-1.3s.6-1.3 1.3-1.3 1.3.6 1.3 1.3-.6 1.3-1.3 1.3zm8.5 0c-.7 0-1.3-.6-1.3-1.3s.6-1.3 1.3-1.3 1.3.6 1.3 1.3-.6 1.3-1.3 1.3z"/>
-    {/* Small bubble (front) with two dots */}
-    <path d="M29.5 19.7c0-4.2-4.3-7.7-9.5-7.7s-9.5 3.4-9.5 7.7c0 4.2 4.3 7.7 9.5 7.7 1.1 0 2.2-.2 3.2-.5l3.5 1.8-.8-3c2.1-1.4 3.6-3.5 3.6-6zm-12.3-.6c-.6 0-1-.5-1-1s.5-1 1-1 1 .5 1 1-.4 1-1 1zm5.6 0c-.6 0-1-.5-1-1s.5-1 1-1 1 .5 1 1-.4 1-1 1z"/>
+  <svg className="size-6" viewBox="0 0 24 24" fill="white">
+    {/* Large bubble (back-left) with two eye dots */}
+    <path d="M9.5 4C5.36 4 2 6.69 2 10c0 1.89 1.08 3.56 2.78 4.66l-.7 2.1 2.75-1.1c.88.28 1.83.44 2.82.44.26 0 .52-.01.78-.03-.17-.53-.26-1.1-.26-1.68 0-2.97 2.92-5.39 6.52-5.39.23 0 .46.01.68.03C16.68 5.88 13.42 4 9.5 4zM6.75 8.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm5 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+    {/* Small bubble (front-right) with two eye dots */}
+    <path d="M16.67 10c-3.14 0-5.67 2.09-5.67 4.67 0 2.58 2.53 4.67 5.67 4.67.68 0 1.33-.1 1.95-.27l2.2.87-.56-1.68c1.4-.92 2.24-2.26 2.24-3.76 0-2.5-2.61-4.5-5.83-4.5zm-2.17 3.5a.83.83 0 1 1 0 1.67.83.83 0 0 1 0-1.67zm4 0a.83.83 0 1 1 0 1.67.83.83 0 0 1 0-1.67z"/>
   </svg>
 )
 
 // Official QQ Penguin - Full color mascot (black body, white belly, red scarf, yellow beak/feet)
 const QQIcon = () => (
-  <svg className="size-6" viewBox="0 0 48 48">
-    {/* Body - black */}
-    <ellipse cx="24" cy="26" rx="14" ry="16" fill="#000000"/>
-    {/* Belly - white */}
-    <ellipse cx="24" cy="30" rx="9" ry="11" fill="#FFFFFF"/>
+  <svg className="size-7" viewBox="0 0 100 100">
+    {/* Head/Body - black */}
+    <ellipse cx="50" cy="52" rx="28" ry="32" fill="#000000"/>
+    {/* Belly - white oval */}
+    <ellipse cx="50" cy="62" rx="18" ry="22" fill="#FFFFFF"/>
     {/* Left eye white */}
-    <ellipse cx="19" cy="20" rx="4.5" ry="5" fill="#FFFFFF"/>
+    <ellipse cx="40" cy="42" rx="9" ry="10" fill="#FFFFFF"/>
     {/* Right eye white */}
-    <ellipse cx="29" cy="20" rx="4.5" ry="5" fill="#FFFFFF"/>
-    {/* Left pupil */}
-    <ellipse cx="20" cy="20" rx="2" ry="2.5" fill="#000000"/>
-    {/* Right pupil */}
-    <ellipse cx="30" cy="20" rx="2" ry="2.5" fill="#000000"/>
-    {/* Beak - yellow/orange */}
-    <ellipse cx="24" cy="27" rx="3.5" ry="2" fill="#FAAD14"/>
-    {/* Scarf - red */}
-    <path d="M10 24 Q24 30 38 24 Q38 28 24 32 Q10 28 10 24Z" fill="#E53935"/>
-    {/* Left foot */}
-    <ellipse cx="18" cy="42" rx="4" ry="2" fill="#FAAD14"/>
-    {/* Right foot */}
-    <ellipse cx="30" cy="42" rx="4" ry="2" fill="#FAAD14"/>
+    <ellipse cx="60" cy="42" rx="9" ry="10" fill="#FFFFFF"/>
+    {/* Left pupil - looking slightly right */}
+    <ellipse cx="42" cy="43" rx="4" ry="5" fill="#000000"/>
+    {/* Right pupil - looking slightly right */}
+    <ellipse cx="62" cy="43" rx="4" ry="5" fill="#000000"/>
+    {/* Beak - bright orange/yellow */}
+    <ellipse cx="50" cy="56" rx="6" ry="3.5" fill="#FF9500"/>
+    {/* Red scarf */}
+    <path d="M22 52 Q50 62 78 52 L76 60 Q50 70 24 60 Z" fill="#E53935"/>
+    {/* Left foot - orange */}
+    <ellipse cx="38" cy="86" rx="8" ry="4" fill="#FF9500"/>
+    {/* Right foot - orange */}
+    <ellipse cx="62" cy="86" rx="8" ry="4" fill="#FF9500"/>
   </svg>
 )
 
@@ -78,15 +77,15 @@ const MicrosoftIcon = () => (
   </svg>
 )
 
-// Official TikTok logo with cyan/red stereoscopic offset effect
+// Official TikTok logo with cyan/red stereoscopic glitch effect
 const TikTokIcon = () => (
-  <svg className="size-6" viewBox="0 0 32 32">
-    {/* Cyan offset layer (left/back) */}
-    <path fill="#25F4EE" d="M16.7 1h4.3c.3 2.5 1.3 4.4 3.1 5.7 1.1.8 2.4 1.3 3.9 1.5v4.2c-2.4-.1-4.4-.8-6-2v9.1c0 2.2-.6 4.2-1.8 5.9-1.7 2.4-4.3 3.8-7.2 3.6-2.1-.1-4-1-5.4-2.4-2.2-2.1-3.2-5.4-2.3-8.5.8-2.8 3.1-5 6.1-5.6v4.4c-.5.2-1 .4-1.4.7-1.4.9-2 2.6-1.5 4.1.5 1.7 2.1 2.8 3.8 2.8 2.3 0 4.1-1.8 4.1-4.1V1h.3z"/>
-    {/* Red offset layer (right/front) */}
-    <path fill="#FE2C55" d="M18 2.3h4.3c.3 2.5 1.3 4.4 3.1 5.7.4.3.9.6 1.4.8v3.5c-2-.3-3.7-.9-5.2-1.8v9c0 2.2-.6 4.2-1.8 5.9-1.7 2.4-4.3 3.8-7.2 3.6-1.4-.1-2.7-.5-3.8-1.2 1.9 1 4.2 1.3 6.3.7 2.7-.7 4.8-2.8 5.5-5.5.3-1.1.4-2.3.4-3.4v-9c1.6 1.1 3.5 1.8 5.6 1.9V8c-1.4-.2-2.7-.7-3.8-1.5-1.8-1.3-2.8-3.2-3.1-5.7h-1.7v.5z"/>
-    {/* White base layer (center) */}
-    <path fill="white" d="M17.3 1.6h4.3c.3 2.5 1.3 4.4 3.1 5.7 1.1.8 2.4 1.3 3.9 1.5v4.2c-2.4-.1-4.4-.8-6-2v9.1c0 2.2-.6 4.2-1.8 5.9-1.7 2.4-4.3 3.8-7.2 3.6-2.1-.1-4-1-5.4-2.4-2.2-2.1-3.2-5.4-2.3-8.5.8-2.8 3.1-5 6.1-5.6v4.4c-.5.2-1 .4-1.4.7-1.4.9-2 2.6-1.5 4.1.5 1.7 2.1 2.8 3.8 2.8 2.3 0 4.1-1.8 4.1-4.1V1.6h.3z"/>
+  <svg className="size-6" viewBox="0 0 24 24">
+    {/* Cyan shadow - offset top-left */}
+    <path fill="#25F4EE" d="M9.5 2.5h3.2c.2 2 1 3.5 2.4 4.5.9.6 1.9 1 3 1.2v3.3c-1.9-.1-3.5-.6-4.8-1.6v7.2c0 3.3-2.7 6-6 6-1.6 0-3.1-.7-4.2-1.7-1.7-1.7-2.5-4.3-1.8-6.7.6-2.2 2.4-4 4.8-4.4v3.5c-1.1.4-1.8 1.4-1.4 2.6.4 1.3 1.6 2.2 3 2.2 1.8 0 3.2-1.4 3.2-3.2V2.5h.6z" transform="translate(-0.5, -0.5)"/>
+    {/* Red shadow - offset bottom-right */}
+    <path fill="#FE2C55" d="M9.5 2.5h3.2c.2 2 1 3.5 2.4 4.5.9.6 1.9 1 3 1.2v3.3c-1.9-.1-3.5-.6-4.8-1.6v7.2c0 3.3-2.7 6-6 6-1.6 0-3.1-.7-4.2-1.7-1.7-1.7-2.5-4.3-1.8-6.7.6-2.2 2.4-4 4.8-4.4v3.5c-1.1.4-1.8 1.4-1.4 2.6.4 1.3 1.6 2.2 3 2.2 1.8 0 3.2-1.4 3.2-3.2V2.5h.6z" transform="translate(0.5, 0.5)"/>
+    {/* White base - center layer on top */}
+    <path fill="white" d="M9.5 2.5h3.2c.2 2 1 3.5 2.4 4.5.9.6 1.9 1 3 1.2v3.3c-1.9-.1-3.5-.6-4.8-1.6v7.2c0 3.3-2.7 6-6 6-1.6 0-3.1-.7-4.2-1.7-1.7-1.7-2.5-4.3-1.8-6.7.6-2.2 2.4-4 4.8-4.4v3.5c-1.1.4-1.8 1.4-1.4 2.6.4 1.3 1.6 2.2 3 2.2 1.8 0 3.2-1.4 3.2-3.2V2.5h.6z"/>
   </svg>
 )
 
@@ -133,10 +132,10 @@ const XTwitterIconBlack = () => (
   </svg>
 )
 
-// Telegram paper plane icon - simple clean shape
+// Telegram paper plane icon - perfectly centered with balanced viewBox
 const TelegramIcon = () => (
-  <svg className="size-6" viewBox="0 0 24 24" fill="white">
-    <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+  <svg className="size-6 -mr-0.5" viewBox="0 0 24 24" fill="white">
+    <path d="M20.665 3.717l-17.73 6.837c-1.21.486-1.203 1.161-.222 1.462l4.552 1.42 10.532-6.645c.498-.303.953-.14.579.192l-8.533 7.701h-.002l.002.001-.314 4.692c.46 0 .663-.211.921-.46l2.211-2.15 4.599 3.397c.848.467 1.457.227 1.668-.785l3.019-14.228c.309-1.239-.473-1.8-1.282-1.434z"/>
   </svg>
 )
 
