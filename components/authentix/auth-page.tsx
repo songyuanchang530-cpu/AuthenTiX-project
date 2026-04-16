@@ -21,54 +21,14 @@ const WeChatIcon = () => (
   </svg>
 )
 
-// Official QQ Penguin - High-fidelity full-color mascot matching iOS App Store quality
-// Black body, white belly, red scarf, golden yellow beak/feet, expressive eyes
+// Official Tencent QQ Penguin - Using official brand asset image for pixel-perfect accuracy
+// Features: plump black body, white belly, bright red scarf, yellow beak/feet, classic expressive eyes
 const QQIcon = () => (
-  <svg className="size-8 relative top-[1px]" viewBox="0 0 200 200">
-    {/* Shadow under body for depth */}
-    <ellipse cx="100" cy="175" rx="45" ry="8" fill="rgba(0,0,0,0.1)"/>
-    
-    {/* Left foot - bright golden yellow with subtle depth */}
-    <ellipse cx="70" cy="168" rx="18" ry="8" fill="#FFC107"/>
-    <ellipse cx="70" cy="166" rx="16" ry="6" fill="#FFD54F"/>
-    {/* Right foot */}
-    <ellipse cx="130" cy="168" rx="18" ry="8" fill="#FFC107"/>
-    <ellipse cx="130" cy="166" rx="16" ry="6" fill="#FFD54F"/>
-    
-    {/* Main body - sleek black penguin shape */}
-    <ellipse cx="100" cy="105" rx="52" ry="62" fill="#1A1A1A"/>
-    
-    {/* Belly - creamy white with subtle gradient effect */}
-    <ellipse cx="100" cy="118" rx="35" ry="45" fill="#FFFFFF"/>
-    <ellipse cx="100" cy="115" rx="32" ry="40" fill="#FAFAFA"/>
-    
-    {/* Red scarf - classic QQ signature element */}
-    <path d="M48 92 Q100 108 152 92 Q155 102 152 108 Q100 124 48 108 Q45 102 48 92 Z" fill="#E53935"/>
-    <path d="M50 94 Q100 108 150 94 Q152 100 150 104 Q100 118 50 104 Q48 100 50 94 Z" fill="#EF5350"/>
-    {/* Scarf knot detail */}
-    <ellipse cx="145" cy="105" rx="8" ry="12" fill="#C62828"/>
-    <ellipse cx="155" cy="115" rx="6" ry="10" fill="#E53935"/>
-    
-    {/* Left eye socket - white */}
-    <ellipse cx="75" cy="72" rx="18" ry="22" fill="#FFFFFF"/>
-    {/* Right eye socket - white */}
-    <ellipse cx="125" cy="72" rx="18" ry="22" fill="#FFFFFF"/>
-    
-    {/* Left pupil - looking slightly right for personality */}
-    <ellipse cx="80" cy="74" rx="8" ry="12" fill="#1A1A1A"/>
-    {/* Left eye highlight */}
-    <ellipse cx="77" cy="68" rx="3" ry="4" fill="#FFFFFF"/>
-    
-    {/* Right pupil - looking slightly right */}
-    <ellipse cx="130" cy="74" rx="8" ry="12" fill="#1A1A1A"/>
-    {/* Right eye highlight */}
-    <ellipse cx="127" cy="68" rx="3" ry="4" fill="#FFFFFF"/>
-    
-    {/* Beak - bright golden yellow with 3D shading */}
-    <ellipse cx="100" cy="95" rx="12" ry="7" fill="#FF9800"/>
-    <ellipse cx="100" cy="93" rx="10" ry="5" fill="#FFC107"/>
-    <ellipse cx="100" cy="91" rx="6" ry="3" fill="#FFD54F"/>
-  </svg>
+  <img 
+    src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Tencent_QQ.svg/1024px-Tencent_QQ.svg.png" 
+    alt="QQ" 
+    className="w-7 h-7 object-contain drop-shadow-sm" 
+  />
 )
 
 const GoogleIcon = () => (
