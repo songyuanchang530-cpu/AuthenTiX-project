@@ -58,7 +58,7 @@ const LucideSocialIcon = ({
 )
 
 interface AuthPageProps {
-  onAuthenticate?: () => void
+  onAuthenticate?: (keepSession?: boolean) => void
 }
 
 export function AuthPage({ onAuthenticate }: AuthPageProps) {
@@ -296,7 +296,7 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
 
           {/* Submit Button */}
           <button
-            onClick={() => onAuthenticate?.()}
+            onClick={() => onAuthenticate?.(keepSession)}
             className="h-12 w-full rounded-full bg-gradient-to-r from-[#0082FD] to-[#A459B5] text-sm font-bold uppercase tracking-wider text-white shadow-lg shadow-purple-500/20 transition-all hover:scale-[0.98] hover:opacity-90 hover:shadow-xl active:scale-95"
           >
             Authorize & Enter
