@@ -21,29 +21,53 @@ const WeChatIcon = () => (
   </svg>
 )
 
-// Official QQ Penguin - Full color mascot (black body, white belly, red scarf, yellow beak/feet)
+// Official QQ Penguin - High-fidelity full-color mascot matching iOS App Store quality
+// Black body, white belly, red scarf, golden yellow beak/feet, expressive eyes
 const QQIcon = () => (
-  <svg className="size-7" viewBox="0 0 100 100">
-    {/* Head/Body - black */}
-    <ellipse cx="50" cy="52" rx="28" ry="32" fill="#000000"/>
-    {/* Belly - white oval */}
-    <ellipse cx="50" cy="62" rx="18" ry="22" fill="#FFFFFF"/>
-    {/* Left eye white */}
-    <ellipse cx="40" cy="42" rx="9" ry="10" fill="#FFFFFF"/>
-    {/* Right eye white */}
-    <ellipse cx="60" cy="42" rx="9" ry="10" fill="#FFFFFF"/>
-    {/* Left pupil - looking slightly right */}
-    <ellipse cx="42" cy="43" rx="4" ry="5" fill="#000000"/>
+  <svg className="size-8 relative top-[1px]" viewBox="0 0 200 200">
+    {/* Shadow under body for depth */}
+    <ellipse cx="100" cy="175" rx="45" ry="8" fill="rgba(0,0,0,0.1)"/>
+    
+    {/* Left foot - bright golden yellow with subtle depth */}
+    <ellipse cx="70" cy="168" rx="18" ry="8" fill="#FFC107"/>
+    <ellipse cx="70" cy="166" rx="16" ry="6" fill="#FFD54F"/>
+    {/* Right foot */}
+    <ellipse cx="130" cy="168" rx="18" ry="8" fill="#FFC107"/>
+    <ellipse cx="130" cy="166" rx="16" ry="6" fill="#FFD54F"/>
+    
+    {/* Main body - sleek black penguin shape */}
+    <ellipse cx="100" cy="105" rx="52" ry="62" fill="#1A1A1A"/>
+    
+    {/* Belly - creamy white with subtle gradient effect */}
+    <ellipse cx="100" cy="118" rx="35" ry="45" fill="#FFFFFF"/>
+    <ellipse cx="100" cy="115" rx="32" ry="40" fill="#FAFAFA"/>
+    
+    {/* Red scarf - classic QQ signature element */}
+    <path d="M48 92 Q100 108 152 92 Q155 102 152 108 Q100 124 48 108 Q45 102 48 92 Z" fill="#E53935"/>
+    <path d="M50 94 Q100 108 150 94 Q152 100 150 104 Q100 118 50 104 Q48 100 50 94 Z" fill="#EF5350"/>
+    {/* Scarf knot detail */}
+    <ellipse cx="145" cy="105" rx="8" ry="12" fill="#C62828"/>
+    <ellipse cx="155" cy="115" rx="6" ry="10" fill="#E53935"/>
+    
+    {/* Left eye socket - white */}
+    <ellipse cx="75" cy="72" rx="18" ry="22" fill="#FFFFFF"/>
+    {/* Right eye socket - white */}
+    <ellipse cx="125" cy="72" rx="18" ry="22" fill="#FFFFFF"/>
+    
+    {/* Left pupil - looking slightly right for personality */}
+    <ellipse cx="80" cy="74" rx="8" ry="12" fill="#1A1A1A"/>
+    {/* Left eye highlight */}
+    <ellipse cx="77" cy="68" rx="3" ry="4" fill="#FFFFFF"/>
+    
     {/* Right pupil - looking slightly right */}
-    <ellipse cx="62" cy="43" rx="4" ry="5" fill="#000000"/>
-    {/* Beak - bright orange/yellow */}
-    <ellipse cx="50" cy="56" rx="6" ry="3.5" fill="#FF9500"/>
-    {/* Red scarf */}
-    <path d="M22 52 Q50 62 78 52 L76 60 Q50 70 24 60 Z" fill="#E53935"/>
-    {/* Left foot - orange */}
-    <ellipse cx="38" cy="86" rx="8" ry="4" fill="#FF9500"/>
-    {/* Right foot - orange */}
-    <ellipse cx="62" cy="86" rx="8" ry="4" fill="#FF9500"/>
+    <ellipse cx="130" cy="74" rx="8" ry="12" fill="#1A1A1A"/>
+    {/* Right eye highlight */}
+    <ellipse cx="127" cy="68" rx="3" ry="4" fill="#FFFFFF"/>
+    
+    {/* Beak - bright golden yellow with 3D shading */}
+    <ellipse cx="100" cy="95" rx="12" ry="7" fill="#FF9800"/>
+    <ellipse cx="100" cy="93" rx="10" ry="5" fill="#FFC107"/>
+    <ellipse cx="100" cy="91" rx="6" ry="3" fill="#FFD54F"/>
   </svg>
 )
 
