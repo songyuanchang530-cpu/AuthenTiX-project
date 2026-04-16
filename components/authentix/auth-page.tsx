@@ -331,19 +331,41 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
           {/* Input Fields with Perfect Symmetry */}
           <div className="mt-4 flex flex-col gap-4">
             {/* 1. Email/Phone Input - Dynamic based on Password/SMS toggle */}
+            {/* Paper Plane for "Send Code" appears ONLY in SMS mode */}
             <div className="relative">
               <input
                 type={passwordMode === "password" ? "email" : "tel"}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder={passwordMode === "password" ? "Enter your email address" : "Enter your phone number"}
-                className="h-12 w-full rounded-xl border border-transparent bg-[#F5F5F7] pl-11 pr-4 text-sm text-slate-900 placeholder:text-slate-400 transition-all duration-200 focus:border-[#0082FD] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0082FD]/40 dark:bg-slate-800/50 dark:text-white dark:placeholder:text-slate-500 dark:focus:border-[#0082FD] dark:focus:bg-slate-800"
+                className={cn(
+                  "h-12 w-full rounded-xl border border-transparent bg-[#F5F5F7] pl-11 text-sm text-slate-900 placeholder:text-slate-400 transition-all duration-200 focus:border-[#0082FD] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0082FD]/40 dark:bg-slate-800/50 dark:text-white dark:placeholder:text-slate-500 dark:focus:border-[#0082FD] dark:focus:bg-slate-800",
+                  // Extra right padding for Paper Plane in SMS mode
+                  passwordMode === "sms" ? "pr-12" : "pr-4"
+                )}
               />
               {/* Dynamic leading icon: Mail for password mode, Smartphone for SMS mode */}
               {passwordMode === "password" ? (
                 <Mail className="pointer-events-none absolute left-3.5 top-1/2 size-5 -translate-y-1/2 text-slate-400 transition-all duration-200" />
               ) : (
                 <Smartphone className="pointer-events-none absolute left-3.5 top-1/2 size-5 -translate-y-1/2 text-slate-400 transition-all duration-200" />
+              )}
+              
+              {/* Paper Plane "Send Code" Button - ONLY visible in SMS mode */}
+              {passwordMode === "sms" && (
+                <button
+                  type="button"
+                  disabled={email.length === 0}
+                  className={cn(
+                    "absolute right-2 top-1/2 -translate-y-1/2 p-1.5 rounded-full flex items-center justify-center transition-all duration-300 outline-none",
+                    email.length > 0
+                      ? "text-blue-500 dark:text-blue-400 cursor-pointer hover:scale-110 active:scale-90 hover:bg-blue-50 dark:hover:bg-blue-900/20 drop-shadow-sm"
+                      : "text-slate-300 dark:text-slate-600 cursor-not-allowed opacity-70"
+                  )}
+                  aria-label="Send verification code"
+                >
+                  <Send className="size-5" />
+                </button>
               )}
             </div>
 
@@ -375,59 +397,26 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
               </div>
             </div>
 
-            {/* 3. Password/SMS Input with Dynamic Submit Plane */}
+            {/* 3. Password/SMS Input - Eye icon ALWAYS visible on far right */}
             <div className="relative">
-              {/* Validation logic: Password needs any input, SMS needs 6+ digits */}
-              {(() => {
-                const isSubmitReady = passwordMode === "password" 
-                  ? password.length > 0 
-                  : password.length >= 6
-                
-                return (
-                  <>
-                    <input
-                      type={passwordMode === "password" && !showPassword ? "password" : "text"}
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      placeholder={passwordMode === "password" ? "Enter your password" : "Enter 6-digit SMS code"}
-                      maxLength={passwordMode === "sms" ? 6 : undefined}
-                      className={cn(
-                        "h-12 w-full rounded-xl border border-transparent bg-[#F5F5F7] px-4 text-sm text-slate-900 placeholder:text-slate-400 transition-all duration-200 focus:border-[#0082FD] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0082FD]/40 dark:bg-slate-800/50 dark:text-white dark:placeholder:text-slate-500 dark:focus:border-[#0082FD] dark:focus:bg-slate-800",
-                        // Dynamic right padding: more space when both Eye + Plane icons are visible
-                        passwordMode === "password" ? "pr-[72px]" : "pr-12"
-                      )}
-                    />
-                    
-                    {/* Eye icon for password visibility toggle - positioned to left of plane */}
-                    {passwordMode === "password" && (
-                      <button
-                        type="button"
-                        onClick={() => setShowPassword(!showPassword)}
-                        className="absolute right-11 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 transition-colors duration-200"
-                        aria-label={showPassword ? "Hide password" : "Show password"}
-                      >
-                        {showPassword ? <EyeOff className="size-5" /> : <Eye className="size-5" />}
-                      </button>
-                    )}
-                    
-                    {/* Paper Plane Submit Button - Always visible, dynamic styling based on validation */}
-                    <button
-                      type="button"
-                      onClick={() => isSubmitReady && onAuthenticate?.(keepSession)}
-                      disabled={!isSubmitReady}
-                      className={cn(
-                        "absolute right-2 top-1/2 -translate-y-1/2 p-1.5 rounded-full flex items-center justify-center transition-all duration-300 outline-none",
-                        isSubmitReady
-                          ? "text-blue-500 dark:text-blue-400 cursor-pointer hover:scale-110 active:scale-90 hover:bg-blue-50 dark:hover:bg-blue-900/20 drop-shadow-sm"
-                          : "text-slate-300 dark:text-slate-600 cursor-not-allowed scale-100 opacity-70"
-                      )}
-                      aria-label="Submit"
-                    >
-                      <Send className="size-5" />
-                    </button>
-                  </>
-                )
-              })()}
+              <input
+                type={passwordMode === "password" && !showPassword ? "password" : "text"}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder={passwordMode === "password" ? "Enter your password" : "Enter 6-digit SMS code"}
+                maxLength={passwordMode === "sms" ? 6 : undefined}
+                className="h-12 w-full rounded-xl border border-transparent bg-[#F5F5F7] px-4 pr-12 text-sm text-slate-900 placeholder:text-slate-400 transition-all duration-200 focus:border-[#0082FD] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0082FD]/40 dark:bg-slate-800/50 dark:text-white dark:placeholder:text-slate-500 dark:focus:border-[#0082FD] dark:focus:bg-slate-800"
+              />
+              
+              {/* Eye icon - ALWAYS visible on far right for password visibility toggle */}
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 p-1.5 rounded-full text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition-all duration-200"
+                aria-label={showPassword ? "Hide password" : "Show password"}
+              >
+                {showPassword ? <EyeOff className="size-5" /> : <Eye className="size-5" />}
+              </button>
             </div>
           </div>
 
