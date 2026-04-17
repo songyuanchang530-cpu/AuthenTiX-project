@@ -293,7 +293,7 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
   const isScanning = biometricState === "scanning-fingerprint" || biometricState === "scanning-face"
 
   return (
-    <div className="relative flex min-h-screen w-full items-center justify-center bg-gradient-to-br from-slate-50 via-white to-slate-100 p-4 dark:bg-[#0B0F19]">
+    <div className="relative flex min-h-screen w-full items-center justify-center bg-gradient-to-br from-slate-50 via-white to-slate-100 p-4 dark:from-[#0B0F19] dark:via-[#0B0F19] dark:to-[#0B0F19] transition-colors duration-300">
       {/* Top-Right Control Cluster - Language + Theme toggles with frosted glass aesthetic */}
       <div className="fixed top-6 right-6 z-50 flex items-center gap-3">
         {/* Language Toggle Button */}
@@ -301,8 +301,8 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
           onClick={() => setLang(lang === "en" ? "zh" : "en")}
           className={cn(
             "flex h-12 w-12 items-center justify-center rounded-full transition-all duration-300",
-            "bg-white/50 dark:bg-[#161B26]/80 backdrop-blur-md",
-            "border border-slate-200/50 dark:border-[#333C52]",
+            "bg-white/60 dark:bg-white/10 backdrop-blur-xl",
+            "border border-slate-200/50 dark:border-white/10",
             "shadow-sm hover:scale-105 active:scale-95",
             "text-sm font-semibold text-slate-700 dark:text-white"
           )}
@@ -316,11 +316,11 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
           onClick={() => setIsDarkMode(!isDarkMode)}
           className={cn(
             "flex h-12 w-12 items-center justify-center rounded-full transition-all duration-300",
-            "bg-white/60 dark:bg-[#161B26]/80 backdrop-blur-md",
-            "border border-slate-200/50 dark:border-[#333C52]",
+            "bg-white/60 dark:bg-white/10 backdrop-blur-xl",
+            "border border-slate-200/50 dark:border-white/10",
             "shadow-lg shadow-slate-200/20 dark:shadow-black/40",
             "hover:scale-105 active:scale-95",
-            "hover:bg-white/80 dark:hover:bg-[#1E2532]"
+            "hover:bg-white/80 dark:hover:bg-white/20"
           )}
           aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
         >
