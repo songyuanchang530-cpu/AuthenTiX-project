@@ -342,10 +342,10 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
           </p>
         </div>
 
-        {/* Main Auth Card - EXACT Dashboard HEX: #161B26 at 80% + Acrylic Glass */}
-        <div className="rounded-3xl bg-white p-6 shadow-xl shadow-slate-200/50 dark:bg-[#161B26]/80 dark:backdrop-blur-2xl dark:border dark:border-white/10 dark:shadow-[0_12px_40px_rgba(0,0,0,0.6)] md:p-8">
+        {/* Main Auth Card - EXACT Dashboard HEX: #161B26 at 80% + Deep Dark Shadow */}
+        <div className="rounded-3xl bg-white p-6 shadow-xl shadow-slate-200/50 dark:bg-[#161B26]/80 dark:backdrop-blur-2xl dark:border dark:border-white/10 dark:shadow-none dark:drop-shadow-[0_24px_50px_rgba(0,0,0,0.6)] md:p-8">
           {/* Login/Signup Toggle */}
-          <div className="mb-6 flex items-center rounded-full bg-slate-100 p-1 dark:bg-[#1E2532]/70 dark:backdrop-blur-md">
+          <div className="mb-6 flex items-center rounded-full bg-slate-100 p-1 dark:bg-[#0B0F19]/50 dark:border dark:border-white/10">
             <button
               onClick={() => setMode("login")}
               className={cn(
@@ -383,7 +383,7 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
                     ? "border-2 border-emerald-200/50 bg-emerald-50/30 text-emerald-400/60 dark:border-emerald-400/20 dark:bg-emerald-950/20 dark:text-emerald-300/50"
                     : biometricState === "scanning-face" || biometricState === "verified"
                       ? "bg-emerald-400/15 backdrop-blur-md border border-white/50 shadow-[inset_0_2px_4px_rgba(255,255,255,0.4),0_4px_12px_rgba(52,211,153,0.2)] dark:bg-emerald-500/10 dark:border-white/10 dark:shadow-[inset_0_1px_2px_rgba(255,255,255,0.1),0_4px_12px_rgba(16,185,129,0.15)]"
-                      : "border-2 border-slate-200 bg-white text-slate-400 hover:border-slate-300 hover:text-slate-500 dark:border-[#333C52] dark:bg-[#1E2532]/70 dark:backdrop-blur-md dark:text-slate-400 dark:hover:border-white/20"
+                      : "border-2 border-slate-200 bg-white text-slate-400 hover:border-slate-300 hover:text-slate-500 dark:border-white/10 dark:bg-[#0B0F19]/50 dark:text-slate-400 dark:hover:border-white/20"
                 )}
                 aria-label="Start biometric authentication"
               >
@@ -404,7 +404,7 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
                     ? "border-2 border-emerald-200/50 bg-emerald-50/30 text-emerald-400/60 dark:border-emerald-400/20 dark:bg-emerald-950/20 dark:text-emerald-300/50"
                     : biometricState === "verified"
                       ? "bg-emerald-400/15 backdrop-blur-md border border-white/50 shadow-[inset_0_2px_4px_rgba(255,255,255,0.4),0_4px_12px_rgba(52,211,153,0.2)] dark:bg-emerald-500/10 dark:border-white/10 dark:shadow-[inset_0_1px_2px_rgba(255,255,255,0.1),0_4px_12px_rgba(16,185,129,0.15)]"
-                      : "border-2 border-slate-200 bg-white text-slate-400 hover:border-slate-300 hover:text-slate-500 dark:border-[#333C52] dark:bg-[#1E2532]/70 dark:backdrop-blur-md dark:text-slate-400 dark:hover:border-white/20"
+                      : "border-2 border-slate-200 bg-white text-slate-400 hover:border-slate-300 hover:text-slate-500 dark:border-white/10 dark:bg-[#0B0F19]/50 dark:text-slate-400 dark:hover:border-white/20"
                 )}
                 aria-label="Face recognition authentication"
               >
@@ -463,7 +463,7 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder={passwordMode === "password" ? t.emailPlace : t.phonePlace}
                 className={cn(
-                  "h-12 w-full rounded-xl border border-transparent bg-[#F5F5F7] pl-11 text-sm text-slate-900 placeholder:text-slate-400 transition-all duration-200 focus:border-[#0082FD] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0082FD]/40 dark:bg-[#1E2532]/70 dark:backdrop-blur-md dark:border-[#333C52] dark:text-white dark:placeholder:text-slate-400 dark:focus:border-white/20 dark:focus:bg-[#1E2532]/90",
+                  "h-12 w-full rounded-xl border border-transparent bg-[#F5F5F7] pl-11 text-sm text-slate-900 placeholder:text-slate-400 transition-all duration-200 focus:border-[#0082FD] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0082FD]/40 dark:bg-[#0B0F19]/50 dark:border-white/10 dark:text-white dark:placeholder:text-slate-500 dark:focus:border-blue-500/50 dark:focus:bg-[#0B0F19]/70",
                   // Extra right padding for Paper Plane in SMS mode
                   passwordMode === "sms" ? "pr-12" : "pr-4"
                 )}
@@ -495,7 +495,7 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
 
             {/* 2. Password/SMS Toggle Pill (Right-aligned to match input edges) */}
             <div className="flex w-full justify-end">
-              <div className="inline-flex items-center rounded-full bg-slate-100 p-0.5 dark:bg-[#1E2532]/70 dark:backdrop-blur-md">
+              <div className="inline-flex items-center rounded-full bg-slate-100 p-0.5 dark:bg-[#0B0F19]/50 dark:border dark:border-white/10">
                 <button
                   onClick={() => setPasswordMode("password")}
                   className={cn(
@@ -529,7 +529,7 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder={passwordMode === "password" ? t.passPlace : t.smsPlace}
                 maxLength={passwordMode === "sms" ? 6 : undefined}
-                className="h-12 w-full rounded-xl border border-transparent bg-[#F5F5F7] px-4 pr-12 text-sm text-slate-900 placeholder:text-slate-400 transition-all duration-200 focus:border-[#0082FD] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0082FD]/40 dark:bg-[#1E2532]/70 dark:backdrop-blur-md dark:border-[#333C52] dark:text-white dark:placeholder:text-slate-400 dark:focus:border-white/20 dark:focus:bg-[#1E2532]/90"
+                className="h-12 w-full rounded-xl border border-transparent bg-[#F5F5F7] px-4 pr-12 text-sm text-slate-900 placeholder:text-slate-400 transition-all duration-200 focus:border-[#0082FD] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0082FD]/40 dark:bg-[#0B0F19]/50 dark:border-white/10 dark:text-white dark:placeholder:text-slate-500 dark:focus:border-blue-500/50 dark:focus:bg-[#0B0F19]/70"
               />
               
               {/* Eye icon - ALWAYS visible on far right for password visibility toggle */}
@@ -551,7 +551,7 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
                 type="checkbox"
                 checked={keepSession}
                 onChange={(e) => setKeepSession(e.target.checked)}
-                className="size-4 rounded border-slate-300 text-[#0082FD] focus:ring-[#0082FD] dark:border-[#333C52] dark:bg-[#1E2532]/70"
+                className="size-4 rounded border-slate-300 text-[#0082FD] focus:ring-[#0082FD] dark:border-white/20 dark:bg-[#0B0F19]/50"
               />
               <span className="text-sm text-slate-600 dark:text-slate-300">{t.keepSession}</span>
             </label>
