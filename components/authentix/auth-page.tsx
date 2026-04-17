@@ -293,7 +293,7 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
   const isScanning = biometricState === "scanning-fingerprint" || biometricState === "scanning-face"
 
   return (
-    <div className="relative flex min-h-screen w-full items-center justify-center bg-gradient-to-br from-slate-50 via-white to-slate-100 p-4 dark:from-[#0B0F19] dark:via-[#0D1117] dark:to-[#0B0F19]">
+    <div className="relative flex min-h-screen w-full items-center justify-center bg-gradient-to-br from-slate-50 via-white to-slate-100 p-4 dark:from-black dark:via-black dark:to-black">
       {/* Top-Right Control Cluster - Language + Theme toggles with frosted glass aesthetic */}
       <div className="fixed top-6 right-6 z-50 flex items-center gap-3">
         {/* Language Toggle Button */}
@@ -301,10 +301,10 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
           onClick={() => setLang(lang === "en" ? "zh" : "en")}
           className={cn(
             "flex h-12 w-12 items-center justify-center rounded-full transition-all duration-300",
-            "bg-white/50 dark:bg-slate-800/50 backdrop-blur-md",
-            "border border-slate-200/50 dark:border-slate-700/50",
+            "bg-white/50 dark:bg-[#2C2C2E]/80 backdrop-blur-md",
+            "border border-slate-200/50 dark:border-white/10",
             "shadow-sm hover:scale-105 active:scale-95",
-            "text-sm font-semibold text-slate-700 dark:text-slate-200"
+            "text-sm font-semibold text-slate-700 dark:text-white"
           )}
           aria-label={lang === "en" ? "Switch to Chinese" : "Switch to English"}
         >
@@ -316,16 +316,16 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
           onClick={() => setIsDarkMode(!isDarkMode)}
           className={cn(
             "flex h-12 w-12 items-center justify-center rounded-full transition-all duration-300",
-            "bg-white/60 dark:bg-slate-800/60 backdrop-blur-md",
-            "border border-slate-200/50 dark:border-slate-700/50",
-            "shadow-lg shadow-slate-200/20 dark:shadow-black/20",
+            "bg-white/60 dark:bg-[#2C2C2E]/80 backdrop-blur-md",
+            "border border-slate-200/50 dark:border-white/10",
+            "shadow-lg shadow-slate-200/20 dark:shadow-black/40",
             "hover:scale-105 active:scale-95",
-            "hover:bg-white/80 dark:hover:bg-slate-800/80"
+            "hover:bg-white/80 dark:hover:bg-[#3A3A3C]/80"
           )}
           aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
         >
           {isDarkMode ? (
-            <Moon className="h-6 w-6 text-slate-200 transition-transform duration-300 rotate-0" />
+            <Moon className="h-6 w-6 text-white transition-transform duration-300 rotate-0" />
           ) : (
             <Sun className="h-6 w-6 text-slate-700 transition-transform duration-300 rotate-0" />
           )}
@@ -337,22 +337,22 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
           <h1 className="bg-gradient-to-r from-[#0082FD] to-[#A459B5] bg-clip-text text-4xl font-bold tracking-tight text-transparent md:text-5xl">
             AuthentiX
           </h1>
-          <p className="mt-2 text-xs font-medium uppercase tracking-[0.2em] text-slate-400 dark:text-slate-500">
+          <p className="mt-2 text-xs font-medium uppercase tracking-[0.2em] text-slate-400 dark:text-zinc-400">
             {t.subtitle}
           </p>
         </div>
 
-        {/* Main Auth Card - Premium dark mode with elevated slate */}
-        <div className="rounded-3xl bg-white p-6 shadow-xl shadow-slate-200/50 dark:bg-[#161B26] dark:border dark:border-slate-800/50 dark:shadow-2xl dark:shadow-black/30 md:p-8">
+        {/* Main Auth Card - iOS-tier elevated surface with edge lighting */}
+        <div className="rounded-3xl bg-white p-6 shadow-xl shadow-slate-200/50 dark:bg-[#1C1C1E] dark:border dark:border-white/10 dark:shadow-[0_8px_30px_rgb(0,0,0,0.8)] md:p-8">
           {/* Login/Signup Toggle */}
-          <div className="mb-6 flex items-center rounded-full bg-slate-100 p-1 dark:bg-[#1F2532]">
+          <div className="mb-6 flex items-center rounded-full bg-slate-100 p-1 dark:bg-[#2C2C2E]">
             <button
               onClick={() => setMode("login")}
               className={cn(
                 "flex-1 rounded-full px-6 py-2.5 text-sm font-medium transition-all duration-200",
                 mode === "login"
-                  ? "bg-white text-slate-900 shadow-sm dark:bg-slate-700 dark:text-white"
-                  : "text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300"
+                  ? "bg-white text-slate-900 shadow-sm dark:bg-[#3A3A3C] dark:text-white"
+                  : "text-slate-500 hover:text-slate-700 dark:text-zinc-500 dark:hover:text-zinc-300"
               )}
             >
               {t.login}
@@ -362,8 +362,8 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
               className={cn(
                 "flex-1 rounded-full px-6 py-2.5 text-sm font-medium transition-all duration-200",
                 mode === "signup"
-                  ? "bg-white text-slate-900 shadow-sm dark:bg-slate-700 dark:text-white"
-                  : "text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300"
+                  ? "bg-white text-slate-900 shadow-sm dark:bg-[#3A3A3C] dark:text-white"
+                  : "text-slate-500 hover:text-slate-700 dark:text-zinc-500 dark:hover:text-zinc-300"
               )}
             >
               {t.signup}
@@ -383,7 +383,7 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
                     ? "border-2 border-emerald-200/50 bg-emerald-50/30 text-emerald-400/60 dark:border-emerald-400/20 dark:bg-emerald-950/20 dark:text-emerald-300/50"
                     : biometricState === "scanning-face" || biometricState === "verified"
                       ? "bg-emerald-400/15 backdrop-blur-md border border-white/50 shadow-[inset_0_2px_4px_rgba(255,255,255,0.4),0_4px_12px_rgba(52,211,153,0.2)] dark:bg-emerald-500/10 dark:border-white/10 dark:shadow-[inset_0_1px_2px_rgba(255,255,255,0.1),0_4px_12px_rgba(16,185,129,0.15)]"
-                      : "border-2 border-slate-200 bg-white text-slate-400 hover:border-slate-300 hover:text-slate-500 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-500 dark:hover:border-slate-600"
+                      : "border-2 border-slate-200 bg-white text-slate-400 hover:border-slate-300 hover:text-slate-500 dark:border-white/10 dark:bg-[#2C2C2E] dark:text-zinc-500 dark:hover:border-white/20"
                 )}
                 aria-label="Start biometric authentication"
               >
@@ -404,7 +404,7 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
                     ? "border-2 border-emerald-200/50 bg-emerald-50/30 text-emerald-400/60 dark:border-emerald-400/20 dark:bg-emerald-950/20 dark:text-emerald-300/50"
                     : biometricState === "verified"
                       ? "bg-emerald-400/15 backdrop-blur-md border border-white/50 shadow-[inset_0_2px_4px_rgba(255,255,255,0.4),0_4px_12px_rgba(52,211,153,0.2)] dark:bg-emerald-500/10 dark:border-white/10 dark:shadow-[inset_0_1px_2px_rgba(255,255,255,0.1),0_4px_12px_rgba(16,185,129,0.15)]"
-                      : "border-2 border-slate-200 bg-white text-slate-400 hover:border-slate-300 hover:text-slate-500 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-500 dark:hover:border-slate-600"
+                      : "border-2 border-slate-200 bg-white text-slate-400 hover:border-slate-300 hover:text-slate-500 dark:border-white/10 dark:bg-[#2C2C2E] dark:text-zinc-500 dark:hover:border-white/20"
                 )}
                 aria-label="Face recognition authentication"
               >
@@ -424,13 +424,13 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
                   ? "text-emerald-600 dark:text-emerald-400"
                   : isScanning
                     ? "text-emerald-500/50 dark:text-emerald-400/40"
-                    : "text-slate-400 dark:text-slate-500"
+                    : "text-slate-400 dark:text-zinc-500"
               )}
             >
               <span
                 className={cn(
                   "size-2 rounded-full transition-colors duration-300",
-                  biometricsFullyVerified ? "bg-emerald-500" : isScanning ? "bg-emerald-300/50 animate-pulse dark:bg-emerald-400/40" : "bg-slate-300 dark:bg-slate-600"
+                  biometricsFullyVerified ? "bg-emerald-500" : isScanning ? "bg-emerald-300/50 animate-pulse dark:bg-emerald-400/40" : "bg-slate-300 dark:bg-zinc-600"
                 )}
               />
               {biometricsFullyVerified 
@@ -445,11 +445,11 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
 
           {/* Divider */}
           <div className="mb-6 flex items-center gap-3">
-            <div className="h-px flex-1 bg-slate-200 dark:bg-slate-700" />
-            <span className="text-xs font-medium uppercase tracking-wider text-slate-400 dark:text-slate-500">
+            <div className="h-px flex-1 bg-slate-200 dark:bg-white/10" />
+            <span className="text-xs font-medium uppercase tracking-wider text-slate-400 dark:text-zinc-500">
               {t.orTrad}
             </span>
-            <div className="h-px flex-1 bg-slate-200 dark:bg-slate-700" />
+            <div className="h-px flex-1 bg-slate-200 dark:bg-white/10" />
           </div>
 
           {/* Input Fields with Perfect Symmetry */}
@@ -463,7 +463,7 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder={passwordMode === "password" ? t.emailPlace : t.phonePlace}
                 className={cn(
-                  "h-12 w-full rounded-xl border border-transparent bg-[#F5F5F7] pl-11 text-sm text-slate-900 placeholder:text-slate-400 transition-all duration-200 focus:border-[#0082FD] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0082FD]/40 dark:bg-[#1F2532] dark:border-slate-700 dark:text-slate-100 dark:placeholder:text-slate-500 dark:focus:border-[#0082FD] dark:focus:bg-[#252C3B]",
+                  "h-12 w-full rounded-xl border border-transparent bg-[#F5F5F7] pl-11 text-sm text-slate-900 placeholder:text-slate-400 transition-all duration-200 focus:border-[#0082FD] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0082FD]/40 dark:bg-[#2C2C2E] dark:border-white/5 dark:text-white dark:placeholder:text-zinc-500 dark:focus:border-[#0082FD] dark:focus:bg-[#3A3A3C]",
                   // Extra right padding for Paper Plane in SMS mode
                   passwordMode === "sms" ? "pr-12" : "pr-4"
                 )}
@@ -495,14 +495,14 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
 
             {/* 2. Password/SMS Toggle Pill (Right-aligned to match input edges) */}
             <div className="flex w-full justify-end">
-              <div className="inline-flex items-center rounded-full bg-slate-100 p-0.5 dark:bg-[#1F2532]">
+              <div className="inline-flex items-center rounded-full bg-slate-100 p-0.5 dark:bg-[#2C2C2E]">
                 <button
                   onClick={() => setPasswordMode("password")}
                   className={cn(
                     "rounded-full px-4 py-1.5 text-xs font-medium transition-all",
                     passwordMode === "password"
-                      ? "bg-white text-slate-900 shadow-sm dark:bg-slate-700 dark:text-white"
-                      : "text-slate-500 hover:text-slate-700 dark:text-slate-400"
+                      ? "bg-white text-slate-900 shadow-sm dark:bg-[#3A3A3C] dark:text-white"
+                      : "text-slate-500 hover:text-slate-700 dark:text-zinc-500 dark:hover:text-zinc-300"
                   )}
                 >
                   {t.passToggle}
@@ -512,8 +512,8 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
                   className={cn(
                     "rounded-full px-4 py-1.5 text-xs font-medium transition-all",
                     passwordMode === "sms"
-                      ? "bg-white text-slate-900 shadow-sm dark:bg-slate-700 dark:text-white"
-                      : "text-slate-500 hover:text-slate-700 dark:text-slate-400"
+                      ? "bg-white text-slate-900 shadow-sm dark:bg-[#3A3A3C] dark:text-white"
+                      : "text-slate-500 hover:text-slate-700 dark:text-zinc-500 dark:hover:text-zinc-300"
                   )}
                 >
                   {t.smsToggle}
@@ -529,14 +529,14 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder={passwordMode === "password" ? t.passPlace : t.smsPlace}
                 maxLength={passwordMode === "sms" ? 6 : undefined}
-                className="h-12 w-full rounded-xl border border-transparent bg-[#F5F5F7] px-4 pr-12 text-sm text-slate-900 placeholder:text-slate-400 transition-all duration-200 focus:border-[#0082FD] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0082FD]/40 dark:bg-[#1F2532] dark:border-slate-700 dark:text-slate-100 dark:placeholder:text-slate-500 dark:focus:border-[#0082FD] dark:focus:bg-[#252C3B]"
+                className="h-12 w-full rounded-xl border border-transparent bg-[#F5F5F7] px-4 pr-12 text-sm text-slate-900 placeholder:text-slate-400 transition-all duration-200 focus:border-[#0082FD] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0082FD]/40 dark:bg-[#2C2C2E] dark:border-white/5 dark:text-white dark:placeholder:text-zinc-500 dark:focus:border-[#0082FD] dark:focus:bg-[#3A3A3C]"
               />
               
               {/* Eye icon - ALWAYS visible on far right for password visibility toggle */}
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 p-1.5 rounded-full text-slate-400 hover:text-slate-600 dark:text-slate-500 dark:hover:text-slate-300 hover:bg-slate-100 dark:hover:bg-[#2A3344] transition-all duration-200"
+                className="absolute right-3 top-1/2 -translate-y-1/2 p-1.5 rounded-full text-slate-400 hover:text-slate-600 dark:text-zinc-500 dark:hover:text-zinc-300 hover:bg-slate-100 dark:hover:bg-white/10 transition-all duration-200"
                 aria-label={showPassword ? "Hide password" : "Show password"}
               >
                 {showPassword ? <EyeOff className="size-5" /> : <Eye className="size-5" />}
@@ -551,9 +551,9 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
                 type="checkbox"
                 checked={keepSession}
                 onChange={(e) => setKeepSession(e.target.checked)}
-                className="size-4 rounded border-slate-300 text-[#0082FD] focus:ring-[#0082FD] dark:border-slate-600"
+                className="size-4 rounded border-slate-300 text-[#0082FD] focus:ring-[#0082FD] dark:border-zinc-600 dark:bg-[#2C2C2E]"
               />
-              <span className="text-sm text-slate-600 dark:text-slate-400">{t.keepSession}</span>
+              <span className="text-sm text-slate-600 dark:text-zinc-400">{t.keepSession}</span>
             </label>
             <a
               href="#"
@@ -576,11 +576,11 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
         <div className="mt-6">
           {/* Divider */}
           <div className="mb-4 flex items-center gap-3">
-            <div className="h-px flex-1 bg-slate-200 dark:bg-slate-800" />
-            <span className="text-xs font-medium uppercase tracking-wider text-slate-400 dark:text-slate-600">
+            <div className="h-px flex-1 bg-slate-200 dark:bg-white/10" />
+            <span className="text-xs font-medium uppercase tracking-wider text-slate-400 dark:text-zinc-500">
               {t.quickAccess}
             </span>
-            <div className="h-px flex-1 bg-slate-200 dark:bg-slate-800" />
+            <div className="h-px flex-1 bg-slate-200 dark:bg-white/10" />
           </div>
 
           {/* Social Icons Grid - 2x6 iOS Enamel Badge Circles */}
