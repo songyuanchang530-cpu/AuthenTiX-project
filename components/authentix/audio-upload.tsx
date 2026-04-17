@@ -86,46 +86,46 @@ export function AudioUpload() {
         onClick={handleFileSelect}
         className={`group relative flex h-64 cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed transition-all duration-300 ${
           isDragging
-            ? "border-indigo-400 bg-indigo-50 shadow-[inset_0_0_30px_rgba(99,102,241,0.1)]"
-            : "border-indigo-200 bg-indigo-50/30 hover:border-indigo-300 hover:bg-indigo-50/50"
+            ? "border-indigo-400 bg-indigo-50 shadow-[inset_0_0_30px_rgba(99,102,241,0.1)] dark:border-[#0082FD]/50 dark:bg-[#0082FD]/10"
+            : "border-indigo-200 bg-indigo-50/30 hover:border-indigo-300 hover:bg-indigo-50/50 dark:border-white/20 dark:bg-white/5 dark:hover:border-white/30 dark:hover:bg-white/10"
         }`}
       >
         <div
           className={`mb-4 rounded-2xl p-4 transition-all duration-300 ${
             isDragging
-              ? "bg-indigo-100 text-indigo-600"
-              : "bg-slate-100 text-slate-400 group-hover:bg-indigo-100 group-hover:text-indigo-500"
+              ? "bg-indigo-100 text-indigo-600 dark:bg-[#0082FD]/20 dark:text-[#0082FD]"
+              : "bg-slate-100 text-slate-400 group-hover:bg-indigo-100 group-hover:text-indigo-500 dark:bg-white/10 dark:text-slate-400 dark:group-hover:bg-[#0082FD]/20 dark:group-hover:text-[#0082FD]"
           }`}
         >
           <Mic className="size-12" strokeWidth={1.5} />
         </div>
 
-        <p className="text-center text-slate-700">
+        <p className="text-center text-slate-700 dark:text-slate-300">
           Drag & Drop audio file (.wav, .mp3) here
         </p>
-        <p className="mt-1 text-sm text-slate-500">
+        <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
           or click to browse
         </p>
 
-        <div className="mt-4 flex items-center gap-2 text-xs text-slate-400">
+        <div className="mt-4 flex items-center gap-2 text-xs text-slate-400 dark:text-slate-500">
           <span>WAV, MP3, OGG</span>
-          <span className="text-slate-300">•</span>
+          <span className="text-slate-300 dark:text-slate-600">•</span>
           <span>Max 100MB</span>
         </div>
       </div>
 
       {/* File Indicator */}
       {uploadedFile && (
-        <div className="flex items-center justify-between rounded-xl bg-slate-50 px-4 py-3 shadow-sm">
+        <div className="flex items-center justify-between rounded-xl bg-slate-50 px-4 py-3 shadow-sm dark:bg-white/5 dark:border dark:border-white/10">
           <div className="flex items-center gap-3">
-            <div className="rounded-lg bg-indigo-100 p-2">
-              <FileAudio className="size-5 text-indigo-600" />
+            <div className="rounded-lg bg-indigo-100 p-2 dark:bg-[#0082FD]/20">
+              <FileAudio className="size-5 text-indigo-600 dark:text-[#0082FD]" />
             </div>
             <div>
-              <p className="text-sm font-medium text-slate-800">
+              <p className="text-sm font-medium text-slate-800 dark:text-slate-100">
                 {uploadedFile.name}
               </p>
-              <p className="text-xs text-slate-500">
+              <p className="text-xs text-slate-500 dark:text-slate-400">
                 {formatFileSize(uploadedFile.size)}
               </p>
             </div>
@@ -135,7 +135,7 @@ export function AudioUpload() {
               e.stopPropagation()
               handleRemoveFile()
             }}
-            className="rounded-full p-1.5 text-slate-400 transition-colors hover:bg-slate-200 hover:text-slate-600"
+            className="rounded-full p-1.5 text-slate-400 transition-colors hover:bg-slate-200 hover:text-slate-600 dark:hover:bg-white/10 dark:hover:text-white"
           >
             <X className="size-4" />
           </button>
@@ -143,13 +143,13 @@ export function AudioUpload() {
       )}
 
       {/* Settings Panel */}
-      <div className="rounded-xl bg-slate-50 p-4">
-        <h4 className="mb-3 text-xs font-medium uppercase tracking-wider text-slate-500">
+      <div className="rounded-xl bg-slate-50 p-4 dark:bg-white/5 dark:border dark:border-white/10">
+        <h4 className="mb-3 text-xs font-medium uppercase tracking-wider text-slate-500 dark:text-slate-400">
           Scan Options
         </h4>
         <div className="space-y-3">
           <label className="flex items-center justify-between">
-            <span className="text-sm text-slate-700">Deep Voice Clone Scan</span>
+            <span className="text-sm text-slate-700 dark:text-slate-300">Deep Voice Clone Scan</span>
             <button
               onClick={() => setDeepVoiceClone(!deepVoiceClone)}
               className={`relative h-6 w-11 rounded-full transition-colors ${
@@ -164,7 +164,7 @@ export function AudioUpload() {
             </button>
           </label>
           <label className="flex items-center justify-between">
-            <span className="text-sm text-slate-700">Background Noise Anomaly Check</span>
+            <span className="text-sm text-slate-700 dark:text-slate-300">Background Noise Anomaly Check</span>
             <button
               onClick={() => setNoiseAnomaly(!noiseAnomaly)}
               className={`relative h-6 w-11 rounded-full transition-colors ${

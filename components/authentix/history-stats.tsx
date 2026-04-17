@@ -35,13 +35,13 @@ export function HistoryStats() {
       {stats.map((stat) => (
         <div
           key={stat.label}
-          className="rounded-2xl bg-white p-6 shadow-xl shadow-indigo-100/50"
+          className="rounded-2xl bg-white p-6 shadow-xl shadow-indigo-100/50 dark:bg-[#161B26]/80 dark:backdrop-blur-2xl dark:border dark:border-white/10 dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)]"
         >
           <div className="flex items-center gap-3">
-            <div className={`rounded-lg p-2 ${stat.iconBg}`}>
+            <div className={`rounded-lg p-2 ${stat.iconBg} dark:bg-white/10`}>
               <stat.icon className={`size-5 ${stat.iconColor}`} />
             </div>
-            <span className="text-xs uppercase tracking-widest text-slate-500">
+            <span className="text-xs uppercase tracking-widest text-slate-500 dark:text-slate-400">
               {stat.label}
             </span>
           </div>

@@ -145,7 +145,7 @@ export function TextAnalysisBento() {
           onDragOver={handleDragOver}
           onDragLeave={handleDragLeave}
           onDrop={handleDrop}
-          className={`relative flex flex-1 flex-col rounded-3xl bg-white p-6 shadow-xl shadow-indigo-100/50 transition-all dark:bg-[#1a1a2e] dark:shadow-none ${
+          className={`relative flex flex-1 flex-col rounded-3xl bg-white p-6 shadow-xl shadow-indigo-100/50 transition-all dark:bg-[#161B26]/80 dark:backdrop-blur-2xl dark:border dark:border-white/10 dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)] ${
             isDragging ? "ring-2 ring-[#0082FD]/50" : ""
           }`}
         >
@@ -168,7 +168,7 @@ export function TextAnalysisBento() {
 
           {/* File indicator */}
           {uploadedFile && (
-            <div className="mb-4 flex items-center gap-3 rounded-2xl bg-slate-100 p-3 dark:bg-zinc-800/50">
+            <div className="mb-4 flex items-center gap-3 rounded-2xl bg-slate-100 p-3 dark:bg-white/5 dark:border dark:border-white/10">
               <FileText className="size-5 text-[#0082FD]" />
               <div className="flex-1">
                 <p className="text-sm font-medium text-slate-800 dark:text-white">{uploadedFile.name}</p>
@@ -227,7 +227,7 @@ export function TextAnalysisBento() {
       {/* RIGHT COLUMN - Results & Reading Zone */}
       <div className="flex h-full flex-col gap-6 lg:col-span-7">
         {/* Visual Scorecard - Fixed height */}
-        <div className="flex items-center gap-8 rounded-3xl bg-white p-6 shadow-xl shadow-indigo-100/50 dark:bg-[#1a1a2e] dark:shadow-none">
+        <div className="flex items-center gap-8 rounded-3xl bg-white p-6 shadow-xl shadow-indigo-100/50 dark:bg-[#161B26]/80 dark:backdrop-blur-2xl dark:border dark:border-white/10 dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
           {/* Circular Progress */}
           <CircularProgress percentage={85} />
 
@@ -239,9 +239,9 @@ export function TextAnalysisBento() {
         </div>
 
         {/* Reading Viewer - flex-1 to stretch and align with left column */}
-        <div className="relative flex flex-1 flex-col rounded-3xl bg-white p-8 shadow-xl shadow-indigo-100/50 dark:bg-[#1a1a2e] dark:shadow-none">
+        <div className="relative flex flex-1 flex-col rounded-3xl bg-white p-8 shadow-xl shadow-indigo-100/50 dark:bg-[#161B26]/80 dark:backdrop-blur-2xl dark:border dark:border-white/10 dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
           {/* Legend */}
-          <div className="absolute right-6 top-6 flex items-center gap-4 rounded-full bg-slate-100 px-4 py-2 dark:bg-zinc-800/80">
+          <div className="absolute right-6 top-6 flex items-center gap-4 rounded-full bg-slate-100 px-4 py-2 dark:bg-white/10 dark:border dark:border-white/10">
             <div className="flex items-center gap-2">
               <div className="size-2.5 rounded-full bg-red-400" />
               <span className="text-xs text-slate-500">AI Generated</span>

@@ -11,7 +11,7 @@ export function UserProfileBento() {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch min-h-[600px]" translate="no">
       {/* Left Column - Digital ID Card */}
-      <div className="lg:col-span-4 flex flex-col h-full rounded-3xl bg-white p-8 items-center text-center relative overflow-hidden shadow-xl shadow-indigo-100/50 dark:bg-[#1a1a2e] dark:shadow-none">
+      <div className="lg:col-span-4 flex flex-col h-full rounded-3xl bg-white p-8 items-center text-center relative overflow-hidden shadow-xl shadow-indigo-100/50 dark:bg-[#161B26]/80 dark:backdrop-blur-2xl dark:border dark:border-white/10 dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
         {/* Subtle glow effect */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-64 bg-gradient-to-br from-[#0082FD]/10 to-[#A459B5]/5 rounded-full blur-3xl" />
         
@@ -43,7 +43,7 @@ export function UserProfileBento() {
         {/* Top Row - Stats & Plan */}
         <div className="flex gap-6 flex-1">
           {/* Box A - Stats */}
-          <div className="flex-1 rounded-3xl bg-white p-6 flex flex-col justify-center shadow-xl shadow-indigo-100/50 dark:bg-[#1a1a2e] dark:shadow-none">
+          <div className="flex-1 rounded-3xl bg-white p-6 flex flex-col justify-center shadow-xl shadow-indigo-100/50 dark:bg-[#161B26]/80 dark:backdrop-blur-2xl dark:border dark:border-white/10 dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
             <span className="bg-gradient-to-r from-[#0082FD] to-[#A459B5] bg-clip-text text-4xl font-bold text-transparent">
               342
             </span>
@@ -51,7 +51,7 @@ export function UserProfileBento() {
           </div>
 
           {/* Box B - Plan Status */}
-          <div className="flex-1 rounded-3xl bg-white p-6 flex flex-col justify-center relative shadow-xl shadow-indigo-100/50 dark:bg-[#1a1a2e] dark:shadow-none">
+          <div className="flex-1 rounded-3xl bg-white p-6 flex flex-col justify-center relative shadow-xl shadow-indigo-100/50 dark:bg-[#161B26]/80 dark:backdrop-blur-2xl dark:border dark:border-white/10 dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
             <span className="text-slate-500 text-sm">Current Plan</span>
             <span className="text-slate-800 dark:text-white text-xl font-semibold mt-1">AuthentiX Edu Pro</span>
             <div className="absolute top-4 right-4 flex items-center gap-1.5 rounded-full bg-emerald-100 px-3 py-1 dark:bg-emerald-500/20">
@@ -62,7 +62,7 @@ export function UserProfileBento() {
         </div>
 
         {/* Middle Row - Achievements/Badges */}
-        <div className="w-full flex-1 rounded-3xl bg-white p-6 shadow-xl shadow-indigo-100/50 dark:bg-[#1a1a2e] dark:shadow-none">
+        <div className="w-full flex-1 rounded-3xl bg-white p-6 shadow-xl shadow-indigo-100/50 dark:bg-[#161B26]/80 dark:backdrop-blur-2xl dark:border dark:border-white/10 dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
           <h3 className="text-slate-800 dark:text-white text-sm font-medium mb-4">Active Modules & Badges</h3>
           <div className="flex flex-wrap gap-3">
             {/* Badge 1 - White Ocean Debate Logic */}
@@ -84,7 +84,7 @@ export function UserProfileBento() {
         </div>
 
         {/* Bottom Row - Quick Preferences */}
-        <div className="w-full flex-1 rounded-3xl bg-white p-6 flex items-center justify-between shadow-xl shadow-indigo-100/50 dark:bg-[#1a1a2e] dark:shadow-none">
+        <div className="w-full flex-1 rounded-3xl bg-white p-6 flex items-center justify-between shadow-xl shadow-indigo-100/50 dark:bg-[#161B26]/80 dark:backdrop-blur-2xl dark:border dark:border-white/10 dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
           {/* Language Selector */}
           <div className="flex items-center gap-4">
             <div className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center dark:bg-zinc-800">
@@ -101,10 +101,10 @@ export function UserProfileBento() {
                   <ChevronDown className={cn("w-4 h-4 transition-transform", languageOpen && "rotate-180")} />
                 </button>
                 {languageOpen && (
-                  <div className="absolute top-full left-0 mt-2 rounded-xl bg-white py-2 min-w-[120px] shadow-xl ring-1 ring-slate-100 z-10 dark:bg-zinc-800 dark:ring-zinc-700">
-                    <button className="w-full px-4 py-2 text-left text-sm text-slate-800 hover:bg-slate-100 transition-colors dark:text-white dark:hover:bg-zinc-700">English</button>
-                    <button className="w-full px-4 py-2 text-left text-sm text-slate-500 hover:bg-slate-100 hover:text-slate-800 transition-colors dark:text-zinc-400 dark:hover:bg-zinc-700 dark:hover:text-white">中文</button>
-                    <button className="w-full px-4 py-2 text-left text-sm text-slate-500 hover:bg-slate-100 hover:text-slate-800 transition-colors dark:text-zinc-400 dark:hover:bg-zinc-700 dark:hover:text-white">日本語</button>
+                  <div className="absolute top-full left-0 mt-2 rounded-xl bg-white py-2 min-w-[120px] shadow-xl ring-1 ring-slate-100 z-10 dark:bg-[#161B26] dark:ring-white/10">
+                    <button className="w-full px-4 py-2 text-left text-sm text-slate-800 hover:bg-slate-100 transition-colors dark:text-white dark:hover:bg-white/10">English</button>
+                    <button className="w-full px-4 py-2 text-left text-sm text-slate-500 hover:bg-slate-100 hover:text-slate-800 transition-colors dark:text-slate-400 dark:hover:bg-white/10 dark:hover:text-white">中文</button>
+                    <button className="w-full px-4 py-2 text-left text-sm text-slate-500 hover:bg-slate-100 hover:text-slate-800 transition-colors dark:text-slate-400 dark:hover:bg-white/10 dark:hover:text-white">日本語</button>
                   </div>
                 )}
               </div>

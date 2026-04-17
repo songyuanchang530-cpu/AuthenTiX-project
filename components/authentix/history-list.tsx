@@ -91,7 +91,7 @@ export function HistoryList() {
   })
 
   return (
-    <div className="mt-8 rounded-3xl bg-white p-6 shadow-xl shadow-indigo-100/50 dark:bg-[#1a1a2e] dark:shadow-none">
+    <div className="mt-8 rounded-3xl bg-white p-6 shadow-xl shadow-indigo-100/50 dark:bg-[#161B26]/80 dark:backdrop-blur-2xl dark:border dark:border-white/10 dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
       {/* Filter & Search Bar */}
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         {/* Search Input */}
@@ -129,7 +129,7 @@ export function HistoryList() {
         {filteredRecords.map((record) => (
           <div
             key={record.id}
-            className="group flex cursor-pointer items-center justify-between rounded-2xl bg-slate-50 p-4 transition-colors hover:bg-slate-100 dark:bg-zinc-900/30 dark:hover:bg-zinc-900/80"
+            className="group flex cursor-pointer items-center justify-between rounded-2xl bg-slate-50 p-4 transition-colors hover:bg-slate-100 dark:bg-white/5 dark:hover:bg-white/10"
           >
             {/* Left: Icon & Info */}
             <div className="flex items-center gap-4">

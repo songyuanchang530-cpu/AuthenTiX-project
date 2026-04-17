@@ -60,10 +60,10 @@ export function SubscriptionPlans() {
     <div className="min-h-full">
       {/* Hero Section */}
       <div className="mb-16 text-center">
-        <h1 className="text-4xl font-bold tracking-tight text-slate-800 md:text-5xl">
+        <h1 className="text-4xl font-bold tracking-tight text-slate-800 dark:text-slate-100 md:text-5xl">
           Welcome to AuthentiX
         </h1>
-        <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-slate-500">
+        <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-slate-500 dark:text-slate-400">
           The world&apos;s most advanced, yet easiest to use, AI media detection platform. 
           Protect yourself from deepfakes and AI forgery in seconds.
         </p>
@@ -76,7 +76,8 @@ export function SubscriptionPlans() {
             key={plan.name}
             className={cn(
               "relative flex flex-col rounded-3xl bg-white p-8 shadow-xl shadow-indigo-100/60 transition-transform hover:-translate-y-1",
-              plan.highlighted && "ring-2 ring-[#A459B5] bg-purple-50/30"
+              "dark:bg-[#161B26]/80 dark:backdrop-blur-2xl dark:border dark:border-white/10 dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)]",
+              plan.highlighted && "ring-2 ring-[#A459B5] bg-purple-50/30 dark:bg-[#161B26]/90 dark:ring-[#A459B5]/60"
             )}
           >
             {/* Best Value Badge */}
@@ -91,14 +92,14 @@ export function SubscriptionPlans() {
 
             {/* Tag (for non-highlighted) */}
             {!plan.highlighted && (
-              <span className="mb-4 inline-block w-fit rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-600">
+              <span className="mb-4 inline-block w-fit rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-600 dark:bg-white/10 dark:text-slate-400">
                 {plan.tag}
               </span>
             )}
 
             {/* Plan Name */}
             <h3 className={cn(
-              "text-xl font-semibold text-slate-800",
+              "text-xl font-semibold text-slate-800 dark:text-slate-100",
               plan.highlighted && "mt-4"
             )}>
               {plan.name}
@@ -106,26 +107,26 @@ export function SubscriptionPlans() {
 
             {/* Price */}
             <div className="mt-4 flex items-baseline gap-1">
-              <span className="text-4xl font-bold text-slate-800">{plan.price}</span>
+              <span className="text-4xl font-bold text-slate-800 dark:text-white">{plan.price}</span>
               {plan.period && (
-                <span className="text-slate-500">{plan.period}</span>
+                <span className="text-slate-500 dark:text-slate-400">{plan.period}</span>
               )}
             </div>
             {plan.billedAs && (
-              <p className="mt-1 text-sm text-slate-500">{plan.billedAs}</p>
+              <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">{plan.billedAs}</p>
             )}
 
             {/* Description */}
-            <p className="mt-4 text-sm text-slate-500">{plan.description}</p>
+            <p className="mt-4 text-sm text-slate-500 dark:text-slate-400">{plan.description}</p>
 
             {/* Features */}
             <ul className="mt-8 flex-1 space-y-3">
               {plan.features.map((feature) => (
                 <li key={feature} className="flex items-start gap-3">
-                  <div className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full bg-[#0082FD]/10">
+                  <div className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full bg-[#0082FD]/10 dark:bg-[#0082FD]/20">
                     <Check className="size-3 text-[#0082FD]" />
                   </div>
-                  <span className="text-sm text-slate-600">{feature}</span>
+                  <span className="text-sm text-slate-600 dark:text-slate-400">{feature}</span>
                 </li>
               ))}
             </ul>
@@ -150,14 +151,14 @@ export function SubscriptionPlans() {
 
       {/* Trust Badges */}
       <div className="mt-16 text-center">
-        <p className="text-sm text-slate-400">
+        <p className="text-sm text-slate-400 dark:text-slate-500">
           Trusted by researchers, journalists, and organizations worldwide
         </p>
         <div className="mt-6 flex flex-wrap items-center justify-center gap-8 opacity-50">
-          <div className="h-8 w-24 rounded bg-slate-200" />
-          <div className="h-8 w-20 rounded bg-slate-200" />
-          <div className="h-8 w-28 rounded bg-slate-200" />
-          <div className="h-8 w-24 rounded bg-slate-200" />
+          <div className="h-8 w-24 rounded bg-slate-200 dark:bg-white/10" />
+          <div className="h-8 w-20 rounded bg-slate-200 dark:bg-white/10" />
+          <div className="h-8 w-28 rounded bg-slate-200 dark:bg-white/10" />
+          <div className="h-8 w-24 rounded bg-slate-200 dark:bg-white/10" />
         </div>
       </div>
     </div>

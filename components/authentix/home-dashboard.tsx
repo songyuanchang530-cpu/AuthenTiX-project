@@ -54,7 +54,7 @@ export function HomeDashboard() {
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
         {/* Card 1: Universal Drop Zone - Full Width */}
         <div className="col-span-1 md:col-span-2 lg:col-span-4">
-          <div className="flex flex-col items-center justify-between gap-8 rounded-3xl bg-white p-8 shadow-xl shadow-indigo-100/50 md:flex-row dark:bg-[#1a1a2e] dark:shadow-none">
+          <div className="flex flex-col items-center justify-between gap-8 rounded-3xl bg-white p-8 shadow-xl shadow-indigo-100/50 md:flex-row dark:bg-[#161B26]/80 dark:backdrop-blur-2xl dark:border dark:border-white/10 dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
             {/* Left Text */}
             <div className="flex-1 text-center md:text-left">
               <h1 className="text-3xl font-semibold text-slate-800 dark:text-white">
@@ -66,7 +66,7 @@ export function HomeDashboard() {
             </div>
 
             {/* Right Drop Zone */}
-            <div className="flex h-40 w-full max-w-xs items-center justify-center rounded-2xl bg-gradient-to-br from-[#0082FD]/5 to-[#A459B5]/5 ring-2 ring-dashed ring-[#0082FD]/20 transition-all hover:ring-[#0082FD]/40 dark:bg-zinc-800/30">
+            <div className="flex h-40 w-full max-w-xs items-center justify-center rounded-2xl bg-gradient-to-br from-[#0082FD]/5 to-[#A459B5]/5 ring-2 ring-dashed ring-[#0082FD]/20 transition-all hover:ring-[#0082FD]/40 dark:from-[#0082FD]/10 dark:to-[#A459B5]/10 dark:ring-white/20 dark:hover:ring-white/40">
               <div className="flex flex-col items-center gap-3">
                 <CloudUpload className="size-12 text-[#0082FD]" />
                 <span className="text-sm font-medium text-slate-500">
@@ -82,7 +82,7 @@ export function HomeDashboard() {
           <Link
             key={tool.label}
             href={tool.href}
-            className={`flex cursor-pointer flex-col items-center justify-center rounded-3xl bg-white p-8 text-center shadow-xl shadow-indigo-100/50 transition-all hover:scale-[0.98] hover:shadow-2xl ${tool.bgGlow} dark:bg-[#1a1a2e] dark:shadow-none dark:hover:bg-[#1e1e32]`}
+            className={`flex cursor-pointer flex-col items-center justify-center rounded-3xl bg-white p-8 text-center shadow-xl shadow-indigo-100/50 transition-all hover:scale-[0.98] hover:shadow-2xl ${tool.bgGlow} dark:bg-[#161B26]/80 dark:backdrop-blur-2xl dark:border dark:border-white/10 dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)] dark:hover:bg-[#161B26]/90`}
           >
             <tool.icon className={`size-12 ${tool.iconColor}`} />
             <span className="mt-4 text-lg font-semibold text-slate-800 dark:text-white">
@@ -92,7 +92,7 @@ export function HomeDashboard() {
         ))}
 
         {/* Card 6: System Health - 2 Columns */}
-        <div className="col-span-1 rounded-3xl bg-white p-6 shadow-xl shadow-indigo-100/50 md:col-span-2 dark:bg-[#1a1a2e] dark:shadow-none">
+        <div className="col-span-1 rounded-3xl bg-white p-6 shadow-xl shadow-indigo-100/50 md:col-span-2 dark:bg-[#161B26]/80 dark:backdrop-blur-2xl dark:border dark:border-white/10 dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
           <h2 className="text-lg font-semibold text-slate-800 dark:text-white">System Status</h2>
           <div className="mt-6 flex items-center gap-3">
             <div className="size-4 animate-pulse rounded-full bg-emerald-400 shadow-[0_0_12px_rgba(52,211,153,0.6)]" />
@@ -107,7 +107,7 @@ export function HomeDashboard() {
         </div>
 
         {/* Card 7: Recent Activity - 2 Columns */}
-        <div className="col-span-1 rounded-3xl bg-white p-6 shadow-xl shadow-indigo-100/50 md:col-span-2 dark:bg-[#1a1a2e] dark:shadow-none">
+        <div className="col-span-1 rounded-3xl bg-white p-6 shadow-xl shadow-indigo-100/50 md:col-span-2 dark:bg-[#161B26]/80 dark:backdrop-blur-2xl dark:border dark:border-white/10 dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
           <h2 className="text-lg font-semibold text-slate-800 dark:text-white">Recent Scans</h2>
           <div className="mt-4 flex flex-col gap-4">
             {recentScans.map((scan, index) => (
