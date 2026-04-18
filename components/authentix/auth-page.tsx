@@ -234,38 +234,56 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
   // Dark mode state - persisted to localStorage
   const [isDarkMode, setIsDarkMode] = useState(false)
   
-  // Initialize language from localStorage
+  // Initialize language from localStorage (SSR-safe)
   useEffect(() => {
-    const storedLang = localStorage.getItem("authentix-lang")
-    if (storedLang === "en" || storedLang === "zh") {
-      setLang(storedLang)
+    try {
+      const storedLang = localStorage.getItem("authentix-lang")
+      if (storedLang === "en" || storedLang === "zh") {
+        setLang(storedLang)
+      }
+    } catch {
+      // localStorage not available - use default
     }
   }, [])
   
-  // Persist language changes to localStorage
+  // Persist language changes to localStorage (SSR-safe)
   useEffect(() => {
-    localStorage.setItem("authentix-lang", lang)
+    try {
+      localStorage.setItem("authentix-lang", lang)
+    } catch {
+      // localStorage not available - skip persistence
+    }
   }, [lang])
   
-  // Initialize dark mode from system preference or localStorage
+  // Initialize dark mode from system preference or localStorage (SSR-safe)
   useEffect(() => {
-    const stored = localStorage.getItem("authentix-theme")
-    if (stored) {
-      setIsDarkMode(stored === "dark")
-    } else {
-      // Default to system preference
-      setIsDarkMode(window.matchMedia("(prefers-color-scheme: dark)").matches)
+    try {
+      const stored = localStorage.getItem("authentix-theme")
+      if (stored) {
+        setIsDarkMode(stored === "dark")
+      } else if (typeof window !== "undefined") {
+        // Default to system preference
+        setIsDarkMode(window.matchMedia("(prefers-color-scheme: dark)").matches)
+      }
+    } catch {
+      // Storage/window not available - use default
     }
   }, [])
   
-  // Apply dark mode class to document
+  // Apply dark mode class to document (SSR-safe)
   useEffect(() => {
-    if (isDarkMode) {
-      document.documentElement.classList.add("dark")
-    } else {
-      document.documentElement.classList.remove("dark")
+    try {
+      if (typeof document !== "undefined") {
+        if (isDarkMode) {
+          document.documentElement.classList.add("dark")
+        } else {
+          document.documentElement.classList.remove("dark")
+        }
+      }
+      localStorage.setItem("authentix-theme", isDarkMode ? "dark" : "light")
+    } catch {
+      // Document/localStorage not available - skip
     }
-    localStorage.setItem("authentix-theme", isDarkMode ? "dark" : "light")
   }, [isDarkMode])
 
   const handleBiometricTap = () => {

@@ -15,17 +15,7 @@ const AuthContext = createContext<AuthContextType>({
   logout: () => {},
 })
 
-// Force clear any stale sessions on module load (development safety)
-if (typeof window !== "undefined") {
-  // Check if session is from a previous browser session (not current tab)
-  const sessionMarker = sessionStorage.getItem("authentix-active-tab")
-  if (!sessionMarker) {
-    // New tab/window - clear any stale localStorage session
-    localStorage.removeItem("authentix-session")
-  }
-  // Mark this tab as active
-  sessionStorage.setItem("authentix-active-tab", "true")
-}
+// Session cleanup is now handled inside useEffect to avoid SSR issues
 
 export const useAuth = () => useContext(AuthContext)
 
@@ -41,6 +31,14 @@ export function AuthWrapper({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const checkSession = () => {
       try {
+        // Handle session tab marker (moved from module level for SSR safety)
+        const sessionMarker = sessionStorage.getItem("authentix-active-tab")
+        if (!sessionMarker) {
+          // New tab/window - clear any stale localStorage session
+          localStorage.removeItem(AUTH_SESSION_KEY)
+        }
+        sessionStorage.setItem("authentix-active-tab", "true")
+        
         // Check localStorage first (persistent "Keep Session")
         const persistentSession = localStorage.getItem(AUTH_SESSION_KEY)
         // Then check sessionStorage (temporary session for this browser tab)

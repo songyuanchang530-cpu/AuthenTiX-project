@@ -53,24 +53,33 @@ export function AppShell({ children, activeItem = "video", pageTitle }: AppShell
 
   const isAIAssistantActive = pathname === AI_ASSISTANT_PATH
 
-  // Save the current view when navigating away from AI Assistant
+  // Save the current view when navigating away from AI Assistant (SSR-safe)
   useEffect(() => {
-    if (!isAIAssistantActive && pathname) {
-      // Only save non-AI-assistant paths
-      localStorage.setItem(PREVIOUS_VIEW_KEY, pathname)
+    try {
+      if (!isAIAssistantActive && pathname) {
+        // Only save non-AI-assistant paths
+        localStorage.setItem(PREVIOUS_VIEW_KEY, pathname)
+      }
+    } catch {
+      // localStorage not available - skip persistence
     }
   }, [pathname, isAIAssistantActive])
 
-  // Toggle handler with memory
+  // Toggle handler with memory (SSR-safe)
   const handleAIToggle = useCallback(() => {
-    if (isAIAssistantActive) {
-      // Currently on AI Assistant, go back to previous view
-      const previousView = localStorage.getItem(PREVIOUS_VIEW_KEY) || DEFAULT_VIEW
-      router.push(previousView)
-    } else {
-      // Not on AI Assistant, save current view and go to AI Assistant
-      localStorage.setItem(PREVIOUS_VIEW_KEY, pathname || DEFAULT_VIEW)
-      router.push(AI_ASSISTANT_PATH)
+    try {
+      if (isAIAssistantActive) {
+        // Currently on AI Assistant, go back to previous view
+        const previousView = localStorage.getItem(PREVIOUS_VIEW_KEY) || DEFAULT_VIEW
+        router.push(previousView)
+      } else {
+        // Not on AI Assistant, save current view and go to AI Assistant
+        localStorage.setItem(PREVIOUS_VIEW_KEY, pathname || DEFAULT_VIEW)
+        router.push(AI_ASSISTANT_PATH)
+      }
+    } catch {
+      // localStorage not available - fallback to default behavior
+      router.push(isAIAssistantActive ? DEFAULT_VIEW : AI_ASSISTANT_PATH)
     }
   }, [isAIAssistantActive, pathname, router])
 
