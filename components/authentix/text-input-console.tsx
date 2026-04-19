@@ -98,15 +98,15 @@ export function TextInputConsole() {
         onDrop={handleDrop}
         className={`relative flex h-72 flex-col rounded-2xl p-2 transition-all duration-300 ${
           isDragging
-            ? "bg-indigo-50 ring-1 ring-indigo-300 dark:bg-[#0082FD]/10 dark:ring-[#0082FD]/30"
-            : "bg-slate-50 dark:bg-black/20"
+            ? "bg-indigo-50 ring-1 ring-indigo-300 dark:!bg-[#0082FD]/10 dark:!ring-[#0082FD]/30"
+            : "bg-slate-50 dark:!bg-black/20"
         }`}
       >
         <textarea
           value={textContent}
           onChange={(e) => setTextContent(e.target.value)}
           placeholder="Paste raw text, or drop a document (.txt, .pdf) for semantic analysis..."
-          className="flex-1 resize-none bg-transparent p-4 text-slate-700 placeholder:text-slate-400 focus:outline-none focus:ring-0 dark:text-slate-200 dark:placeholder:text-slate-500"
+          className="flex-1 resize-none bg-transparent p-4 text-slate-700 placeholder:text-slate-400 focus:outline-none focus:ring-0 dark:!text-slate-200 dark:!placeholder:text-slate-500"
         />
         
         {/* Drop overlay */}
@@ -136,7 +136,7 @@ export function TextInputConsole() {
 
       {/* File Indicator */}
       {uploadedFile && (
-        <div className="flex items-center justify-between rounded-xl bg-slate-50 px-4 py-3 shadow-sm dark:bg-black/20">
+        <div className="flex items-center justify-between rounded-xl bg-slate-50 px-4 py-3 shadow-sm dark:!bg-black/20">
           <div className="flex items-center gap-3">
             <div className="rounded-lg bg-indigo-100 p-2">
               <FileText className="size-5 text-indigo-600" />
@@ -160,13 +160,13 @@ export function TextInputConsole() {
       )}
 
       {/* Advanced Parameters Panel */}
-      <div className="rounded-xl bg-slate-50 p-4">
-        <h4 className="mb-3 text-xs font-medium uppercase tracking-wider text-slate-500">
+      <div className="rounded-xl bg-slate-50 p-4 dark:!bg-black/20">
+        <h4 className="mb-3 text-xs font-medium uppercase tracking-wider text-slate-500 dark:!text-slate-400">
           Advanced Parameters
         </h4>
         <div className="space-y-3">
           <label className="flex items-center justify-between">
-            <span className="text-sm text-slate-700">LLM Syntax Pattern Recognition</span>
+            <span className="text-sm text-slate-700 dark:!text-slate-300">LLM Syntax Pattern Recognition</span>
             <button
               onClick={() => setSyntaxPattern(!syntaxPattern)}
               className={`relative h-6 w-11 rounded-full transition-colors ${
@@ -181,7 +181,7 @@ export function TextInputConsole() {
             </button>
           </label>
           <label className="flex items-center justify-between">
-            <span className="text-sm text-slate-700">RAG/Context Hallucination Check</span>
+            <span className="text-sm text-slate-700 dark:!text-slate-300">RAG/Context Hallucination Check</span>
             <button
               onClick={() => setHallucinationCheck(!hallucinationCheck)}
               className={`relative h-6 w-11 rounded-full transition-colors ${
@@ -227,18 +227,18 @@ export function TextInputConsole() {
       </button>
 
       {/* Linguistic Diagnostics Panel */}
-      <div className="flex-1 rounded-xl bg-slate-50 p-5">
-        <h4 className="mb-5 text-[10px] font-medium uppercase tracking-widest text-slate-500">
+      <div className="flex-1 rounded-xl bg-slate-50 p-5 dark:!bg-black/20">
+        <h4 className="mb-5 text-[10px] font-medium uppercase tracking-widest text-slate-500 dark:!text-slate-400">
           Real-Time Linguistic Metrics
         </h4>
         <div className="space-y-5">
           {/* Perplexity Metric */}
           <div className="space-y-2">
             <div className="flex items-center justify-between">
-              <span className="text-xs text-slate-600">Perplexity (Predictability)</span>
+              <span className="text-xs text-slate-600 dark:!text-slate-300">Perplexity (Predictability)</span>
               <span className="text-xs font-medium text-red-500">15%</span>
             </div>
-            <div className="h-1.5 w-full overflow-hidden rounded-full bg-slate-200">
+            <div className="h-1.5 w-full overflow-hidden rounded-full bg-slate-200 dark:!bg-white/10">
               <div
                 className="h-full rounded-full bg-gradient-to-r from-indigo-500 to-purple-500"
                 style={{ width: "15%" }}
@@ -250,10 +250,10 @@ export function TextInputConsole() {
           {/* Burstiness Metric */}
           <div className="space-y-2">
             <div className="flex items-center justify-between">
-              <span className="text-xs text-slate-600">Burstiness (Sentence Variance)</span>
+              <span className="text-xs text-slate-600 dark:!text-slate-300">Burstiness (Sentence Variance)</span>
               <span className="text-xs font-medium text-red-500">20%</span>
             </div>
-            <div className="h-1.5 w-full overflow-hidden rounded-full bg-slate-200">
+            <div className="h-1.5 w-full overflow-hidden rounded-full bg-slate-200 dark:!bg-white/10">
               <div
                 className="h-full rounded-full bg-gradient-to-r from-indigo-500 to-purple-500"
                 style={{ width: "20%" }}
@@ -265,10 +265,10 @@ export function TextInputConsole() {
           {/* Vocabulary Richness Metric */}
           <div className="space-y-2">
             <div className="flex items-center justify-between">
-              <span className="text-xs text-slate-600">Vocabulary Richness</span>
+              <span className="text-xs text-slate-600 dark:!text-slate-300">Vocabulary Richness</span>
               <span className="text-xs font-medium text-blue-500">75%</span>
             </div>
-            <div className="h-1.5 w-full overflow-hidden rounded-full bg-slate-200">
+            <div className="h-1.5 w-full overflow-hidden rounded-full bg-slate-200 dark:!bg-white/10">
               <div
                 className="h-full rounded-full bg-slate-400"
                 style={{ width: "75%" }}

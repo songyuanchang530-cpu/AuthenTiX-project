@@ -4,10 +4,10 @@ import { AlertTriangle, Shield, Bot } from "lucide-react"
 
 export function TextForensicViewer() {
   return (
-    <div className="relative flex h-full min-h-[500px] flex-col overflow-hidden rounded-2xl bg-white shadow-xl shadow-indigo-100/50">
+    <div className="relative flex h-full min-h-[500px] flex-col overflow-hidden rounded-2xl bg-white shadow-xl shadow-indigo-100/50 dark:!bg-[#161B26]/80 dark:!shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
       {/* Document Content */}
       <div className="flex-1 overflow-y-auto p-8 pb-28">
-        <div className="space-y-8 text-base leading-8 text-slate-700">
+        <div className="space-y-8 text-base leading-8 text-slate-700 dark:!text-slate-300">
           {/* Document Title */}
           <div className="mb-8">
             <h3 className="text-xs font-medium uppercase tracking-wider text-slate-500">
@@ -31,7 +31,7 @@ export function TextForensicViewer() {
             <span className="relative inline">
               {/* AI Detection Tooltip */}
               <span className="absolute -top-14 left-0 z-10 flex flex-col items-start">
-                <span className="whitespace-nowrap rounded-lg bg-white px-3 py-2 shadow-xl">
+                <span className="whitespace-nowrap rounded-lg bg-white px-3 py-2 shadow-xl dark:!bg-[#161B26]">
                   <span className="flex items-center gap-2">
                     <Bot className="size-3 text-red-500" />
                     <span className="text-xs font-medium text-red-600">AI Generated</span>
@@ -66,7 +66,7 @@ export function TextForensicViewer() {
             <span className="relative inline">
               {/* Authentic Tooltip */}
               <span className="absolute -top-12 left-0 z-10 flex flex-col items-start">
-                <span className="whitespace-nowrap rounded-lg bg-white px-3 py-2 shadow-xl">
+                <span className="whitespace-nowrap rounded-lg bg-white px-3 py-2 shadow-xl dark:!bg-[#161B26]">
                   <span className="flex items-center gap-2">
                     <Shield className="size-3 text-blue-500" />
                     <span className="text-xs font-medium text-blue-600">Human Written</span>
@@ -103,7 +103,7 @@ export function TextForensicViewer() {
       </div>
 
       {/* Global Metric Bar */}
-      <div className="absolute bottom-0 left-0 right-0 flex items-center justify-between border-t border-slate-100 bg-white/90 p-5 backdrop-blur-md">
+      <div className="absolute bottom-0 left-0 right-0 flex items-center justify-between border-t border-slate-100 bg-white/90 p-5 backdrop-blur-md dark:!border-transparent dark:!bg-[#161B26]/90">
         <div className="flex items-center gap-3">
           <AlertTriangle className="size-4 text-amber-500" />
           <span className="text-sm">
@@ -115,7 +115,7 @@ export function TextForensicViewer() {
         <div className="flex items-center gap-4">
           <span className="text-sm text-slate-500">Human Authorship Score</span>
           <div className="flex items-center gap-3">
-            <div className="h-2 w-32 overflow-hidden rounded-full bg-slate-200">
+            <div className="h-2 w-32 overflow-hidden rounded-full bg-slate-200 dark:!bg-white/10">
               <div
                 className="h-full rounded-full bg-gradient-to-r from-red-500 to-amber-500"
                 style={{ width: "22%" }}

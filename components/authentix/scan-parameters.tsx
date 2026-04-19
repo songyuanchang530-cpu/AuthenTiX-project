@@ -16,7 +16,7 @@ export function ScanParameters() {
   const [dropdownOpen, setDropdownOpen] = useState(false)
 
   return (
-    <div className="flex h-full flex-col rounded-3xl bg-white p-6 shadow-xl shadow-indigo-100/50 dark:bg-[#1a1a2e] dark:shadow-none">
+    <div className="flex h-full flex-col rounded-3xl bg-white p-6 shadow-xl shadow-indigo-100/50 dark:!bg-[#161B26]/80 dark:!shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
       <h3 className="mb-6 text-sm font-semibold text-slate-800 dark:text-white">Scan Parameters</h3>
 
       <div className="flex flex-1 flex-col gap-5">
@@ -42,7 +42,7 @@ export function ScanParameters() {
               onChange={(e) => setStartTime(e.target.value)}
               disabled={scanFullFile}
               placeholder="MM:SS"
-              className="w-full rounded-xl bg-slate-100 px-3 py-2.5 text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0082FD]/30 disabled:cursor-not-allowed dark:bg-zinc-900 dark:text-white dark:placeholder:text-zinc-600"
+              className="w-full rounded-xl bg-slate-100 px-3 py-2.5 text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0082FD]/30 disabled:cursor-not-allowed dark:!bg-black/30 dark:!text-white dark:placeholder:!text-zinc-500"
             />
             <span className="text-slate-400">to</span>
             <input
@@ -51,7 +51,7 @@ export function ScanParameters() {
               onChange={(e) => setEndTime(e.target.value)}
               disabled={scanFullFile}
               placeholder="MM:SS"
-              className="w-full rounded-xl bg-slate-100 px-3 py-2.5 text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0082FD]/30 disabled:cursor-not-allowed dark:bg-zinc-900 dark:text-white dark:placeholder:text-zinc-600"
+              className="w-full rounded-xl bg-slate-100 px-3 py-2.5 text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0082FD]/30 disabled:cursor-not-allowed dark:!bg-black/30 dark:!text-white dark:placeholder:!text-zinc-500"
             />
           </div>
         </div>
@@ -63,7 +63,7 @@ export function ScanParameters() {
           </label>
           <button
             onClick={() => setDropdownOpen(!dropdownOpen)}
-            className="flex w-full items-center justify-between rounded-xl bg-slate-100 px-3 py-2.5 text-sm text-slate-800 transition-colors hover:bg-slate-200 dark:bg-zinc-900 dark:text-white dark:hover:bg-zinc-800"
+            className="flex w-full items-center justify-between rounded-xl bg-slate-100 px-3 py-2.5 text-sm text-slate-800 transition-colors hover:bg-slate-200 dark:!bg-black/30 dark:!text-white dark:hover:!bg-white/10"
           >
             <span>{selectedSubject}</span>
             <ChevronDown
@@ -75,7 +75,7 @@ export function ScanParameters() {
           </button>
           
           {dropdownOpen && (
-            <div className="absolute left-0 right-0 top-full z-20 mt-1 rounded-xl bg-white py-1 shadow-xl ring-1 ring-slate-100 dark:bg-zinc-800 dark:ring-zinc-700">
+            <div className="absolute left-0 right-0 top-full z-20 mt-1 rounded-xl bg-white py-1 shadow-xl ring-1 ring-slate-100 dark:!bg-[#161B26] dark:!ring-transparent">
               {subjects.map((subject) => (
                 <button
                   key={subject}
@@ -110,7 +110,7 @@ export function ScanParameters() {
           
           <div className="relative">
             {/* Track */}
-            <div className="h-2 rounded-full bg-slate-200 dark:bg-zinc-800">
+            <div className="h-2 rounded-full bg-slate-200 dark:!bg-white/10">
               {/* Active track with gradient */}
               <div
                 className="h-full rounded-full bg-gradient-to-r from-[#0082FD] to-[#A459B5]"

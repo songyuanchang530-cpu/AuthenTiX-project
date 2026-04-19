@@ -153,7 +153,7 @@ export function TextAnalysisBento() {
             value={textContent}
             onChange={(e) => setTextContent(e.target.value)}
             placeholder="Paste your text here, or upload a document..."
-            className="scrollbar-hide flex-1 resize-none bg-transparent text-lg leading-relaxed text-slate-700 placeholder:text-slate-400 focus:outline-none dark:text-zinc-200 dark:placeholder:text-zinc-600"
+            className="scrollbar-hide flex-1 resize-none bg-transparent text-lg leading-relaxed text-slate-700 placeholder:text-slate-400 focus:outline-none dark:!text-zinc-200 dark:!placeholder:text-zinc-500"
           />
 
           {/* Drop overlay */}
@@ -168,7 +168,7 @@ export function TextAnalysisBento() {
 
           {/* File indicator */}
           {uploadedFile && (
-            <div className="mb-4 flex items-center gap-3 rounded-2xl bg-slate-100 p-3 dark:bg-white/5 dark:border dark:border-transparent">
+            <div className="mb-4 flex items-center gap-3 rounded-2xl bg-slate-100 p-3 dark:!bg-black/20 dark:border dark:!border-transparent">
               <FileText className="size-5 text-[#0082FD]" />
               <div className="flex-1">
                 <p className="text-sm font-medium text-slate-800 dark:text-white">{uploadedFile.name}</p>
@@ -241,7 +241,7 @@ export function TextAnalysisBento() {
         {/* Reading Viewer - flex-1 to stretch and align with left column */}
         <div className="relative flex flex-1 flex-col rounded-3xl bg-white p-8 shadow-xl shadow-indigo-100/50 dark:bg-[#161B26]/80 dark:backdrop-blur-2xl dark:border dark:border-transparent dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
           {/* Legend */}
-          <div className="absolute right-6 top-6 flex items-center gap-4 rounded-full bg-slate-100 px-4 py-2 dark:bg-white/10 dark:border dark:border-transparent">
+          <div className="absolute right-6 top-6 flex items-center gap-4 rounded-full bg-slate-100 px-4 py-2 dark:!bg-black/30 dark:border dark:!border-transparent">
             <div className="flex items-center gap-2">
               <div className="size-2.5 rounded-full bg-red-400" />
               <span className="text-xs text-slate-500">AI Generated</span>

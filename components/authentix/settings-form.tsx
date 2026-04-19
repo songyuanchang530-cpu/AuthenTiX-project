@@ -17,7 +17,7 @@ export function SettingsForm() {
     <div className="flex flex-col gap-10">
       {/* Section 1: Developer API Keys */}
       <section>
-        <h3 className="text-lg font-semibold text-slate-800">API Authentication</h3>
+        <h3 className="text-lg font-semibold text-slate-800 dark:!text-white">API Authentication</h3>
         <p className="mb-4 mt-1 text-sm text-slate-500">
           Manage keys for integrating AuthentiX core models into your applications.
         </p>
@@ -26,7 +26,7 @@ export function SettingsForm() {
           {apiKeys.map((apiKey, index) => (
             <div
               key={index}
-              className="flex items-center justify-between rounded-xl bg-slate-50 p-5 shadow-sm"
+              className="flex items-center justify-between rounded-xl bg-slate-50 p-5 shadow-sm dark:!bg-black/20"
             >
               <div>
                 <p className="text-sm text-slate-800">{apiKey.name}</p>
@@ -48,7 +48,7 @@ export function SettingsForm() {
 
       {/* Section 2: Global Detection Parameters */}
       <section>
-        <h3 className="text-lg font-semibold text-slate-800">System Thresholds</h3>
+        <h3 className="text-lg font-semibold text-slate-800 dark:!text-white">System Thresholds</h3>
         <p className="mb-4 mt-1 text-sm text-slate-500">
           Adjust the baseline sensitivity for the multi-modal detection models.
         </p>
@@ -56,7 +56,7 @@ export function SettingsForm() {
         <div className="flex flex-col gap-6">
           {/* Strict Mode Toggle */}
           <div className="flex items-center justify-between">
-            <span className="text-sm text-slate-700">Strict Mode (Zero Tolerance)</span>
+            <span className="text-sm text-slate-700 dark:!text-slate-300">Strict Mode (Zero Tolerance)</span>
             <button
               onClick={() => setStrictMode(!strictMode)}
               className={cn(
@@ -77,11 +77,11 @@ export function SettingsForm() {
 
           {/* Sensitivity Slider */}
           <div>
-            <label className="mb-3 block text-sm text-slate-700">
+            <label className="mb-3 block text-sm text-slate-700 dark:!text-slate-300">
               RAG Context Hallucination Sensitivity
             </label>
             <div className="relative">
-              <div className="h-1.5 rounded-full bg-slate-200">
+              <div className="h-1.5 rounded-full bg-slate-200 dark:!bg-white/10">
                 <div
                   className="h-full rounded-full bg-gradient-to-r from-indigo-500 to-purple-600"
                   style={{ width: `${sensitivity}%` }}
@@ -107,7 +107,7 @@ export function SettingsForm() {
 
       {/* Section 3: Environment Setup */}
       <section>
-        <h3 className="text-lg font-semibold text-slate-800">Workspace Configuration</h3>
+        <h3 className="text-lg font-semibold text-slate-800 dark:!text-white">Workspace Configuration</h3>
         <p className="mb-4 mt-1 text-sm text-slate-500">
           Configure your workspace environment settings.
         </p>
@@ -120,7 +120,7 @@ export function SettingsForm() {
             type="text"
             value={workspaceName}
             onChange={(e) => setWorkspaceName(e.target.value)}
-            className="w-full rounded-lg border border-slate-200 bg-white p-3 text-slate-800 transition-all focus:border-indigo-300 focus:outline-none focus:ring-2 focus:ring-indigo-100"
+            className="w-full rounded-lg border border-slate-200 bg-white p-3 text-slate-800 transition-all focus:border-indigo-300 focus:outline-none focus:ring-2 focus:ring-indigo-100 dark:!bg-black/30 dark:!border-transparent dark:!text-white"
           />
         </div>
       </section>

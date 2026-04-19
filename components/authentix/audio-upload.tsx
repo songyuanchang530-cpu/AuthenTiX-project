@@ -87,14 +87,14 @@ export function AudioUpload() {
         className={`group relative flex h-64 cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed transition-all duration-300 ${
           isDragging
             ? "border-indigo-400 bg-indigo-50 shadow-[inset_0_0_30px_rgba(99,102,241,0.1)] dark:border-[#0082FD]/50 dark:bg-[#0082FD]/10"
-            : "border-indigo-200 bg-indigo-50/30 hover:border-indigo-300 hover:bg-indigo-50/50 dark:border-transparent dark:bg-white/5 dark:hover:border-white/[0.08] dark:hover:bg-white/10"
+            : "border-indigo-200 bg-indigo-50/30 hover:border-indigo-300 hover:bg-indigo-50/50 dark:!border-transparent dark:!bg-black/20 dark:hover:!border-transparent dark:hover:!bg-white/10"
         }`}
       >
         <div
           className={`mb-4 rounded-2xl p-4 transition-all duration-300 ${
             isDragging
               ? "bg-indigo-100 text-indigo-600 dark:bg-[#0082FD]/20 dark:text-[#0082FD]"
-              : "bg-slate-100 text-slate-400 group-hover:bg-indigo-100 group-hover:text-indigo-500 dark:bg-white/10 dark:text-slate-400 dark:group-hover:bg-[#0082FD]/20 dark:group-hover:text-[#0082FD]"
+              : "bg-slate-100 text-slate-400 group-hover:bg-indigo-100 group-hover:text-indigo-500 dark:!bg-black/30 dark:!text-slate-400 dark:group-hover:!bg-[#0082FD]/20 dark:group-hover:!text-[#0082FD]"
           }`}
         >
           <Mic className="size-12" strokeWidth={1.5} />
@@ -116,7 +116,7 @@ export function AudioUpload() {
 
       {/* File Indicator */}
       {uploadedFile && (
-        <div className="flex items-center justify-between rounded-xl bg-slate-50 px-4 py-3 shadow-sm dark:bg-white/5 dark:border dark:border-transparent">
+        <div className="flex items-center justify-between rounded-xl bg-slate-50 px-4 py-3 shadow-sm dark:!bg-black/20 dark:border dark:!border-transparent">
           <div className="flex items-center gap-3">
             <div className="rounded-lg bg-indigo-100 p-2 dark:bg-[#0082FD]/20">
               <FileAudio className="size-5 text-indigo-600 dark:text-[#0082FD]" />
@@ -143,7 +143,7 @@ export function AudioUpload() {
       )}
 
       {/* Settings Panel */}
-      <div className="rounded-xl bg-slate-50 p-4 dark:bg-white/5 dark:border dark:border-transparent">
+      <div className="rounded-xl bg-slate-50 p-4 dark:!bg-black/20 dark:border dark:!border-transparent">
         <h4 className="mb-3 text-xs font-medium uppercase tracking-wider text-slate-500 dark:text-slate-400">
           Scan Options
         </h4>
