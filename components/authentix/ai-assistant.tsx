@@ -22,7 +22,7 @@ export function AIAssistant() {
         <Button
           variant="ghost"
           size="icon"
-          className="size-9 rounded-xl text-slate-400 hover:bg-slate-100 hover:text-slate-600 dark:hover:bg-slate-800 dark:hover:text-slate-300"
+          className="size-9 rounded-xl text-slate-400 hover:bg-slate-100 hover:text-slate-600 dark:hover:bg-white/10 dark:hover:text-slate-300"
           aria-label="Toggle history panel"
         >
           <PanelLeft className="size-5" />
@@ -30,7 +30,7 @@ export function AIAssistant() {
         <Button
           variant="ghost"
           size="icon"
-          className="size-9 rounded-xl text-slate-400 hover:bg-slate-100 hover:text-slate-600 dark:hover:bg-slate-800 dark:hover:text-slate-300"
+          className="size-9 rounded-xl text-slate-400 hover:bg-slate-100 hover:text-slate-600 dark:hover:bg-white/10 dark:hover:text-slate-300"
           aria-label="New chat"
         >
           <Edit className="size-5" />
@@ -43,7 +43,7 @@ export function AIAssistant() {
           {/* File Context Pill */}
           <Badge
             variant="secondary"
-            className="gap-1.5 rounded-full bg-slate-100 px-3 py-1.5 text-xs font-medium text-slate-600 dark:bg-slate-800/60 dark:text-slate-400"
+            className="gap-1.5 rounded-full bg-slate-100 px-3 py-1.5 text-xs font-medium text-slate-600 dark:bg-white/10 dark:text-slate-400"
           >
             <Video className="size-3.5" />
             正在分析: interview_ceo_2024.mp4

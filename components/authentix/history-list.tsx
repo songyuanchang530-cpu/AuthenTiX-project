@@ -102,7 +102,7 @@ export function HistoryList() {
             placeholder="Search by filename, hash, or date..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full rounded-full bg-slate-100 py-3 pl-11 pr-6 text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0082FD]/30 dark:bg-zinc-900/50 dark:text-white dark:placeholder:text-zinc-500"
+            className="w-full rounded-full bg-slate-100 py-3 pl-11 pr-6 text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0082FD]/30 dark:bg-black/30 dark:text-white dark:placeholder:text-slate-500"
           />
         </div>
 
@@ -115,7 +115,7 @@ export function HistoryList() {
               className={`rounded-full px-4 py-2 text-xs font-medium transition-all ${
                 activeFilter === filter
                   ? "bg-gradient-to-r from-[#0082FD] to-[#A459B5] text-white"
-                  : "bg-slate-100 text-slate-500 hover:text-slate-700 dark:bg-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+                  : "bg-slate-100 text-slate-500 hover:text-slate-700 dark:bg-black/30 dark:text-slate-400 dark:hover:text-white"
               }`}
             >
               {filter}

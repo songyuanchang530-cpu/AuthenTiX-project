@@ -16,7 +16,7 @@ export function UserProfileBento() {
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-64 bg-gradient-to-br from-[#0082FD]/10 to-[#A459B5]/5 rounded-full blur-3xl" />
         
         {/* Avatar */}
-        <div className="relative z-10 w-32 h-32 rounded-full ring-4 ring-slate-100 dark:ring-zinc-800 mb-6 overflow-hidden bg-gradient-to-br from-slate-200 to-slate-300 dark:from-zinc-700 dark:to-zinc-800">
+        <div className="relative z-10 w-32 h-32 rounded-full ring-4 ring-slate-100 dark:ring-white/10 mb-6 overflow-hidden bg-gradient-to-br from-slate-200 to-slate-300 dark:from-white/10 dark:to-white/5">
           <div className="w-full h-full flex items-center justify-center text-4xl font-bold text-slate-400 dark:text-zinc-500">
             SY
           </div>
@@ -33,7 +33,7 @@ export function UserProfileBento() {
         </p>
 
         {/* Edit Profile Button - pushed to bottom */}
-        <button className="mt-auto w-full relative z-10 group rounded-2xl bg-slate-100 px-6 py-4 text-sm font-semibold uppercase tracking-wider text-slate-500 transition-all duration-300 hover:bg-gradient-to-r hover:from-[#0082FD] hover:to-[#A459B5] hover:text-white hover:shadow-lg hover:shadow-[#0082FD]/25 dark:bg-zinc-800/60 dark:text-zinc-400">
+        <button className="mt-auto w-full relative z-10 group rounded-2xl bg-slate-100 px-6 py-4 text-sm font-semibold uppercase tracking-wider text-slate-500 transition-all duration-300 hover:bg-gradient-to-r hover:from-[#0082FD] hover:to-[#A459B5] hover:text-white hover:shadow-lg hover:shadow-[#0082FD]/25 dark:bg-black/30 dark:text-slate-400">
           Edit Profile
         </button>
       </div>
@@ -87,7 +87,7 @@ export function UserProfileBento() {
         <div className="w-full flex-1 rounded-3xl bg-white p-6 flex items-center justify-between shadow-xl shadow-indigo-100/50 dark:bg-[#161B26]/80 dark:backdrop-blur-2xl dark:border dark:border-transparent dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
           {/* Language Selector */}
           <div className="flex items-center gap-4">
-            <div className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center dark:bg-zinc-800">
+            <div className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center dark:bg-white/10">
               <Languages className="w-5 h-5 text-slate-500 dark:text-zinc-400" />
             </div>
             <div>
@@ -101,7 +101,7 @@ export function UserProfileBento() {
                   <ChevronDown className={cn("w-4 h-4 transition-transform", languageOpen && "rotate-180")} />
                 </button>
                 {languageOpen && (
-                  <div className="absolute top-full left-0 mt-2 rounded-xl bg-white py-2 min-w-[120px] shadow-xl ring-1 ring-slate-100 z-10 dark:bg-[#161B26] dark:ring-transparent">
+                  <div className="absolute top-full left-0 mt-2 rounded-xl bg-white py-2 min-w-[120px] shadow-xl ring-1 ring-slate-100 z-10 dark:bg-[#1a1f2e] dark:ring-transparent dark:shadow-[0_8px_30px_rgba(0,0,0,0.5)]">
                     <button className="w-full px-4 py-2 text-left text-sm text-slate-800 hover:bg-slate-100 transition-colors dark:text-white dark:hover:bg-white/10">English</button>
                     <button className="w-full px-4 py-2 text-left text-sm text-slate-500 hover:bg-slate-100 hover:text-slate-800 transition-colors dark:text-slate-400 dark:hover:bg-white/10 dark:hover:text-white">中文</button>
                     <button className="w-full px-4 py-2 text-left text-sm text-slate-500 hover:bg-slate-100 hover:text-slate-800 transition-colors dark:text-slate-400 dark:hover:bg-white/10 dark:hover:text-white">日本語</button>
@@ -120,7 +120,7 @@ export function UserProfileBento() {
                 "relative w-16 h-9 rounded-full transition-all duration-300",
                 highContrast
                   ? "bg-gradient-to-r from-[#0082FD] to-[#A459B5]"
-                  : "bg-slate-300 dark:bg-zinc-700"
+                  : "bg-slate-300 dark:bg-white/20"
               )}
             >
               <div

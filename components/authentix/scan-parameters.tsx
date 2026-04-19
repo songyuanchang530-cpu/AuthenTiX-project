@@ -84,7 +84,7 @@ export function ScanParameters() {
                     setDropdownOpen(false)
                   }}
                   className={cn(
-                    "w-full px-3 py-2 text-left text-sm transition-colors hover:bg-slate-100 dark:hover:bg-zinc-700",
+                    "w-full px-3 py-2 text-left text-sm transition-colors hover:bg-slate-100 dark:hover:bg-white/10",
                     selectedSubject === subject
                       ? "text-[#0082FD]"
                       : "text-slate-600 dark:text-zinc-300"

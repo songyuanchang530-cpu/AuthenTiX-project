@@ -106,7 +106,7 @@ export function AppShell({ children, activeItem = "video", pageTitle }: AppShell
           {/* Sidebar Toggle (inside) */}
           <button
             onClick={() => setSidebarOpen(false)}
-            className="flex size-8 items-center justify-center rounded-lg text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-600 dark:hover:bg-slate-800 dark:hover:text-slate-200"
+            className="flex size-8 items-center justify-center rounded-lg text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-600 dark:hover:bg-white/10 dark:hover:text-slate-200"
             aria-label="Collapse sidebar"
           >
             <PanelLeft className="size-5" />
@@ -124,8 +124,8 @@ export function AppShell({ children, activeItem = "video", pageTitle }: AppShell
                 className={cn(
                   "group flex items-center gap-3 rounded-2xl px-4 py-3 text-left text-sm font-medium transition-all duration-150",
                   isActive
-                    ? "bg-blue-50 dark:bg-blue-900/20 shadow-sm"
-                    : "hover:bg-slate-100 active:bg-slate-200 dark:hover:bg-slate-800/50 dark:active:bg-slate-700/50"
+                    ? "bg-blue-50 dark:bg-[#0082FD]/15 shadow-sm"
+                    : "hover:bg-slate-100 active:bg-slate-200 dark:hover:bg-white/5 dark:active:bg-white/10"
                 )}
               >
                 <item.icon
@@ -154,7 +154,7 @@ export function AppShell({ children, activeItem = "video", pageTitle }: AppShell
         {/* Bottom section - Anchored to absolute bottom of sidebar */}
         <div className="mt-auto mb-4 px-4 pb-4 flex-shrink-0">
           {/* Protocol Status */}
-          <div className="mb-4 rounded-2xl bg-slate-50 p-4 dark:bg-slate-800/50">
+          <div className="mb-4 rounded-2xl bg-slate-50 p-4 dark:bg-black/20">
             <p className="text-xs uppercase tracking-widest text-slate-400">
               Protocol Status
             </p>
@@ -167,7 +167,7 @@ export function AppShell({ children, activeItem = "video", pageTitle }: AppShell
           {/* Account Block */}
           <Link
             href="/profile"
-            className="flex w-full items-center gap-3 rounded-2xl p-3 transition-colors hover:bg-slate-100 dark:hover:bg-slate-800/80"
+            className="flex w-full items-center gap-3 rounded-2xl p-3 transition-colors hover:bg-slate-100 dark:hover:bg-white/5"
           >
             <div className="flex size-9 items-center justify-center rounded-full bg-gradient-to-br from-[#0082FD] to-[#A459B5] text-xs font-bold text-white shadow-md">
               SY
@@ -195,7 +195,7 @@ export function AppShell({ children, activeItem = "video", pageTitle }: AppShell
             {!sidebarOpen && (
               <button
                 onClick={() => setSidebarOpen(true)}
-                className="flex size-9 items-center justify-center rounded-lg text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-600 dark:hover:bg-slate-800 dark:hover:text-slate-200"
+                className="flex size-9 items-center justify-center rounded-lg text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-600 dark:hover:bg-white/10 dark:hover:text-slate-200"
                 aria-label="Expand sidebar"
               >
                 <PanelLeft className="size-5" />
@@ -216,7 +216,7 @@ export function AppShell({ children, activeItem = "video", pageTitle }: AppShell
                 "relative flex cursor-pointer items-center gap-2 overflow-visible rounded-full px-4 py-2 text-sm font-medium transition-all duration-200 ease-out active:scale-95",
                 isAIAssistantActive
                   ? "bg-gradient-to-r from-[#0082FD] to-[#A459B5] text-white shadow-md shadow-purple-500/20"
-                  : "bg-slate-100 text-slate-500 shadow-none hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-400 dark:hover:bg-slate-700"
+                  : "bg-slate-100 text-slate-500 shadow-none hover:bg-slate-200 dark:bg-white/10 dark:text-slate-400 dark:hover:bg-white/15"
               )}
               aria-label={isAIAssistantActive ? "Close AI Assistant" : "Open AI Assistant"}
             >
@@ -232,7 +232,7 @@ export function AppShell({ children, activeItem = "video", pageTitle }: AppShell
             {/* Language Selector */}
             <button
               onClick={() => setLang(lang === "en" ? "zh" : "en")}
-              className="flex items-center gap-2 rounded-full bg-slate-100 px-4 py-2 text-xs text-slate-600 transition-colors hover:bg-slate-200 dark:bg-slate-800/60 dark:text-slate-300 dark:hover:bg-slate-700"
+              className="flex items-center gap-2 rounded-full bg-slate-100 px-4 py-2 text-xs text-slate-600 transition-colors hover:bg-slate-200 dark:bg-white/10 dark:text-slate-300 dark:hover:bg-white/15"
             >
               <Globe className="size-3.5" />
               <span className={lang === "en" ? "text-slate-800 font-medium dark:text-white" : "text-slate-400"}>EN</span>
@@ -243,7 +243,7 @@ export function AppShell({ children, activeItem = "video", pageTitle }: AppShell
             {/* Theme Toggle */}
             <button
               onClick={toggleTheme}
-              className="flex size-9 items-center justify-center rounded-full bg-slate-100 text-slate-600 transition-colors hover:bg-slate-200 dark:bg-slate-800/60 dark:text-slate-300 dark:hover:bg-slate-700"
+              className="flex size-9 items-center justify-center rounded-full bg-slate-100 text-slate-600 transition-colors hover:bg-slate-200 dark:bg-white/10 dark:text-slate-300 dark:hover:bg-white/15"
               aria-label="Toggle theme"
             >
               {theme === "dark" ? (
@@ -257,28 +257,28 @@ export function AppShell({ children, activeItem = "video", pageTitle }: AppShell
             <div className="relative">
               <button
                 onClick={() => setShowMenu(!showMenu)}
-                className="flex size-9 items-center justify-center rounded-full bg-slate-100 text-slate-500 transition-colors hover:bg-slate-200 hover:text-slate-700 dark:bg-slate-800/60 dark:text-slate-400 dark:hover:bg-slate-700 dark:hover:text-slate-200"
+                className="flex size-9 items-center justify-center rounded-full bg-slate-100 text-slate-500 transition-colors hover:bg-slate-200 hover:text-slate-700 dark:bg-white/10 dark:text-slate-400 dark:hover:bg-white/15 dark:hover:text-slate-200"
               >
                 {showMenu ? <X className="size-4" /> : <MoreVertical className="size-4" />}
               </button>
 
               {showMenu && (
-                <div className="absolute right-0 top-full mt-2 w-44 overflow-hidden rounded-2xl bg-white p-1.5 shadow-xl shadow-slate-200/50 ring-1 ring-slate-100 dark:bg-slate-800/90 dark:shadow-none dark:ring-slate-700">
+                <div className="absolute right-0 top-full mt-2 w-44 overflow-hidden rounded-2xl bg-white p-1.5 shadow-xl shadow-slate-200/50 ring-1 ring-slate-100 dark:bg-[#1a1f2e] dark:shadow-[0_8px_30px_rgba(0,0,0,0.5)] dark:ring-transparent">
                   <a
                     href="#"
-                    className="block rounded-xl px-4 py-2.5 text-sm text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-800 dark:text-slate-400 dark:hover:bg-slate-700 dark:hover:text-white"
+                    className="block rounded-xl px-4 py-2.5 text-sm text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-800 dark:text-slate-400 dark:hover:bg-white/10 dark:hover:text-white"
                   >
                     Privacy Policy
                   </a>
                   <a
                     href="#"
-                    className="block rounded-xl px-4 py-2.5 text-sm text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-800 dark:text-slate-400 dark:hover:bg-slate-700 dark:hover:text-white"
+                    className="block rounded-xl px-4 py-2.5 text-sm text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-800 dark:text-slate-400 dark:hover:bg-white/10 dark:hover:text-white"
                   >
                     Terms of Service
                   </a>
                   <a
                     href="#"
-                    className="block rounded-xl px-4 py-2.5 text-sm text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-800 dark:text-slate-400 dark:hover:bg-slate-700 dark:hover:text-white"
+                    className="block rounded-xl px-4 py-2.5 text-sm text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-800 dark:text-slate-400 dark:hover:bg-white/10 dark:hover:text-white"
                   >
                     Protocol Docs
                   </a>

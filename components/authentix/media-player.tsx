@@ -22,7 +22,7 @@ export function MediaPlayer() {
   const [scrubberPosition, setScrubberPosition] = useState(35)
 
   return (
-    <div className="flex h-full flex-col rounded-3xl bg-white p-6 shadow-xl shadow-indigo-100/50 dark:bg-[#1a1a2e] dark:shadow-none">
+    <div className="flex h-full flex-col rounded-3xl bg-white p-6 shadow-xl shadow-indigo-100/50 dark:bg-[#161B26]/80 dark:backdrop-blur-2xl dark:border dark:border-transparent dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
       <div className="mb-4 flex items-center justify-between">
         <h3 className="text-sm font-semibold text-slate-800 dark:text-white">Media Preview</h3>
         <span className="text-xs text-slate-400">VIDEO_SAMPLE_001.mp4</span>
@@ -32,7 +32,7 @@ export function MediaPlayer() {
         {/* Video Player Area */}
         <div className="flex flex-1 flex-col">
           {/* Video placeholder */}
-          <div className="relative flex-1 overflow-hidden rounded-2xl bg-slate-100 dark:bg-zinc-900">
+          <div className="relative flex-1 overflow-hidden rounded-2xl bg-slate-100 dark:bg-black/30">
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="flex flex-col items-center gap-3">
                 <div className="rounded-full bg-slate-200 p-4 dark:bg-zinc-800">
@@ -78,7 +78,7 @@ export function MediaPlayer() {
             
             {/* Segments track */}
             <div 
-              className="relative h-8 cursor-pointer rounded-xl bg-slate-100 p-1 dark:bg-zinc-900"
+              className="relative h-8 cursor-pointer rounded-xl bg-slate-100 p-1 dark:bg-black/30"
               onClick={(e) => {
                 const rect = e.currentTarget.getBoundingClientRect()
                 const pos = ((e.clientX - rect.left) / rect.width) * 100
@@ -141,8 +141,8 @@ export function MediaPlayer() {
                 className={cn(
                   "flex items-center gap-2 rounded-xl px-3 py-2 text-left transition-all",
                   activeSubject === subject.id
-                    ? "bg-slate-100 dark:bg-zinc-800"
-                    : "hover:bg-slate-50 dark:hover:bg-zinc-800/50"
+                    ? "bg-slate-100 dark:bg-white/10"
+                    : "hover:bg-slate-50 dark:hover:bg-white/5"
                 )}
               >
                 <div

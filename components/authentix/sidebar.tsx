@@ -96,7 +96,7 @@ export function Sidebar({ activeItem = "video", onItemClick }: SidebarProps) {
         {/* Account Block - ChatGPT Style */}
         <Link
           href="/profile"
-          className="flex w-full items-center gap-3 rounded-xl p-3 transition-colors hover:bg-slate-100 dark:hover:!bg-white/5"
+          className="flex w-full items-center gap-3 rounded-xl p-3 transition-colors hover:bg-slate-100 dark:hover:bg-white/5"
         >
           {/* Avatar */}
           <div className="flex size-9 items-center justify-center rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 text-xs font-bold text-white">

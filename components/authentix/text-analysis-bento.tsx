@@ -22,7 +22,7 @@ function CircularProgress({ percentage }: { percentage: number }) {
         {/* Background circle */}
         <circle
           stroke="currentColor"
-          className="text-slate-200 dark:text-zinc-800"
+          className="text-slate-200 dark:text-white/10"
           fill="transparent"
           strokeWidth={strokeWidth}
           r={normalizedRadius}
@@ -176,7 +176,7 @@ export function TextAnalysisBento() {
               </div>
               <button
                 onClick={() => setUploadedFile(null)}
-                className="rounded-full p-1.5 text-slate-400 transition-colors hover:bg-slate-200 hover:text-slate-600 dark:hover:bg-zinc-700 dark:hover:text-white"
+                className="rounded-full p-1.5 text-slate-400 transition-colors hover:bg-slate-200 hover:text-slate-600 dark:hover:bg-white/10 dark:hover:text-white"
               >
                 <X className="size-4" />
               </button>
@@ -187,7 +187,7 @@ export function TextAnalysisBento() {
           <div className="flex items-center justify-between pt-4">
             <button
               onClick={handleFileSelect}
-              className="flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm text-slate-500 transition-colors hover:bg-slate-100 hover:text-slate-700 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-200"
+              className="flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm text-slate-500 transition-colors hover:bg-slate-100 hover:text-slate-700 dark:text-slate-400 dark:hover:bg-white/10 dark:hover:text-slate-200"
             >
               <Upload className="size-4" />
               Upload File
@@ -205,7 +205,7 @@ export function TextAnalysisBento() {
           className={`group relative w-full overflow-hidden rounded-2xl py-5 text-lg font-bold uppercase tracking-wider transition-all duration-200 ${
             hasContent
               ? "bg-gradient-to-r from-[#0082FD] to-[#A459B5] text-white shadow-lg shadow-[#0082FD]/30 hover:scale-[0.98] hover:shadow-[0_0_60px_rgba(0,130,253,0.4)]"
-              : "cursor-not-allowed bg-slate-200 text-slate-400 dark:bg-zinc-800 dark:text-zinc-500"
+              : "cursor-not-allowed bg-slate-200 text-slate-400 dark:bg-white/5 dark:text-slate-500"
           }`}
         >
           <span className="relative z-10 flex items-center justify-center gap-3">

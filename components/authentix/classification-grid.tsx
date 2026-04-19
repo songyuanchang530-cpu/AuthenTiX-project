@@ -77,7 +77,7 @@ export function ClassificationGrid() {
   }
 
   return (
-    <div className="flex h-full flex-col rounded-3xl bg-white p-6 shadow-xl shadow-indigo-100/50 dark:bg-[#1a1a2e] dark:shadow-none">
+    <div className="flex h-full flex-col rounded-3xl bg-white p-6 shadow-xl shadow-indigo-100/50 dark:bg-[#161B26]/80 dark:backdrop-blur-2xl dark:border dark:border-transparent dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
       <div className="mb-4 flex items-center justify-between">
         <h3 className="text-sm font-semibold text-slate-800 dark:text-white">Analysis Modules</h3>
         <span className="text-xs text-slate-400">
@@ -95,8 +95,8 @@ export function ClassificationGrid() {
               className={cn(
                 "group relative flex flex-col items-start rounded-2xl p-4 text-left transition-all duration-200",
                 isActive
-                  ? "bg-gradient-to-br from-[#0082FD]/5 to-[#A459B5]/5 ring-1 ring-[#0082FD]/20"
-                  : "bg-slate-50 hover:bg-slate-100 dark:bg-zinc-900/50 dark:hover:bg-zinc-900"
+                  ? "bg-gradient-to-br from-[#0082FD]/5 to-[#A459B5]/5 ring-1 ring-[#0082FD]/20 dark:from-[#0082FD]/10 dark:to-[#A459B5]/10 dark:ring-[#0082FD]/30"
+                  : "bg-slate-50 hover:bg-slate-100 dark:bg-black/20 dark:hover:bg-white/10"
               )}
             >
               <div className="relative z-10 flex w-full items-start justify-between">

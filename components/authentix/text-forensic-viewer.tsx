@@ -4,7 +4,7 @@ import { AlertTriangle, Shield, Bot } from "lucide-react"
 
 export function TextForensicViewer() {
   return (
-    <div className="relative flex h-full min-h-[500px] flex-col overflow-hidden rounded-2xl bg-white shadow-xl shadow-indigo-100/50 dark:!bg-[#161B26]/80 dark:!shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
+    <div className="relative flex h-full min-h-[500px] flex-col overflow-hidden rounded-3xl bg-white shadow-xl shadow-indigo-100/50 dark:!bg-[#161B26]/80 dark:backdrop-blur-2xl dark:border dark:border-transparent dark:!shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
       {/* Document Content */}
       <div className="flex-1 overflow-y-auto p-8 pb-28">
         <div className="space-y-8 text-base leading-8 text-slate-700 dark:!text-slate-300">
