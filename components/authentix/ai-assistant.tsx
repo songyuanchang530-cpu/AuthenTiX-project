@@ -94,7 +94,7 @@ export function AIAssistant() {
       {/* Fixed Bottom Input Area */}
       <div className="sticky bottom-0 px-4 pb-6 pt-4">
         <div className="mx-auto w-full max-w-3xl">
-          <div className="flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-2 py-2 shadow-lg shadow-slate-200/50 transition-all focus-within:border-[#0082FD]/40 focus-within:ring-2 focus-within:ring-[#0082FD]/20 dark:border-slate-700 dark:bg-slate-800/50 dark:shadow-none dark:focus-within:border-[#0082FD]/60 dark:focus-within:ring-[#0082FD]/30">
+          <div className="flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-2 py-2 shadow-lg shadow-slate-200/50 transition-all focus-within:border-[#0082FD]/40 focus-within:ring-2 focus-within:ring-[#0082FD]/20 dark:border-transparent dark:bg-black/20 dark:shadow-md dark:focus-within:border-[#0082FD]/40 dark:focus-within:ring-[#0082FD]/20">
             {/* Attachment Button */}
             <Button
               variant="ghost"

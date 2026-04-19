@@ -21,7 +21,7 @@ export function CardSkeleton({ className }: SkeletonProps) {
   return (
     <div
       className={cn(
-        "rounded-3xl bg-white p-6 shadow-xl shadow-indigo-100/50 dark:bg-[#161B26]/80 dark:backdrop-blur-2xl dark:border dark:border-white/[0.04] dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)]",
+        "rounded-3xl bg-white p-6 shadow-xl shadow-indigo-100/50 dark:bg-[#161B26]/80 dark:backdrop-blur-2xl dark:border dark:border-transparent dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)]",
         className
       )}
     >

@@ -88,7 +88,7 @@ export function AppShell({ children, activeItem = "video", pageTitle }: AppShell
       {/* Sidebar - Sticky to viewport, full height, independent scroll */}
       <aside
         className={cn(
-          "sticky top-0 z-40 flex h-screen flex-col border-r border-slate-200/60 bg-white/90 backdrop-blur-xl transition-all duration-300 overflow-y-auto dark:border-slate-700/40 dark:bg-[#0f0f1a]/90",
+          "sticky top-0 z-40 flex h-screen flex-col border-r border-slate-200/60 bg-white/90 backdrop-blur-xl transition-all duration-300 overflow-y-auto dark:border-transparent dark:bg-[#0f0f1a]/90",
           sidebarOpen ? "w-64 min-w-[256px]" : "w-0 min-w-0 overflow-hidden"
         )}
         translate="no"
@@ -189,7 +189,7 @@ export function AppShell({ children, activeItem = "video", pageTitle }: AppShell
         )}
       >
         {/* Sticky Header */}
-        <header className="sticky top-0 z-50 flex items-center justify-between border-b border-slate-200/60 bg-white/80 px-8 pb-4 pt-6 backdrop-blur-xl dark:border-slate-700/40 dark:bg-[#0f0f1a]/80">
+        <header className="sticky top-0 z-50 flex items-center justify-between border-b border-slate-200/60 bg-white/80 px-8 pb-4 pt-6 backdrop-blur-xl dark:border-transparent dark:bg-[#0f0f1a]/80">
           <div className="flex items-center gap-4">
             {/* Sidebar Toggle (when collapsed) */}
             {!sidebarOpen && (
@@ -223,7 +223,7 @@ export function AppShell({ children, activeItem = "video", pageTitle }: AppShell
               {/* Always Online Notification Badge */}
               <span className="absolute -right-1 -top-1 z-10 flex h-2.5 w-2.5">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75"></span>
-                <span className="relative inline-flex h-2.5 w-2.5 rounded-full border border-white bg-green-500 dark:border-slate-900"></span>
+                <span className="relative inline-flex h-2.5 w-2.5 rounded-full border border-white bg-green-500 dark:border-transparent"></span>
               </span>
               <Sparkles className="size-4" />
               AI 助手

@@ -98,32 +98,32 @@ export function TextInputConsole() {
         onDrop={handleDrop}
         className={`relative flex h-72 flex-col rounded-2xl p-2 transition-all duration-300 ${
           isDragging
-            ? "bg-indigo-50 ring-1 ring-indigo-300"
-            : "bg-slate-50"
+            ? "bg-indigo-50 ring-1 ring-indigo-300 dark:bg-[#0082FD]/10 dark:ring-[#0082FD]/30"
+            : "bg-slate-50 dark:bg-black/20"
         }`}
       >
         <textarea
           value={textContent}
           onChange={(e) => setTextContent(e.target.value)}
           placeholder="Paste raw text, or drop a document (.txt, .pdf) for semantic analysis..."
-          className="flex-1 resize-none bg-transparent p-4 text-slate-700 placeholder:text-slate-400 focus:outline-none focus:ring-0"
+          className="flex-1 resize-none bg-transparent p-4 text-slate-700 placeholder:text-slate-400 focus:outline-none focus:ring-0 dark:text-slate-200 dark:placeholder:text-slate-500"
         />
         
         {/* Drop overlay */}
         {isDragging && (
-          <div className="absolute inset-0 flex items-center justify-center rounded-2xl bg-indigo-50/90 backdrop-blur-sm">
+          <div className="absolute inset-0 flex items-center justify-center rounded-2xl bg-indigo-50/90 backdrop-blur-sm dark:bg-[#0082FD]/10">
             <div className="flex flex-col items-center gap-2">
-              <Upload className="size-10 text-indigo-500" />
-              <span className="text-sm text-indigo-600">Drop document here</span>
+              <Upload className="size-10 text-indigo-500 dark:text-[#0082FD]" />
+              <span className="text-sm text-indigo-600 dark:text-[#0082FD]">Drop document here</span>
             </div>
           </div>
         )}
 
         {/* Character count */}
-        <div className="flex items-center justify-between border-t border-slate-200 px-4 py-2">
+        <div className="flex items-center justify-between border-t border-slate-200 px-4 py-2 dark:border-transparent">
           <button
             onClick={handleFileSelect}
-            className="flex items-center gap-2 text-xs text-slate-500 transition-colors hover:text-slate-700"
+            className="flex items-center gap-2 text-xs text-slate-500 transition-colors hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200"
           >
             <Upload className="size-3.5" />
             Upload Document
@@ -136,7 +136,7 @@ export function TextInputConsole() {
 
       {/* File Indicator */}
       {uploadedFile && (
-        <div className="flex items-center justify-between rounded-xl bg-slate-50 px-4 py-3 shadow-sm">
+        <div className="flex items-center justify-between rounded-xl bg-slate-50 px-4 py-3 shadow-sm dark:bg-black/20">
           <div className="flex items-center gap-3">
             <div className="rounded-lg bg-indigo-100 p-2">
               <FileText className="size-5 text-indigo-600" />

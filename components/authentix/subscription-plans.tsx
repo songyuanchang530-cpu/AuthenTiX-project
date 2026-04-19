@@ -76,7 +76,7 @@ export function SubscriptionPlans() {
             key={plan.name}
             className={cn(
               "relative flex flex-col rounded-3xl bg-white p-8 shadow-xl shadow-indigo-100/60 transition-transform hover:-translate-y-1",
-              "dark:bg-[#161B26]/80 dark:backdrop-blur-2xl dark:border dark:border-white/[0.04] dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)]",
+              "dark:bg-[#161B26]/80 dark:backdrop-blur-2xl dark:border dark:border-transparent dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)]",
               plan.highlighted && "ring-2 ring-[#A459B5] bg-purple-50/30 dark:bg-[#161B26]/90 dark:ring-[#A459B5]/60"
             )}
           >

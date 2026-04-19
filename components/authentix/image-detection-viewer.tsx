@@ -43,7 +43,7 @@ export function ImageDetectionViewer() {
   return (
     <div className="flex h-full flex-col gap-6">
       {/* Image Preview Card - Fixed height to match Upload zone on left */}
-      <div className="relative h-[280px] overflow-hidden rounded-3xl bg-white p-2 shadow-xl shadow-indigo-100/50 dark:bg-[#161B26]/80 dark:backdrop-blur-2xl dark:border dark:border-white/[0.04] dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
+      <div className="relative h-[280px] overflow-hidden rounded-3xl bg-white p-2 shadow-xl shadow-indigo-100/50 dark:bg-[#161B26]/80 dark:backdrop-blur-2xl dark:border dark:border-transparent dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
         <div className="relative h-full w-full overflow-hidden rounded-2xl bg-slate-100 dark:bg-black/30">
           {/* Placeholder Image - News Broadcast Scene */}
           <div className="absolute inset-0 bg-gradient-to-br from-slate-200 via-slate-100 to-slate-200">
@@ -142,7 +142,7 @@ export function ImageDetectionViewer() {
       </div>
 
       {/* AI Insights & Face Detection Card - Matches Analysis Options on left */}
-      <div className="rounded-3xl bg-white p-6 shadow-xl shadow-indigo-100/50 dark:bg-[#161B26]/80 dark:backdrop-blur-2xl dark:border dark:border-white/[0.04] dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
+      <div className="rounded-3xl bg-white p-6 shadow-xl shadow-indigo-100/50 dark:bg-[#161B26]/80 dark:backdrop-blur-2xl dark:border dark:border-transparent dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
         <div className="mb-4 flex items-center justify-between">
           <h4 className="text-xs font-medium uppercase tracking-wider text-slate-500 dark:text-slate-400">
             AI Insights & Face Detection
@@ -206,7 +206,7 @@ export function ImageDetectionViewer() {
         </div>
 
         {/* Quick Stats */}
-        <div className="mt-4 flex items-center justify-around border-t border-slate-100 pt-4 dark:border-white/[0.04]">
+        <div className="mt-4 flex items-center justify-around border-t border-slate-100 pt-4 dark:border-transparent">
           <div className="text-center">
             <p className="text-xs text-slate-400">Resolution</p>
             <p className="text-sm font-semibold text-slate-700 dark:text-slate-200">1080p HD</p>
