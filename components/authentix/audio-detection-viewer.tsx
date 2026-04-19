@@ -140,7 +140,7 @@ export function AudioDetectionViewer() {
         <div className="mt-4 flex items-center gap-4">
           <button
             onClick={() => setIsPlaying(!isPlaying)}
-            className="flex size-10 items-center justify-center rounded-full bg-slate-100 text-slate-700 transition-colors hover:bg-slate-200 dark:bg-white/10 dark:text-slate-300 dark:hover:bg-white/20"
+            className="flex size-10 items-center justify-center rounded-full bg-slate-100 text-slate-700 transition-colors hover:bg-slate-200 dark:bg-[#0B0F19] dark:text-slate-300 dark:hover:bg-[#0B0F19]/80"
           >
             {isPlaying ? (
               <Pause className="size-5" />
@@ -157,7 +157,7 @@ export function AudioDetectionViewer() {
 
           {/* Progress Track */}
           <div className="relative flex-1">
-            <div className="h-1 w-full overflow-hidden rounded-full bg-slate-200 dark:bg-white/10">
+            <div className="h-1 w-full overflow-hidden rounded-full bg-slate-200 dark:bg-black/40">
               <div
                 className="h-full bg-gradient-to-r from-indigo-500 to-purple-500"
                 style={{ width: `${progressPercent}%` }}
@@ -228,7 +228,7 @@ export function AudioDetectionViewer() {
         </div>
 
         <div className="flex items-center gap-3">
-          <div className="h-2.5 w-32 overflow-hidden rounded-full bg-white dark:bg-white/10">
+          <div className="h-2.5 w-32 overflow-hidden rounded-full bg-white dark:bg-black/40">
             <div
               className="h-full bg-gradient-to-r from-red-500 to-orange-500"
               style={{ width: "34%" }}

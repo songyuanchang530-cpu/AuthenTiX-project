@@ -41,7 +41,7 @@ export function SettingsBento() {
               className="w-full rounded-xl bg-slate-100 px-4 py-3 text-slate-800 placeholder:text-slate-400 focus:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-[#0082FD]/30 dark:bg-black/30 dark:text-white dark:placeholder:text-slate-500 dark:focus:bg-black/40"
             />
           </div>
-          <div className="flex items-center justify-between rounded-xl bg-slate-50 px-4 py-3 dark:bg-black/20">
+          <div className="flex items-center justify-between rounded-xl bg-slate-50 px-4 py-3 dark:bg-[#0B0F19]">
             <span className="text-sm text-slate-500">Current Role</span>
             <span className="rounded-full bg-emerald-100 px-3 py-1 text-xs font-medium text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-400">
               Admin
@@ -86,7 +86,7 @@ export function SettingsBento() {
             </button>
           </div>
 
-          <button className="w-full rounded-xl bg-slate-100 py-3 text-sm text-slate-600 transition-colors hover:bg-slate-200 hover:text-slate-800 dark:bg-black/20 dark:text-slate-300 dark:hover:bg-white/10 dark:hover:text-white">
+          <button className="w-full rounded-xl bg-slate-100 py-3 text-sm text-slate-600 transition-colors hover:bg-slate-200 hover:text-slate-800 dark:bg-[#0B0F19] dark:text-slate-300 dark:hover:bg-[#0B0F19]/80 dark:hover:text-white">
             Manage Devices
           </button>
         </div>
@@ -113,7 +113,7 @@ export function SettingsBento() {
                 "rounded-xl py-4 text-sm font-medium transition-all",
                 sensitivity === level
                   ? "bg-gradient-to-r from-[#0082FD] to-[#A459B5] text-white shadow-lg shadow-[#0082FD]/20"
-                  : "bg-slate-100 text-slate-500 hover:bg-slate-200 hover:text-slate-700 dark:bg-black/20 dark:text-slate-400 dark:hover:bg-white/10 dark:hover:text-slate-200"
+                  : "bg-slate-100 text-slate-500 hover:bg-slate-200 hover:text-slate-700 dark:bg-[#0B0F19] dark:text-slate-400 dark:hover:bg-[#0B0F19]/80 dark:hover:text-slate-200"
               )}
             >
               {level === "low" && "Low"}
@@ -142,14 +142,14 @@ export function SettingsBento() {
         </div>
 
         <div className="mt-6 space-y-3">
-          <div className="flex items-center justify-between rounded-xl bg-slate-50 p-4 dark:bg-black/20">
+          <div className="flex items-center justify-between rounded-xl bg-slate-50 p-4 dark:bg-[#0B0F19]">
             <div>
               <p className="text-sm font-medium text-slate-800 dark:text-white">Campus_Assistant_Dev</p>
               <p className="mt-1 font-mono text-xs text-slate-400">
                 authx_live_••••••••••••8a9f
               </p>
             </div>
-            <button className="flex size-10 items-center justify-center rounded-lg bg-slate-200 text-slate-500 transition-colors hover:bg-slate-300 hover:text-slate-700 dark:bg-white/10 dark:text-slate-400 dark:hover:bg-white/15 dark:hover:text-white">
+            <button className="flex size-10 items-center justify-center rounded-lg bg-slate-200 text-slate-500 transition-colors hover:bg-slate-300 hover:text-slate-700 dark:bg-black/40 dark:text-slate-400 dark:hover:bg-black/50 dark:hover:text-white">
               <Copy className="size-4" />
             </button>
           </div>

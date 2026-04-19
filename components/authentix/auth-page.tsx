@@ -319,7 +319,7 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
           onClick={() => setLang(lang === "en" ? "zh" : "en")}
           className={cn(
             "flex h-12 w-12 items-center justify-center rounded-full transition-all duration-300",
-            "bg-white/60 dark:bg-white/10 backdrop-blur-xl",
+            "bg-white/60 dark:bg-[#0B0F19] backdrop-blur-xl",
             "border border-slate-200/50 dark:border-transparent",
             "shadow-sm hover:scale-105 active:scale-95",
             "text-sm font-semibold text-slate-700 dark:text-white"
@@ -334,7 +334,7 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
           onClick={() => setIsDarkMode(!isDarkMode)}
           className={cn(
             "flex h-12 w-12 items-center justify-center rounded-full transition-all duration-300",
-            "bg-white/60 dark:bg-white/10 backdrop-blur-xl",
+            "bg-white/60 dark:bg-[#0B0F19] backdrop-blur-xl",
             "border border-slate-200/50 dark:border-transparent",
             "shadow-lg shadow-slate-200/20 dark:shadow-black/40",
             "hover:scale-105 active:scale-95",
@@ -369,7 +369,7 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
               className={cn(
                 "flex-1 rounded-full px-6 py-2.5 text-sm font-medium transition-all duration-200",
                 mode === "login"
-                  ? "bg-white text-slate-900 shadow-sm dark:bg-white/10 dark:text-slate-100"
+                  ? "bg-white text-slate-900 shadow-sm dark:bg-[#0B0F19] dark:text-slate-100"
                   : "text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-100"
               )}
             >
@@ -380,7 +380,7 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
               className={cn(
                 "flex-1 rounded-full px-6 py-2.5 text-sm font-medium transition-all duration-200",
                 mode === "signup"
-                  ? "bg-white text-slate-900 shadow-sm dark:bg-white/10 dark:text-slate-100"
+                  ? "bg-white text-slate-900 shadow-sm dark:bg-[#0B0F19] dark:text-slate-100"
                   : "text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-100"
               )}
             >
@@ -463,11 +463,11 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
 
           {/* Divider */}
           <div className="mb-6 flex items-center gap-3">
-            <div className="h-px flex-1 bg-slate-200 dark:bg-white/10" />
+            <div className="h-px flex-1 bg-slate-200 dark:bg-black/40" />
             <span className="text-xs font-medium uppercase tracking-wider text-slate-400 dark:text-slate-400">
               {t.orTrad}
             </span>
-            <div className="h-px flex-1 bg-slate-200 dark:bg-white/10" />
+            <div className="h-px flex-1 bg-slate-200 dark:bg-black/40" />
           </div>
 
           {/* Input Fields with Perfect Symmetry */}
@@ -519,7 +519,7 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
                   className={cn(
                     "rounded-full px-4 py-1.5 text-xs font-medium transition-all",
                     passwordMode === "password"
-                      ? "bg-white text-slate-900 shadow-sm dark:bg-white/10 dark:text-slate-100"
+                      ? "bg-white text-slate-900 shadow-sm dark:bg-[#0B0F19] dark:text-slate-100"
                       : "text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-100"
                   )}
                 >
@@ -530,7 +530,7 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
                   className={cn(
                     "rounded-full px-4 py-1.5 text-xs font-medium transition-all",
                     passwordMode === "sms"
-                      ? "bg-white text-slate-900 shadow-sm dark:bg-white/10 dark:text-slate-100"
+                      ? "bg-white text-slate-900 shadow-sm dark:bg-[#0B0F19] dark:text-slate-100"
                       : "text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-100"
                   )}
                 >
@@ -594,11 +594,11 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
         <div className="mt-6">
           {/* Divider */}
           <div className="mb-4 flex items-center gap-3">
-            <div className="h-px flex-1 bg-slate-200 dark:bg-white/10" />
+            <div className="h-px flex-1 bg-slate-200 dark:bg-black/40" />
             <span className="text-xs font-medium uppercase tracking-wider text-slate-400 dark:text-slate-400">
               {t.quickAccess}
             </span>
-            <div className="h-px flex-1 bg-slate-200 dark:bg-white/10" />
+            <div className="h-px flex-1 bg-slate-200 dark:bg-black/40" />
           </div>
 
           {/* Social Icons Grid - 2x6 iOS Enamel Badge Circles */}

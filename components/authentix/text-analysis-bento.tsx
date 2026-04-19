@@ -22,7 +22,7 @@ function CircularProgress({ percentage }: { percentage: number }) {
         {/* Background circle */}
         <circle
           stroke="currentColor"
-          className="text-slate-200 dark:text-white/10"
+          className="text-slate-200 dark:text-black/40"
           fill="transparent"
           strokeWidth={strokeWidth}
           r={normalizedRadius}
@@ -168,7 +168,7 @@ export function TextAnalysisBento() {
 
           {/* File indicator */}
           {uploadedFile && (
-            <div className="mb-4 flex items-center gap-3 rounded-2xl bg-slate-100 p-3 dark:!bg-black/20 dark:border dark:!border-transparent">
+            <div className="mb-4 flex items-center gap-3 rounded-2xl bg-slate-100 p-3 dark:!bg-[#0B0F19] dark:border dark:!border-transparent">
               <FileText className="size-5 text-[#0082FD]" />
               <div className="flex-1">
                 <p className="text-sm font-medium text-slate-800 dark:text-white">{uploadedFile.name}</p>
@@ -205,7 +205,7 @@ export function TextAnalysisBento() {
           className={`group relative w-full overflow-hidden rounded-2xl py-5 text-lg font-bold uppercase tracking-wider transition-all duration-200 ${
             hasContent
               ? "bg-gradient-to-r from-[#0082FD] to-[#A459B5] text-white shadow-lg shadow-[#0082FD]/30 hover:scale-[0.98] hover:shadow-[0_0_60px_rgba(0,130,253,0.4)]"
-              : "cursor-not-allowed bg-slate-200 text-slate-400 dark:bg-white/5 dark:text-slate-500"
+              : "cursor-not-allowed bg-slate-200 text-slate-400 dark:bg-[#0B0F19] dark:text-slate-500"
           }`}
         >
           <span className="relative z-10 flex items-center justify-center gap-3">
@@ -241,7 +241,7 @@ export function TextAnalysisBento() {
         {/* Reading Viewer - flex-1 to stretch and align with left column */}
         <div className="relative flex flex-1 flex-col rounded-3xl bg-white p-8 shadow-xl shadow-indigo-100/50 dark:bg-[#161B26]/80 dark:backdrop-blur-2xl dark:border dark:border-transparent dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
           {/* Legend */}
-          <div className="absolute right-6 top-6 flex items-center gap-4 rounded-full bg-slate-100 px-4 py-2 dark:!bg-black/30 dark:border dark:!border-transparent">
+          <div className="absolute right-6 top-6 flex items-center gap-4 rounded-full bg-slate-100 px-4 py-2 dark:!bg-[#0B0F19] dark:border dark:!border-transparent">
             <div className="flex items-center gap-2">
               <div className="size-2.5 rounded-full bg-red-400" />
               <span className="text-xs text-slate-500">AI Generated</span>

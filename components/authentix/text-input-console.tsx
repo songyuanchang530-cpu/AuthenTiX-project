@@ -99,7 +99,7 @@ export function TextInputConsole() {
         className={`relative flex h-72 flex-col rounded-2xl p-2 transition-all duration-300 ${
           isDragging
             ? "bg-indigo-50 ring-1 ring-indigo-300 dark:!bg-[#0082FD]/10 dark:!ring-[#0082FD]/30"
-            : "bg-slate-50 dark:!bg-black/20"
+            : "bg-slate-50 dark:!bg-[#0B0F19]"
         }`}
       >
         <textarea
@@ -136,7 +136,7 @@ export function TextInputConsole() {
 
       {/* File Indicator */}
       {uploadedFile && (
-        <div className="flex items-center justify-between rounded-xl bg-slate-50 px-4 py-3 shadow-sm dark:!bg-black/20">
+        <div className="flex items-center justify-between rounded-xl bg-slate-50 px-4 py-3 shadow-sm dark:!bg-[#0B0F19]">
           <div className="flex items-center gap-3">
             <div className="rounded-lg bg-indigo-100 p-2">
               <FileText className="size-5 text-indigo-600" />
@@ -160,7 +160,7 @@ export function TextInputConsole() {
       )}
 
       {/* Advanced Parameters Panel */}
-      <div className="rounded-xl bg-slate-50 p-4 dark:!bg-black/20">
+      <div className="rounded-xl bg-slate-50 p-4 dark:!bg-[#0B0F19]">
         <h4 className="mb-3 text-xs font-medium uppercase tracking-wider text-slate-500 dark:!text-slate-400">
           Advanced Parameters
         </h4>
@@ -227,7 +227,7 @@ export function TextInputConsole() {
       </button>
 
       {/* Linguistic Diagnostics Panel */}
-      <div className="flex-1 rounded-xl bg-slate-50 p-5 dark:!bg-black/20">
+      <div className="flex-1 rounded-xl bg-slate-50 p-5 dark:!bg-[#0B0F19]">
         <h4 className="mb-5 text-[10px] font-medium uppercase tracking-widest text-slate-500 dark:!text-slate-400">
           Real-Time Linguistic Metrics
         </h4>
@@ -238,7 +238,7 @@ export function TextInputConsole() {
               <span className="text-xs text-slate-600 dark:!text-slate-300">Perplexity (Predictability)</span>
               <span className="text-xs font-medium text-red-500">15%</span>
             </div>
-            <div className="h-1.5 w-full overflow-hidden rounded-full bg-slate-200 dark:!bg-white/10">
+            <div className="h-1.5 w-full overflow-hidden rounded-full bg-slate-200 dark:!bg-black/40">
               <div
                 className="h-full rounded-full bg-gradient-to-r from-indigo-500 to-purple-500"
                 style={{ width: "15%" }}
@@ -253,7 +253,7 @@ export function TextInputConsole() {
               <span className="text-xs text-slate-600 dark:!text-slate-300">Burstiness (Sentence Variance)</span>
               <span className="text-xs font-medium text-red-500">20%</span>
             </div>
-            <div className="h-1.5 w-full overflow-hidden rounded-full bg-slate-200 dark:!bg-white/10">
+            <div className="h-1.5 w-full overflow-hidden rounded-full bg-slate-200 dark:!bg-black/40">
               <div
                 className="h-full rounded-full bg-gradient-to-r from-indigo-500 to-purple-500"
                 style={{ width: "20%" }}
@@ -268,7 +268,7 @@ export function TextInputConsole() {
               <span className="text-xs text-slate-600 dark:!text-slate-300">Vocabulary Richness</span>
               <span className="text-xs font-medium text-blue-500">75%</span>
             </div>
-            <div className="h-1.5 w-full overflow-hidden rounded-full bg-slate-200 dark:!bg-white/10">
+            <div className="h-1.5 w-full overflow-hidden rounded-full bg-slate-200 dark:!bg-black/40">
               <div
                 className="h-full rounded-full bg-slate-400"
                 style={{ width: "75%" }}

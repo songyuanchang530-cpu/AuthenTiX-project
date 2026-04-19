@@ -96,7 +96,7 @@ export function ClassificationGrid() {
                 "group relative flex flex-col items-start rounded-2xl p-4 text-left transition-all duration-200",
                 isActive
                   ? "bg-gradient-to-br from-[#0082FD]/5 to-[#A459B5]/5 ring-1 ring-[#0082FD]/20 dark:from-[#0082FD]/10 dark:to-[#A459B5]/10 dark:ring-[#0082FD]/30"
-                  : "bg-slate-50 hover:bg-slate-100 dark:bg-black/20 dark:hover:bg-white/10"
+                  : "bg-slate-50 hover:bg-slate-100 dark:bg-[#0B0F19] dark:hover:bg-[#0B0F19]/80"
               )}
             >
               <div className="relative z-10 flex w-full items-start justify-between">

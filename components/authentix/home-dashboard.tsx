@@ -66,7 +66,7 @@ export function HomeDashboard() {
             </div>
 
             {/* Right Drop Zone */}
-            <div className="flex h-40 w-full max-w-xs items-center justify-center rounded-2xl bg-gradient-to-br from-[#0082FD]/5 to-[#A459B5]/5 ring-2 ring-dashed ring-[#0082FD]/20 transition-all hover:ring-[#0082FD]/40 dark:from-[#0082FD]/10 dark:to-[#A459B5]/10 dark:ring-white/[0.08] dark:hover:ring-white/[0.15]">
+            <div className="flex h-40 w-full max-w-xs items-center justify-center rounded-2xl bg-gradient-to-br from-[#0082FD]/5 to-[#A459B5]/5 ring-2 ring-dashed ring-[#0082FD]/20 transition-all hover:ring-[#0082FD]/40 dark:from-[#0082FD]/10 dark:to-[#A459B5]/10 dark:ring-black/40 dark:hover:ring-black/50">
               <div className="flex flex-col items-center gap-3">
                 <CloudUpload className="size-12 text-[#0082FD]" />
                 <span className="text-sm font-medium text-slate-500">

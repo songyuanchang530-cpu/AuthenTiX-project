@@ -141,7 +141,7 @@ export function MediaPlayer() {
                 className={cn(
                   "flex items-center gap-2 rounded-xl px-3 py-2 text-left transition-all",
                   activeSubject === subject.id
-                    ? "bg-slate-100 dark:bg-white/10"
+                    ? "bg-slate-100 dark:bg-[#0B0F19]"
                     : "hover:bg-slate-50 dark:hover:bg-white/5"
                 )}
               >

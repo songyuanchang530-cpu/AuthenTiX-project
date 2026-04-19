@@ -154,7 +154,7 @@ export function AppShell({ children, activeItem = "video", pageTitle }: AppShell
         {/* Bottom section - Anchored to absolute bottom of sidebar */}
         <div className="mt-auto mb-4 px-4 pb-4 flex-shrink-0">
           {/* Protocol Status */}
-          <div className="mb-4 rounded-2xl bg-slate-50 p-4 dark:bg-black/20">
+          <div className="mb-4 rounded-2xl bg-slate-50 p-4 dark:bg-[#0B0F19]">
             <p className="text-xs uppercase tracking-widest text-slate-400">
               Protocol Status
             </p>
@@ -216,7 +216,7 @@ export function AppShell({ children, activeItem = "video", pageTitle }: AppShell
                 "relative flex cursor-pointer items-center gap-2 overflow-visible rounded-full px-4 py-2 text-sm font-medium transition-all duration-200 ease-out active:scale-95",
                 isAIAssistantActive
                   ? "bg-gradient-to-r from-[#0082FD] to-[#A459B5] text-white shadow-md shadow-purple-500/20"
-                  : "bg-slate-100 text-slate-500 shadow-none hover:bg-slate-200 dark:bg-white/10 dark:text-slate-400 dark:hover:bg-white/15"
+                  : "bg-slate-100 text-slate-500 shadow-none hover:bg-slate-200 dark:bg-[#0B0F19] dark:text-slate-400 dark:hover:bg-[#0B0F19]/80"
               )}
               aria-label={isAIAssistantActive ? "Close AI Assistant" : "Open AI Assistant"}
             >
@@ -232,7 +232,7 @@ export function AppShell({ children, activeItem = "video", pageTitle }: AppShell
             {/* Language Selector */}
             <button
               onClick={() => setLang(lang === "en" ? "zh" : "en")}
-              className="flex items-center gap-2 rounded-full bg-slate-100 px-4 py-2 text-xs text-slate-600 transition-colors hover:bg-slate-200 dark:bg-white/10 dark:text-slate-300 dark:hover:bg-white/15"
+              className="flex items-center gap-2 rounded-full bg-slate-100 px-4 py-2 text-xs text-slate-600 transition-colors hover:bg-slate-200 dark:bg-[#0B0F19] dark:text-slate-300 dark:hover:bg-[#0B0F19]/80"
             >
               <Globe className="size-3.5" />
               <span className={lang === "en" ? "text-slate-800 font-medium dark:text-white" : "text-slate-400"}>EN</span>
@@ -243,7 +243,7 @@ export function AppShell({ children, activeItem = "video", pageTitle }: AppShell
             {/* Theme Toggle */}
             <button
               onClick={toggleTheme}
-              className="flex size-9 items-center justify-center rounded-full bg-slate-100 text-slate-600 transition-colors hover:bg-slate-200 dark:bg-white/10 dark:text-slate-300 dark:hover:bg-white/15"
+              className="flex size-9 items-center justify-center rounded-full bg-slate-100 text-slate-600 transition-colors hover:bg-slate-200 dark:bg-[#0B0F19] dark:text-slate-300 dark:hover:bg-[#0B0F19]/80"
               aria-label="Toggle theme"
             >
               {theme === "dark" ? (
@@ -257,7 +257,7 @@ export function AppShell({ children, activeItem = "video", pageTitle }: AppShell
             <div className="relative">
               <button
                 onClick={() => setShowMenu(!showMenu)}
-                className="flex size-9 items-center justify-center rounded-full bg-slate-100 text-slate-500 transition-colors hover:bg-slate-200 hover:text-slate-700 dark:bg-white/10 dark:text-slate-400 dark:hover:bg-white/15 dark:hover:text-slate-200"
+                className="flex size-9 items-center justify-center rounded-full bg-slate-100 text-slate-500 transition-colors hover:bg-slate-200 hover:text-slate-700 dark:bg-[#0B0F19] dark:text-slate-400 dark:hover:bg-[#0B0F19]/80 dark:hover:text-slate-200"
               >
                 {showMenu ? <X className="size-4" /> : <MoreVertical className="size-4" />}
               </button>

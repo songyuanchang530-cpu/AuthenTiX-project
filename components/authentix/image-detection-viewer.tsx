@@ -164,7 +164,7 @@ export function ImageDetectionViewer() {
                   ? box.isFake
                     ? "bg-red-50 ring-2 ring-red-200 dark:bg-red-500/10 dark:ring-red-500/30"
                     : "bg-blue-50 ring-2 ring-blue-200 dark:bg-blue-500/10 dark:ring-blue-500/30"
-                  : "bg-slate-50 hover:bg-slate-100 dark:bg-white/5 dark:hover:bg-white/10"
+                  : "bg-slate-50 hover:bg-slate-100 dark:bg-[#0B0F19] dark:hover:bg-[#0B0F19]/80"
               }`}
             >
               <div className="flex items-center justify-between">
@@ -188,7 +188,7 @@ export function ImageDetectionViewer() {
                   {box.isFake ? "Manipulated" : "Authentic"}
                 </span>
                 <div className="flex items-center gap-2">
-                  <div className="h-1.5 w-16 overflow-hidden rounded-full bg-slate-200 dark:bg-white/10">
+                  <div className="h-1.5 w-16 overflow-hidden rounded-full bg-slate-200 dark:bg-black/40">
                     <div
                       className={`h-full rounded-full ${
                         box.isFake
@@ -211,12 +211,12 @@ export function ImageDetectionViewer() {
             <p className="text-xs text-slate-400">Resolution</p>
             <p className="text-sm font-semibold text-slate-700 dark:text-slate-200">1080p HD</p>
           </div>
-          <div className="h-8 w-px bg-slate-100 dark:bg-white/10" />
+          <div className="h-8 w-px bg-slate-100 dark:bg-black/40" />
           <div className="text-center">
             <p className="text-xs text-slate-400">Artifacts</p>
             <p className="text-sm font-semibold text-amber-600 dark:text-amber-400">2 Flagged</p>
           </div>
-          <div className="h-8 w-px bg-slate-100 dark:bg-white/10" />
+          <div className="h-8 w-px bg-slate-100 dark:bg-black/40" />
           <div className="text-center">
             <p className="text-xs text-slate-400">Detection</p>
             <p className="text-sm font-semibold text-red-600 dark:text-red-400">Face Swap</p>
@@ -227,7 +227,7 @@ export function ImageDetectionViewer() {
       {/* Authenticity Score Bar - Aligns with button on left */}
       <div className="mt-auto flex items-center justify-between rounded-xl bg-gradient-to-br from-red-50 to-orange-50 px-6 py-4 dark:from-red-500/10 dark:to-orange-500/10 dark:border dark:border-red-500/20">
         <div className="flex items-center gap-3">
-          <div className="flex size-10 items-center justify-center rounded-xl bg-white shadow-sm dark:bg-white/10">
+          <div className="flex size-10 items-center justify-center rounded-xl bg-white shadow-sm dark:bg-[#0B0F19]">
             <Scan className="size-5 text-red-500" />
           </div>
           <div>
@@ -237,7 +237,7 @@ export function ImageDetectionViewer() {
         </div>
 
         <div className="flex items-center gap-3">
-          <div className="h-2.5 w-32 overflow-hidden rounded-full bg-white dark:bg-white/10">
+          <div className="h-2.5 w-32 overflow-hidden rounded-full bg-white dark:bg-black/40">
             <div
               className="h-full bg-gradient-to-r from-red-500 to-orange-500"
               style={{ width: "14%" }}

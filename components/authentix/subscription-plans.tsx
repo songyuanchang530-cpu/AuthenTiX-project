@@ -92,7 +92,7 @@ export function SubscriptionPlans() {
 
             {/* Tag (for non-highlighted) */}
             {!plan.highlighted && (
-              <span className="mb-4 inline-block w-fit rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-600 dark:bg-white/10 dark:text-slate-400">
+              <span className="mb-4 inline-block w-fit rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-600 dark:bg-[#0B0F19] dark:text-slate-400">
                 {plan.tag}
               </span>
             )}
@@ -155,10 +155,10 @@ export function SubscriptionPlans() {
           Trusted by researchers, journalists, and organizations worldwide
         </p>
         <div className="mt-6 flex flex-wrap items-center justify-center gap-8 opacity-50">
-          <div className="h-8 w-24 rounded bg-slate-200 dark:bg-white/10" />
-          <div className="h-8 w-20 rounded bg-slate-200 dark:bg-white/10" />
-          <div className="h-8 w-28 rounded bg-slate-200 dark:bg-white/10" />
-          <div className="h-8 w-24 rounded bg-slate-200 dark:bg-white/10" />
+          <div className="h-8 w-24 rounded bg-slate-200 dark:bg-[#0B0F19]" />
+          <div className="h-8 w-20 rounded bg-slate-200 dark:bg-[#0B0F19]" />
+          <div className="h-8 w-28 rounded bg-slate-200 dark:bg-[#0B0F19]" />
+          <div className="h-8 w-24 rounded bg-slate-200 dark:bg-[#0B0F19]" />
         </div>
       </div>
     </div>

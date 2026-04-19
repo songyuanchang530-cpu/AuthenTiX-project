@@ -16,7 +16,7 @@ export function UserProfileBento() {
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-64 bg-gradient-to-br from-[#0082FD]/10 to-[#A459B5]/5 rounded-full blur-3xl" />
         
         {/* Avatar */}
-        <div className="relative z-10 w-32 h-32 rounded-full ring-4 ring-slate-100 dark:ring-white/10 mb-6 overflow-hidden bg-gradient-to-br from-slate-200 to-slate-300 dark:from-white/10 dark:to-white/5">
+        <div className="relative z-10 w-32 h-32 rounded-full ring-4 ring-slate-100 dark:ring-black/40 mb-6 overflow-hidden bg-gradient-to-br from-slate-200 to-slate-300 dark:from-black/30 dark:to-black/20">
           <div className="w-full h-full flex items-center justify-center text-4xl font-bold text-slate-400 dark:text-zinc-500">
             SY
           </div>
@@ -87,7 +87,7 @@ export function UserProfileBento() {
         <div className="w-full flex-1 rounded-3xl bg-white p-6 flex items-center justify-between shadow-xl shadow-indigo-100/50 dark:bg-[#161B26]/80 dark:backdrop-blur-2xl dark:border dark:border-transparent dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
           {/* Language Selector */}
           <div className="flex items-center gap-4">
-            <div className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center dark:bg-white/10">
+            <div className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center dark:bg-[#0B0F19]">
               <Languages className="w-5 h-5 text-slate-500 dark:text-zinc-400" />
             </div>
             <div>

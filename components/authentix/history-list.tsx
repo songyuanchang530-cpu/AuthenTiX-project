@@ -129,7 +129,7 @@ export function HistoryList() {
         {filteredRecords.map((record) => (
           <div
             key={record.id}
-            className="group flex cursor-pointer items-center justify-between rounded-2xl bg-slate-50 p-4 transition-colors hover:bg-slate-100 dark:bg-white/5 dark:hover:bg-white/10"
+            className="group flex cursor-pointer items-center justify-between rounded-2xl bg-slate-50 p-4 transition-colors hover:bg-slate-100 dark:bg-[#0B0F19] dark:hover:bg-[#0B0F19]/80"
           >
             {/* Left: Icon & Info */}
             <div className="flex items-center gap-4">
