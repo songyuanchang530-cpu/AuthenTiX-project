@@ -91,7 +91,7 @@ export function HistoryList() {
   })
 
   return (
-    <div className="mt-8 rounded-3xl bg-white p-6 shadow-xl shadow-indigo-100/50 dark:bg-[#161B26]/80 dark:backdrop-blur-2xl dark:border dark:border-white/10 dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
+    <div className="mt-8 rounded-3xl bg-white p-6 shadow-xl shadow-indigo-100/50 dark:bg-[#161B26]/80 dark:backdrop-blur-2xl dark:border dark:border-white/[0.04] dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
       {/* Filter & Search Bar */}
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         {/* Search Input */}

@@ -42,7 +42,7 @@ export function AudioDetectionViewer() {
   return (
     <div className="flex h-full flex-col gap-6">
       {/* Waveform Card - Fixed height to match Upload zone on left */}
-      <div className="relative flex h-[320px] flex-col overflow-hidden rounded-3xl bg-white p-6 shadow-xl shadow-indigo-100/50 dark:bg-[#161B26]/80 dark:backdrop-blur-2xl dark:border dark:border-white/10 dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
+      <div className="relative flex h-[320px] flex-col overflow-hidden rounded-3xl bg-white p-6 shadow-xl shadow-indigo-100/50 dark:bg-[#161B26]/80 dark:backdrop-blur-2xl dark:border dark:border-white/[0.04] dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
         {/* Waveform Title */}
         <div className="mb-4 flex items-center justify-between">
           <h4 className="text-xs font-medium uppercase tracking-wider text-slate-500 dark:text-slate-400">
@@ -110,7 +110,7 @@ export function AudioDetectionViewer() {
             className="absolute top-2 flex -translate-x-1/2 flex-col items-center"
             style={{ left: `${((FORGERY_START + FORGERY_END) / 2 / TOTAL_BARS) * 100}%` }}
           >
-            <div className="rounded-lg bg-white px-3 py-2 shadow-lg dark:bg-[#161B26] dark:border dark:border-white/10">
+            <div className="rounded-lg bg-white px-3 py-2 shadow-lg dark:bg-[#161B26] dark:border dark:border-white/[0.04]">
               <div className="flex items-center gap-2">
                 <AlertTriangle className="size-3 text-red-500" />
                 <span className="text-xs font-medium text-red-600 dark:text-red-400">AI Voice Clone</span>
@@ -125,7 +125,7 @@ export function AudioDetectionViewer() {
             className="absolute top-2 flex -translate-x-1/2 flex-col items-center"
             style={{ left: `${((AUTHENTIC_START + AUTHENTIC_END) / 2 / TOTAL_BARS) * 100}%` }}
           >
-            <div className="rounded-lg bg-white px-3 py-2 shadow-lg dark:bg-[#161B26] dark:border dark:border-white/10">
+            <div className="rounded-lg bg-white px-3 py-2 shadow-lg dark:bg-[#161B26] dark:border dark:border-white/[0.04]">
               <div className="flex items-center gap-2">
                 <Shield className="size-3 text-blue-500" />
                 <span className="text-xs font-medium text-blue-600 dark:text-blue-400">Authentic</span>
@@ -176,7 +176,7 @@ export function AudioDetectionViewer() {
       </div>
 
       {/* Acoustic Fingerprint & Metadata Card - Matches Scan Options on left */}
-      <div className="rounded-3xl bg-white p-6 shadow-xl shadow-indigo-100/50 dark:bg-[#161B26]/80 dark:backdrop-blur-2xl dark:border dark:border-white/10 dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
+      <div className="rounded-3xl bg-white p-6 shadow-xl shadow-indigo-100/50 dark:bg-[#161B26]/80 dark:backdrop-blur-2xl dark:border dark:border-white/[0.04] dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
         <div className="mb-4 flex items-center justify-between">
           <h4 className="text-xs font-medium uppercase tracking-wider text-slate-500 dark:text-slate-400">
             Acoustic Fingerprint & Metadata

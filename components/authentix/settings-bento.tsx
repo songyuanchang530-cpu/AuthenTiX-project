@@ -17,7 +17,7 @@ export function SettingsBento() {
   return (
     <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
       {/* Card 1: Workspace & Profile */}
-      <div className="rounded-3xl bg-white p-6 shadow-xl shadow-indigo-100/50 dark:bg-[#161B26]/80 dark:backdrop-blur-2xl dark:border dark:border-white/10 dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
+      <div className="rounded-3xl bg-white p-6 shadow-xl shadow-indigo-100/50 dark:bg-[#161B26]/80 dark:backdrop-blur-2xl dark:border dark:border-white/[0.04] dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
         <div className="mb-4 flex items-start gap-3">
           <div className="flex size-10 items-center justify-center rounded-xl bg-gradient-to-br from-[#0082FD] to-[#A459B5]">
             <User className="size-5 text-white" />
@@ -51,7 +51,7 @@ export function SettingsBento() {
       </div>
 
       {/* Card 2: Security & Passkeys */}
-      <div className="rounded-3xl bg-white p-6 shadow-xl shadow-indigo-100/50 dark:bg-[#161B26]/80 dark:backdrop-blur-2xl dark:border dark:border-white/10 dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
+      <div className="rounded-3xl bg-white p-6 shadow-xl shadow-indigo-100/50 dark:bg-[#161B26]/80 dark:backdrop-blur-2xl dark:border dark:border-white/[0.04] dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
         <div className="mb-4 flex items-start gap-3">
           <div className="flex size-10 items-center justify-center rounded-xl bg-emerald-100 dark:bg-emerald-500/20">
             <Fingerprint className="size-5 text-emerald-600 dark:text-emerald-400" />
@@ -93,7 +93,7 @@ export function SettingsBento() {
       </div>
 
       {/* Card 3: Detection Sensitivity */}
-      <div className="rounded-3xl bg-white p-6 shadow-xl shadow-indigo-100/50 dark:bg-[#161B26]/80 dark:backdrop-blur-2xl dark:border dark:border-white/10 dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
+      <div className="rounded-3xl bg-white p-6 shadow-xl shadow-indigo-100/50 dark:bg-[#161B26]/80 dark:backdrop-blur-2xl dark:border dark:border-white/[0.04] dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
         <div className="mb-4 flex items-start gap-3">
           <div className="flex size-10 items-center justify-center rounded-xl bg-gradient-to-br from-[#0082FD] to-[#A459B5]">
             <Sliders className="size-5 text-white" />
@@ -130,7 +130,7 @@ export function SettingsBento() {
       </div>
 
       {/* Card 4: Developer & API (wider) */}
-      <div className="rounded-3xl bg-white p-6 shadow-xl shadow-indigo-100/50 md:col-span-2 dark:bg-[#161B26]/80 dark:backdrop-blur-2xl dark:border dark:border-white/10 dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
+      <div className="rounded-3xl bg-white p-6 shadow-xl shadow-indigo-100/50 md:col-span-2 dark:bg-[#161B26]/80 dark:backdrop-blur-2xl dark:border dark:border-white/[0.04] dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
         <div className="mb-4 flex items-start gap-3">
           <div className="flex size-10 items-center justify-center rounded-xl bg-blue-100 dark:bg-blue-500/20">
             <Code className="size-5 text-blue-600 dark:text-blue-400" />
@@ -162,7 +162,7 @@ export function SettingsBento() {
       </div>
 
       {/* Card 5: Notifications & Alerts */}
-      <div className="rounded-3xl bg-white p-6 shadow-xl shadow-indigo-100/50 dark:bg-[#161B26]/80 dark:backdrop-blur-2xl dark:border dark:border-white/10 dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
+      <div className="rounded-3xl bg-white p-6 shadow-xl shadow-indigo-100/50 dark:bg-[#161B26]/80 dark:backdrop-blur-2xl dark:border dark:border-white/[0.04] dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
         <div className="mb-4 flex items-start gap-3">
           <div className="flex size-10 items-center justify-center rounded-xl bg-amber-100 dark:bg-amber-500/20">
             <Bell className="size-5 text-amber-600 dark:text-amber-400" />

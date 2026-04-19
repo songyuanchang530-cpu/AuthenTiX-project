@@ -159,7 +159,7 @@ const EnamelBadgeButton = ({
       // Border - subtle for colored backgrounds, visible for white backgrounds
       isWhiteBg 
         ? "border border-slate-200 dark:border-slate-600" 
-        : "border border-black/5 dark:border-white/10",
+        : "border border-black/5 dark:border-white/[0.04]",
       bgClass
     )}
     title={name}
@@ -320,7 +320,7 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
           className={cn(
             "flex h-12 w-12 items-center justify-center rounded-full transition-all duration-300",
             "bg-white/60 dark:bg-white/10 backdrop-blur-xl",
-            "border border-slate-200/50 dark:border-white/10",
+            "border border-slate-200/50 dark:border-white/[0.04]",
             "shadow-sm hover:scale-105 active:scale-95",
             "text-sm font-semibold text-slate-700 dark:text-white"
           )}
@@ -335,7 +335,7 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
           className={cn(
             "flex h-12 w-12 items-center justify-center rounded-full transition-all duration-300",
             "bg-white/60 dark:bg-white/10 backdrop-blur-xl",
-            "border border-slate-200/50 dark:border-white/10",
+            "border border-slate-200/50 dark:border-white/[0.04]",
             "shadow-lg shadow-slate-200/20 dark:shadow-black/40",
             "hover:scale-105 active:scale-95",
             "hover:bg-white/80 dark:hover:bg-white/20"
@@ -400,8 +400,8 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
                   biometricState === "scanning-fingerprint"
                     ? "border-2 border-emerald-200/50 bg-emerald-50/30 text-emerald-400/60 dark:border-emerald-400/20 dark:bg-emerald-950/20 dark:text-emerald-300/50"
                     : biometricState === "scanning-face" || biometricState === "verified"
-                      ? "bg-emerald-400/15 backdrop-blur-md border border-white/50 shadow-[inset_0_2px_4px_rgba(255,255,255,0.4),0_4px_12px_rgba(52,211,153,0.2)] dark:bg-emerald-500/10 dark:border-white/10 dark:shadow-[inset_0_1px_2px_rgba(255,255,255,0.1),0_4px_12px_rgba(16,185,129,0.15)]"
-                      : "border-2 border-slate-200 bg-white text-slate-400 hover:border-slate-300 hover:text-slate-500 dark:border-white/5 dark:bg-black/30 dark:shadow-[inset_0_2px_4px_rgba(0,0,0,0.3)] dark:text-slate-400 dark:hover:border-white/10"
+                      ? "bg-emerald-400/15 backdrop-blur-md border border-white/50 shadow-[inset_0_2px_4px_rgba(255,255,255,0.4),0_4px_12px_rgba(52,211,153,0.2)] dark:bg-emerald-500/10 dark:border-white/[0.04] dark:shadow-[inset_0_1px_2px_rgba(255,255,255,0.1),0_4px_12px_rgba(16,185,129,0.15)]"
+                      : "border-2 border-slate-200 bg-white text-slate-400 hover:border-slate-300 hover:text-slate-500 dark:border-white/5 dark:bg-black/30 dark:shadow-[inset_0_2px_4px_rgba(0,0,0,0.3)] dark:text-slate-400 dark:hover:border-white/[0.08]"
                 )}
                 aria-label="Start biometric authentication"
               >
@@ -421,8 +421,8 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
                   biometricState === "scanning-face"
                     ? "border-2 border-emerald-200/50 bg-emerald-50/30 text-emerald-400/60 dark:border-emerald-400/20 dark:bg-emerald-950/20 dark:text-emerald-300/50"
                     : biometricState === "verified"
-                      ? "bg-emerald-400/15 backdrop-blur-md border border-white/50 shadow-[inset_0_2px_4px_rgba(255,255,255,0.4),0_4px_12px_rgba(52,211,153,0.2)] dark:bg-emerald-500/10 dark:border-white/10 dark:shadow-[inset_0_1px_2px_rgba(255,255,255,0.1),0_4px_12px_rgba(16,185,129,0.15)]"
-                      : "border-2 border-slate-200 bg-white text-slate-400 hover:border-slate-300 hover:text-slate-500 dark:border-white/5 dark:bg-black/30 dark:shadow-[inset_0_2px_4px_rgba(0,0,0,0.3)] dark:text-slate-400 dark:hover:border-white/10"
+                      ? "bg-emerald-400/15 backdrop-blur-md border border-white/50 shadow-[inset_0_2px_4px_rgba(255,255,255,0.4),0_4px_12px_rgba(52,211,153,0.2)] dark:bg-emerald-500/10 dark:border-white/[0.04] dark:shadow-[inset_0_1px_2px_rgba(255,255,255,0.1),0_4px_12px_rgba(16,185,129,0.15)]"
+                      : "border-2 border-slate-200 bg-white text-slate-400 hover:border-slate-300 hover:text-slate-500 dark:border-white/5 dark:bg-black/30 dark:shadow-[inset_0_2px_4px_rgba(0,0,0,0.3)] dark:text-slate-400 dark:hover:border-white/[0.08]"
                 )}
                 aria-label="Face recognition authentication"
               >
@@ -569,7 +569,7 @@ export function AuthPage({ onAuthenticate }: AuthPageProps) {
                 type="checkbox"
                 checked={keepSession}
                 onChange={(e) => setKeepSession(e.target.checked)}
-                className="size-4 rounded border-slate-300 text-[#0082FD] focus:ring-[#0082FD] dark:border-white/10 dark:bg-black/30 dark:shadow-[inset_0_1px_2px_rgba(0,0,0,0.3)]"
+                className="size-4 rounded border-slate-300 text-[#0082FD] focus:ring-[#0082FD] dark:border-white/[0.04] dark:bg-black/30 dark:shadow-[inset_0_1px_2px_rgba(0,0,0,0.3)]"
               />
               <span className="text-sm text-slate-600 dark:text-slate-400">{t.keepSession}</span>
             </label>
