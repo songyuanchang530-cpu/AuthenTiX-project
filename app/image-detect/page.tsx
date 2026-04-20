@@ -3,10 +3,12 @@
 import { AppShell } from "@/components/authentix/app-shell"
 import { ImageUpload } from "@/components/authentix/image-upload"
 import { ImageDetectionViewer } from "@/components/authentix/image-detection-viewer"
+import { useLanguage } from "@/components/authentix/language-context"
 
 export default function ImageDetectPage() {
+  const { t } = useLanguage()
   return (
-    <AppShell activeItem="image" pageTitle="Image Forgery Analysis">
+    <AppShell activeItem="image" pageTitle={t.imageFakeDetect}>
       <div className="grid min-h-[calc(100vh-140px)] grid-cols-1 gap-8 lg:grid-cols-2">
         {/* Left Column - Upload & Actions */}
         <div className="flex h-full flex-col">

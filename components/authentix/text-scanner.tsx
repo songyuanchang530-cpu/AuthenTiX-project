@@ -1,6 +1,7 @@
 "use client"
 
 import { cn } from "@/lib/utils"
+import { useLanguage } from "./language-context"
 
 const textContent = [
   { text: "The rapid advancement of", highlight: false },
@@ -23,13 +24,14 @@ const textContent = [
 ]
 
 export function TextScanner() {
+  const { t } = useLanguage()
   return (
     <div className="flex h-full flex-col rounded-3xl bg-white p-6 shadow-xl shadow-indigo-100/50 dark:!bg-[#161B26]/80 dark:!shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
       <div className="mb-4 flex items-center justify-between">
-        <h3 className="text-sm font-semibold text-slate-800 dark:text-white">Text Segment Scanner</h3>
+        <h3 className="text-sm font-semibold text-slate-800 dark:text-white">{t.textSegmentScanner}</h3>
         <div className="flex items-center gap-2">
           <div className="size-2 rounded-full bg-[#0082FD]" />
-          <span className="text-xs text-slate-400">AI-Generated Markers</span>
+          <span className="text-xs text-slate-400">{t.aiGeneratedMarkers}</span>
         </div>
       </div>
 
@@ -54,7 +56,7 @@ export function TextScanner() {
       <div className="mt-4 grid grid-cols-3 gap-3">
         <div className="rounded-2xl bg-slate-50 p-3 dark:!bg-black/20">
           <p className="text-[10px] uppercase tracking-wider text-slate-400">
-            Segments
+            {t.segments}
           </p>
           <p className="mt-1 text-lg font-semibold text-slate-800 dark:text-white">
             {textContent.filter((s) => s.highlight).length}
@@ -62,13 +64,13 @@ export function TextScanner() {
         </div>
         <div className="rounded-2xl bg-slate-50 p-3 dark:!bg-black/20">
           <p className="text-[10px] uppercase tracking-wider text-slate-400">
-            Confidence
+            {t.confidence}
           </p>
           <p className="mt-1 text-lg font-semibold text-[#0082FD]">87.3%</p>
         </div>
         <div className="rounded-2xl bg-slate-50 p-3 dark:!bg-black/20">
           <p className="text-[10px] uppercase tracking-wider text-slate-400">
-            Model
+            {t.model}
           </p>
           <p className="mt-1 text-lg font-semibold text-slate-800 dark:text-white">GPT-5</p>
         </div>
@@ -76,7 +78,7 @@ export function TextScanner() {
 
       {/* Primary Action Button */}
       <button className="mt-4 rounded-2xl bg-gradient-to-r from-[#0082FD] to-[#A459B5] px-6 py-4 text-sm font-semibold text-white shadow-lg shadow-[#0082FD]/25 transition-transform hover:scale-[0.98] active:scale-[0.96]">
-        INITIALIZE WORD-LEVEL TEXT SCAN
+        {t.initializeWordLevelScan}
       </button>
     </div>
   )

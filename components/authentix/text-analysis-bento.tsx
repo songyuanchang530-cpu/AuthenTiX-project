@@ -2,6 +2,7 @@
 
 import { useState, useCallback } from "react"
 import { Upload, Sparkles, FileText, X } from "lucide-react"
+import { useLanguage } from "./language-context"
 
 interface UploadedFile {
   name: string
@@ -58,6 +59,7 @@ function CircularProgress({ percentage }: { percentage: number }) {
 }
 
 export function TextAnalysisBento() {
+  const { t } = useLanguage()
   const [textContent, setTextContent] = useState("")
   const [isDragging, setIsDragging] = useState(false)
   const [uploadedFile, setUploadedFile] = useState<UploadedFile | null>(null)
@@ -152,7 +154,7 @@ export function TextAnalysisBento() {
           <textarea
             value={textContent}
             onChange={(e) => setTextContent(e.target.value)}
-            placeholder="Paste your text here, or upload a document..."
+            placeholder={t.pasteTextHere}
             className="scrollbar-hide flex-1 resize-none bg-transparent text-lg leading-relaxed text-slate-700 placeholder:text-slate-400 focus:outline-none dark:!text-zinc-200 dark:!placeholder:text-zinc-500"
           />
 
@@ -161,7 +163,7 @@ export function TextAnalysisBento() {
             <div className="absolute inset-0 flex items-center justify-center rounded-3xl bg-[#0082FD]/10 backdrop-blur-sm">
               <div className="flex flex-col items-center gap-3">
                 <Upload className="size-12 text-[#0082FD]" />
-                <span className="text-lg text-[#0082FD]">Drop file here</span>
+                <span className="text-lg text-[#0082FD]">{t.dropFileHere}</span>
               </div>
             </div>
           )}
@@ -190,10 +192,10 @@ export function TextAnalysisBento() {
               className="flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm text-slate-500 transition-colors hover:bg-slate-100 hover:text-slate-700 dark:text-slate-400 dark:hover:bg-white/10 dark:hover:text-slate-200"
             >
               <Upload className="size-4" />
-              Upload File
+              {t.uploadFileLower}
             </button>
             <span className="text-sm text-slate-400">
-              {textContent.length.toLocaleString()} characters
+              {textContent.length.toLocaleString()} {t.characters}
             </span>
           </div>
         </div>
@@ -212,12 +214,12 @@ export function TextAnalysisBento() {
             {isAnalyzing ? (
               <>
                 <Sparkles className="size-6 animate-pulse" />
-                Analyzing...
+                {t.analyzing}
               </>
             ) : (
               <>
                 <Sparkles className="size-6" />
-                Analyze Text
+                {t.analyzeText}
               </>
             )}
           </span>
@@ -233,8 +235,8 @@ export function TextAnalysisBento() {
 
           {/* Score Text */}
           <div className="flex-1">
-            <h2 className="text-2xl font-bold text-slate-800 dark:text-white">Likely Human-Written</h2>
-            <p className="mt-1 text-base text-slate-500">No major AI patterns detected.</p>
+            <h2 className="text-2xl font-bold text-slate-800 dark:text-white">{t.likelyHumanWritten}</h2>
+            <p className="mt-1 text-base text-slate-500">{t.noMajorAIPatterns}</p>
           </div>
         </div>
 
@@ -244,11 +246,11 @@ export function TextAnalysisBento() {
           <div className="absolute right-6 top-6 flex items-center gap-4 rounded-full bg-slate-100 px-4 py-2 dark:!bg-[#0B0F19] dark:border dark:!border-transparent">
             <div className="flex items-center gap-2">
               <div className="size-2.5 rounded-full bg-red-400" />
-              <span className="text-xs text-slate-500">AI Generated</span>
+              <span className="text-xs text-slate-500">{t.aiGenerated}</span>
             </div>
             <div className="flex items-center gap-2">
               <div className="size-2.5 rounded-full bg-[#0082FD]" />
-              <span className="text-xs text-slate-500">Human</span>
+              <span className="text-xs text-slate-500">{t.human}</span>
             </div>
           </div>
 
@@ -269,7 +271,7 @@ export function TextAnalysisBento() {
               ))
             ) : (
               <div className="flex h-full items-center justify-center text-slate-400">
-                <p>Your analyzed text will appear here...</p>
+                <p>{t.yourAnalyzedText}</p>
               </div>
             )}
           </div>

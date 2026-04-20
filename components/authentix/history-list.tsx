@@ -4,7 +4,7 @@ import { useState } from "react"
 import { Search, FileText, Video, Image, Mic, ChevronRight } from "lucide-react"
 import { useLanguage } from "./language-context"
 
-const filterOptions = ["All", "Text", "Image", "Video", "Audio"] as const
+type FilterKey = "all" | "text" | "image" | "video" | "audio"
 
 const historyRecords = [
   {
@@ -83,11 +83,19 @@ const historyRecords = [
 
 export function HistoryList() {
   const { t } = useLanguage()
-  const [activeFilter, setActiveFilter] = useState<typeof filterOptions[number]>("All")
+  const [activeFilter, setActiveFilter] = useState<FilterKey>("all")
   const [searchQuery, setSearchQuery] = useState("")
+  
+  const filterOptions: { key: FilterKey; label: string }[] = [
+    { key: "all", label: t.all },
+    { key: "text", label: t.text },
+    { key: "image", label: t.images },
+    { key: "video", label: t.videos },
+    { key: "audio", label: t.audio },
+  ]
 
   const filteredRecords = historyRecords.filter((record) => {
-    const matchesFilter = activeFilter === "All" || record.type.toLowerCase() === activeFilter.toLowerCase()
+    const matchesFilter = activeFilter === "all" || record.type.toLowerCase() === activeFilter
     const matchesSearch = record.filename.toLowerCase().includes(searchQuery.toLowerCase())
     return matchesFilter && matchesSearch
   })
@@ -112,15 +120,15 @@ export function HistoryList() {
         <div className="flex items-center gap-2">
           {filterOptions.map((filter) => (
             <button
-              key={filter}
-              onClick={() => setActiveFilter(filter)}
+              key={filter.key}
+              onClick={() => setActiveFilter(filter.key)}
               className={`rounded-full px-4 py-2 text-xs font-medium transition-all ${
-                activeFilter === filter
+                activeFilter === filter.key
                   ? "bg-gradient-to-r from-[#0082FD] to-[#A459B5] text-white"
                   : "bg-slate-100 text-slate-500 hover:text-slate-700 dark:bg-black/30 dark:text-slate-400 dark:hover:text-white"
               }`}
             >
-              {filter}
+              {filter.label}
             </button>
           ))}
         </div>

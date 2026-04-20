@@ -321,6 +321,65 @@ const translations = {
     status: "Status",
     aiInterventionDetected: "AI Intervention Detected",
     humanAuthorshipScore: "Human Authorship Score",
+    
+    // Text Scanner (Video Page)
+    textSegmentScanner: "Text Segment Scanner",
+    aiGeneratedMarkers: "AI-Generated Markers",
+    segments: "Segments",
+    model: "Model",
+    initializeWordLevelScan: "Initialize Word-Level Text Scan",
+    
+    // Text Analysis Bento
+    pasteTextHere: "Paste your text here, or upload a document...",
+    dropFileHere: "Drop file here",
+    uploadFileLower: "Upload File",
+    characters: "characters",
+    likelyHumanWritten: "Likely Human-Written",
+    noMajorAIPatterns: "No major AI patterns detected.",
+    human: "Human",
+    yourAnalyzedText: "Your analyzed text will appear here...",
+    
+    // Settings Bento Cards
+    accountDetails: "Account Details",
+    yourWorkspaceProfile: "Your workspace profile",
+    environmentName: "Environment Name",
+    currentRole: "Current Role",
+    admin: "Admin",
+    easyLoginSecurity: "Easy Login & Security",
+    quickAccessOptions: "Quick access options",
+    biometricLogin: "Biometric Login",
+    faceTouchId: "Face / Touch ID",
+    manageDevices: "Manage Devices",
+    aiScanSensitivity: "AI Scan Sensitivity",
+    detectionThresholdLevel: "Detection threshold level",
+    lowDesc: "Minimal false positives, lower detection rate",
+    standardDesc: "Balanced accuracy and coverage",
+    strictDesc: "Maximum detection, higher sensitivity",
+    standard: "Standard",
+    strict: "Strict",
+    developerKeys: "Developer Keys",
+    apiAccessIntegrations: "API access for integrations",
+    newKey: "New Key",
+    alertPreferences: "Alert Preferences",
+    notificationSettings: "Notification settings",
+    emailReports: "Email Reports",
+    realtimeWarnings: "Real-time Warnings",
+    saveAllChanges: "Save All Changes",
+    
+    // History Stats
+    totalScans30Days: "Total Scans (30 Days)",
+    aiInterventionsDetected: "AI Interventions Detected",
+    averageAuthenticityScore: "Average Authenticity Score",
+    
+    // History List Status Labels
+    aiSynthesized: "AI Synthesized",
+    manipulationDetected: "Manipulation Detected",
+    
+    // API Keys Section
+    generateNewKey: "Generate New Key",
+    manageApiKeys: "Manage keys for integrating AuthentiX core models into your applications.",
+    adjustSensitivity: "Adjust the baseline sensitivity for the multi-modal detection models.",
+    configureWorkspace: "Configure your workspace environment settings.",
   },
   zh: {
     // Navigation
@@ -637,6 +696,65 @@ const translations = {
     status: "状态",
     aiInterventionDetected: "检测到 AI 干预",
     humanAuthorshipScore: "人类著作评分",
+    
+    // Text Scanner (Video Page)
+    textSegmentScanner: "文本片段扫描器",
+    aiGeneratedMarkers: "AI 生成标记",
+    segments: "片段数",
+    model: "模型",
+    initializeWordLevelScan: "启动词级文本扫描",
+    
+    // Text Analysis Bento
+    pasteTextHere: "在此粘贴文本，或上传文档...",
+    dropFileHere: "拖放文件至此",
+    uploadFileLower: "上传文件",
+    characters: "字符",
+    likelyHumanWritten: "可能为人类撰写",
+    noMajorAIPatterns: "未检测到明显的 AI 生成模式。",
+    human: "人类",
+    yourAnalyzedText: "分析后的文本将显示在这里...",
+    
+    // Settings Bento Cards
+    accountDetails: "账户详情",
+    yourWorkspaceProfile: "您的工作区资料",
+    environmentName: "环境名称",
+    currentRole: "当前角色",
+    admin: "管理员",
+    easyLoginSecurity: "便捷登录与安全",
+    quickAccessOptions: "快速访问选项",
+    biometricLogin: "生物识别登录",
+    faceTouchId: "面容 / 触控 ID",
+    manageDevices: "管理设备",
+    aiScanSensitivity: "AI 扫描灵敏度",
+    detectionThresholdLevel: "检测阈值级别",
+    lowDesc: "最小误报，较低检测率",
+    standardDesc: "平衡的准确性和覆盖率",
+    strictDesc: "最大检测，更高灵敏度",
+    standard: "标准",
+    strict: "严格",
+    developerKeys: "开发者密钥",
+    apiAccessIntegrations: "用于集成的 API 访问",
+    newKey: "新建密钥",
+    alertPreferences: "提醒偏好",
+    notificationSettings: "通知设置",
+    emailReports: "邮件报告",
+    realtimeWarnings: "实时警告",
+    saveAllChanges: "保存所有更改",
+    
+    // History Stats
+    totalScans30Days: "总扫描次数（30 天）",
+    aiInterventionsDetected: "检测到 AI 干预",
+    averageAuthenticityScore: "平均真实性评分",
+    
+    // History List Status Labels
+    aiSynthesized: "AI 合成",
+    manipulationDetected: "检测到篡改",
+    
+    // API Keys Section
+    generateNewKey: "生成新密钥",
+    manageApiKeys: "管理用于将 AuthentiX 核心模型集成到您的应用程序中的密钥。",
+    adjustSensitivity: "调整多模态检测模型的基线灵敏度。",
+    configureWorkspace: "配置您的工作区环境设置。",
   },
 } as const
 

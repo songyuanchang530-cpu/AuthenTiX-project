@@ -21,7 +21,7 @@ export function SettingsForm() {
       <section>
         <h3 className="text-lg font-semibold text-slate-800 dark:!text-white">{t.apiAuthentication}</h3>
         <p className="mb-4 mt-1 text-sm text-slate-500">
-          Manage keys for integrating AuthentiX core models into your applications.
+          {t.manageApiKeys}
         </p>
 
         <div className="flex flex-col gap-3">
@@ -36,7 +36,7 @@ export function SettingsForm() {
               </div>
               <button className="flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs text-slate-500 transition-colors hover:bg-slate-200 hover:text-slate-700">
                 <Copy className="size-3.5" />
-                Copy
+                {t.copy}
               </button>
             </div>
           ))}
@@ -44,7 +44,7 @@ export function SettingsForm() {
 
         <button className="mt-4 inline-flex w-max items-center gap-1.5 rounded-lg px-3 py-2 text-sm text-indigo-600 transition-colors hover:bg-indigo-50">
           <Plus className="size-4" />
-          Generate New Key
+          {t.generateNewKey}
         </button>
       </section>
 
@@ -52,7 +52,7 @@ export function SettingsForm() {
       <section>
         <h3 className="text-lg font-semibold text-slate-800 dark:!text-white">{t.systemThresholds}</h3>
         <p className="mb-4 mt-1 text-sm text-slate-500">
-          Adjust the baseline sensitivity for the multi-modal detection models.
+          {t.adjustSensitivity}
         </p>
 
         <div className="flex flex-col gap-6">
@@ -111,12 +111,12 @@ export function SettingsForm() {
       <section>
         <h3 className="text-lg font-semibold text-slate-800 dark:!text-white">{t.workspaceConfiguration}</h3>
         <p className="mb-4 mt-1 text-sm text-slate-500">
-          Configure your workspace environment settings.
+          {t.configureWorkspace}
         </p>
 
         <div>
           <label className="mb-2 block text-xs uppercase tracking-widest text-slate-500">
-            Environment Name
+            {t.environmentName}
           </label>
           <input
             type="text"

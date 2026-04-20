@@ -2,12 +2,14 @@
 
 import { useState } from "react"
 import { User, Fingerprint, Sliders, Code, Bell, Copy, Plus } from "lucide-react"
+import { useLanguage } from "./language-context"
 
 function cn(...classes: (string | boolean | undefined)[]) {
   return classes.filter(Boolean).join(" ")
 }
 
 export function SettingsBento() {
+  const { t } = useLanguage()
   const [biometricLogin, setBiometricLogin] = useState(true)
   const [sensitivity, setSensitivity] = useState<"low" | "standard" | "strict">("standard")
   const [emailReports, setEmailReports] = useState(true)
@@ -23,15 +25,15 @@ export function SettingsBento() {
             <User className="size-5 text-white" />
           </div>
           <div>
-            <h3 className="text-lg font-semibold text-slate-800 dark:text-white">Account Details</h3>
-            <p className="text-xs text-slate-400">Your workspace profile</p>
+            <h3 className="text-lg font-semibold text-slate-800 dark:text-white">{t.accountDetails}</h3>
+            <p className="text-xs text-slate-400">{t.yourWorkspaceProfile}</p>
           </div>
         </div>
 
         <div className="mt-6 space-y-4">
           <div>
             <label className="mb-2 block text-xs uppercase tracking-widest text-slate-400">
-              Environment Name
+              {t.environmentName}
             </label>
             <input
               type="text"
@@ -42,9 +44,9 @@ export function SettingsBento() {
             />
           </div>
           <div className="flex items-center justify-between rounded-xl bg-slate-50 px-4 py-3 dark:bg-[#0B0F19]">
-            <span className="text-sm text-slate-500">Current Role</span>
+            <span className="text-sm text-slate-500">{t.currentRole}</span>
             <span className="rounded-full bg-emerald-100 px-3 py-1 text-xs font-medium text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-400">
-              Admin
+              {t.admin}
             </span>
           </div>
         </div>
@@ -57,16 +59,16 @@ export function SettingsBento() {
             <Fingerprint className="size-5 text-emerald-600 dark:text-emerald-400" />
           </div>
           <div>
-            <h3 className="text-lg font-semibold text-slate-800 dark:text-white">Easy Login & Security</h3>
-            <p className="text-xs text-slate-400">Quick access options</p>
+            <h3 className="text-lg font-semibold text-slate-800 dark:text-white">{t.easyLoginSecurity}</h3>
+            <p className="text-xs text-slate-400">{t.quickAccessOptions}</p>
           </div>
         </div>
 
         <div className="mt-6 space-y-4">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm text-slate-800 dark:text-white">Biometric Login</p>
-              <p className="text-xs text-slate-400">Face / Touch ID</p>
+              <p className="text-sm text-slate-800 dark:text-white">{t.biometricLogin}</p>
+              <p className="text-xs text-slate-400">{t.faceTouchId}</p>
             </div>
             <button
               onClick={() => setBiometricLogin(!biometricLogin)}
@@ -87,7 +89,7 @@ export function SettingsBento() {
           </div>
 
           <button className="w-full rounded-xl bg-slate-100 py-3 text-sm text-slate-600 transition-colors hover:bg-slate-200 hover:text-slate-800 dark:bg-[#0B0F19] dark:text-slate-300 dark:hover:bg-[#0B0F19]/80 dark:hover:text-white">
-            Manage Devices
+            {t.manageDevices}
           </button>
         </div>
       </div>
@@ -99,8 +101,8 @@ export function SettingsBento() {
             <Sliders className="size-5 text-white" />
           </div>
           <div>
-            <h3 className="text-lg font-semibold text-slate-800 dark:text-white">AI Scan Sensitivity</h3>
-            <p className="text-xs text-slate-400">Detection threshold level</p>
+            <h3 className="text-lg font-semibold text-slate-800 dark:text-white">{t.aiScanSensitivity}</h3>
+            <p className="text-xs text-slate-400">{t.detectionThresholdLevel}</p>
           </div>
         </div>
 
@@ -116,16 +118,16 @@ export function SettingsBento() {
                   : "bg-slate-100 text-slate-500 hover:bg-slate-200 hover:text-slate-700 dark:bg-[#0B0F19] dark:text-slate-400 dark:hover:bg-[#0B0F19]/80 dark:hover:text-slate-200"
               )}
             >
-              {level === "low" && "Low"}
-              {level === "standard" && "Standard"}
-              {level === "strict" && "Strict"}
+              {level === "low" && t.low}
+              {level === "standard" && t.standard}
+              {level === "strict" && t.strict}
             </button>
           ))}
         </div>
         <p className="mt-3 text-center text-xs text-slate-400">
-          {sensitivity === "low" && "Minimal false positives, lower detection rate"}
-          {sensitivity === "standard" && "Balanced accuracy and coverage"}
-          {sensitivity === "strict" && "Maximum detection, higher sensitivity"}
+          {sensitivity === "low" && t.lowDesc}
+          {sensitivity === "standard" && t.standardDesc}
+          {sensitivity === "strict" && t.strictDesc}
         </p>
       </div>
 
@@ -136,8 +138,8 @@ export function SettingsBento() {
             <Code className="size-5 text-blue-600 dark:text-blue-400" />
           </div>
           <div>
-            <h3 className="text-lg font-semibold text-slate-800 dark:text-white">Developer Keys</h3>
-            <p className="text-xs text-slate-400">API access for integrations</p>
+            <h3 className="text-lg font-semibold text-slate-800 dark:text-white">{t.developerKeys}</h3>
+            <p className="text-xs text-slate-400">{t.apiAccessIntegrations}</p>
           </div>
         </div>
 
@@ -156,7 +158,7 @@ export function SettingsBento() {
 
           <button className="inline-flex items-center gap-2 rounded-lg px-3 py-2 text-sm text-[#0082FD] transition-colors hover:bg-[#0082FD]/10">
             <Plus className="size-4" />
-            New Key
+            {t.newKey}
           </button>
         </div>
       </div>
@@ -168,14 +170,14 @@ export function SettingsBento() {
             <Bell className="size-5 text-amber-600 dark:text-amber-400" />
           </div>
           <div>
-            <h3 className="text-lg font-semibold text-slate-800 dark:text-white">Alert Preferences</h3>
-            <p className="text-xs text-slate-400">Notification settings</p>
+            <h3 className="text-lg font-semibold text-slate-800 dark:text-white">{t.alertPreferences}</h3>
+            <p className="text-xs text-slate-400">{t.notificationSettings}</p>
           </div>
         </div>
 
         <div className="mt-6 space-y-4">
           <div className="flex items-center justify-between">
-            <span className="text-sm text-slate-800 dark:text-white">Email Reports</span>
+            <span className="text-sm text-slate-800 dark:text-white">{t.emailReports}</span>
             <button
               onClick={() => setEmailReports(!emailReports)}
               className={cn(
@@ -195,7 +197,7 @@ export function SettingsBento() {
           </div>
 
           <div className="flex items-center justify-between">
-            <span className="text-sm text-slate-800 dark:text-white">Real-time Warnings</span>
+            <span className="text-sm text-slate-800 dark:text-white">{t.realtimeWarnings}</span>
             <button
               onClick={() => setRealtimeWarnings(!realtimeWarnings)}
               className={cn(

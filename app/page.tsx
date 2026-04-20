@@ -5,10 +5,12 @@ import { MediaPlayer } from "@/components/authentix/media-player"
 import { ClassificationGrid } from "@/components/authentix/classification-grid"
 import { ScanParameters } from "@/components/authentix/scan-parameters"
 import { TextScanner } from "@/components/authentix/text-scanner"
+import { useLanguage } from "@/components/authentix/language-context"
 
 export default function Dashboard() {
+  const { t } = useLanguage()
   return (
-    <AppShell activeItem="video" pageTitle="Video Forgery Analysis">
+    <AppShell activeItem="video" pageTitle={t.videoForgeryAnalysis}>
       <div className="grid flex-1 grid-cols-2 items-stretch gap-4">
         {/* Top Left - Media Player & Timeline */}
         <div className="flex min-h-[360px] flex-col">
