@@ -5,6 +5,7 @@ import Link from "next/link"
 import { useRouter, usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
 import { useTheme } from "./theme-provider"
+import { useLanguage } from "./language-context"
 import {
   Home,
   Image,
@@ -23,14 +24,15 @@ import {
   PanelLeft,
 } from "lucide-react"
 
-const navItems = [
-  { icon: Home, label: "Home", id: "home", href: "/home" },
-  { icon: Image, label: "Image Fake Detect", id: "image", href: "/image-detect" },
-  { icon: Video, label: "Video Fake Detect", id: "video", href: "/" },
-  { icon: AudioLines, label: "Audio Fake Detect", id: "audio", href: "/audio-detect" },
-  { icon: FileText, label: "Text Fake Detect", id: "text", href: "/text-detect" },
-  { icon: History, label: "Detection History", id: "history", href: "/history" },
-  { icon: Settings, label: "Protocol Settings", id: "settings", href: "/settings" },
+// Nav items will use translation keys
+const getNavItems = (t: ReturnType<typeof import("./language-context").useLanguage>["t"]) => [
+  { icon: Home, label: t.home, id: "home", href: "/home" },
+  { icon: Image, label: t.imageFakeDetect, id: "image", href: "/image-detect" },
+  { icon: Video, label: t.videoFakeDetect, id: "video", href: "/" },
+  { icon: AudioLines, label: t.audioFakeDetect, id: "audio", href: "/audio-detect" },
+  { icon: FileText, label: t.textFakeDetect, id: "text", href: "/text-detect" },
+  { icon: History, label: t.detectionHistory, id: "history", href: "/history" },
+  { icon: Settings, label: t.protocolSettings, id: "settings", href: "/settings" },
 ]
 
 interface AppShellProps {
@@ -46,10 +48,12 @@ const DEFAULT_VIEW = "/"
 export function AppShell({ children, activeItem = "video", pageTitle }: AppShellProps) {
   const [sidebarOpen, setSidebarOpen] = useState(true)
   const [showMenu, setShowMenu] = useState(false)
-  const [lang, setLang] = useState<"en" | "zh">("en")
+  const { lang, toggleLang, t } = useLanguage()
   const { theme, toggleTheme } = useTheme()
   const router = useRouter()
   const pathname = usePathname()
+  
+  const navItems = getNavItems(t)
 
   const isAIAssistantActive = pathname === AI_ASSISTANT_PATH
 
@@ -156,11 +160,11 @@ export function AppShell({ children, activeItem = "video", pageTitle }: AppShell
           {/* Protocol Status */}
           <div className="mb-4 rounded-2xl bg-slate-50 p-4 dark:bg-[#0B0F19]">
             <p className="text-xs uppercase tracking-widest text-slate-400">
-              Protocol Status
+              {t.protocolStatus}
             </p>
             <div className="mt-2 flex items-center gap-2">
               <div className="size-2 animate-pulse rounded-full bg-emerald-400" />
-              <span className="text-sm text-slate-600 dark:text-slate-300">Active & Secure</span>
+              <span className="text-sm text-slate-600 dark:text-slate-300">{t.activeSecure}</span>
             </div>
           </div>
 
@@ -174,7 +178,7 @@ export function AppShell({ children, activeItem = "video", pageTitle }: AppShell
             </div>
             <div className="flex flex-1 flex-col">
               <span className="text-sm font-medium text-slate-800 dark:text-white">Song Yuanchang</span>
-              <span className="text-xs text-slate-400">Personal Account</span>
+              <span className="text-xs text-slate-400">{t.personalAccount}</span>
             </div>
             <MoreHorizontal className="size-4 text-slate-400" />
           </Link>
@@ -231,7 +235,7 @@ export function AppShell({ children, activeItem = "video", pageTitle }: AppShell
 
             {/* Language Selector */}
             <button
-              onClick={() => setLang(lang === "en" ? "zh" : "en")}
+              onClick={toggleLang}
               className="flex items-center gap-2 rounded-full bg-slate-100 px-4 py-2 text-xs text-slate-600 transition-colors hover:bg-slate-200 dark:bg-[#0B0F19] dark:text-slate-300 dark:hover:bg-[#0B0F19]/80"
             >
               <Globe className="size-3.5" />
@@ -268,19 +272,19 @@ export function AppShell({ children, activeItem = "video", pageTitle }: AppShell
                     href="#"
                     className="block rounded-xl px-4 py-2.5 text-sm text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-800 dark:text-slate-400 dark:hover:bg-white/10 dark:hover:text-white"
                   >
-                    Privacy Policy
+                    {t.privacyPolicy}
                   </a>
                   <a
                     href="#"
                     className="block rounded-xl px-4 py-2.5 text-sm text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-800 dark:text-slate-400 dark:hover:bg-white/10 dark:hover:text-white"
                   >
-                    Terms of Service
+                    {t.termsOfService}
                   </a>
                   <a
                     href="#"
                     className="block rounded-xl px-4 py-2.5 text-sm text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-800 dark:text-slate-400 dark:hover:bg-white/10 dark:hover:text-white"
                   >
-                    Protocol Docs
+                    {t.protocolDocs}
                   </a>
                 </div>
               )}

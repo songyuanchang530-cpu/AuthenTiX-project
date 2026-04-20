@@ -2,6 +2,7 @@
 
 import { useState, useCallback } from "react"
 import { FileText, X, Scan, Upload } from "lucide-react"
+import { useLanguage } from "./language-context"
 
 interface UploadedFile {
   name: string
@@ -10,6 +11,7 @@ interface UploadedFile {
 }
 
 export function TextInputConsole() {
+  const { t } = useLanguage()
   const [textContent, setTextContent] = useState("")
   const [isDragging, setIsDragging] = useState(false)
   const [uploadedFile, setUploadedFile] = useState<UploadedFile | null>(null)
@@ -105,7 +107,7 @@ export function TextInputConsole() {
         <textarea
           value={textContent}
           onChange={(e) => setTextContent(e.target.value)}
-          placeholder="Paste raw text, or drop a document (.txt, .pdf) for semantic analysis..."
+          placeholder={t.enterTextHere}
           className="flex-1 resize-none bg-transparent p-4 text-slate-700 placeholder:text-slate-400 focus:outline-none focus:ring-0 dark:!text-slate-200 dark:!placeholder:text-slate-500"
         />
         
@@ -126,10 +128,10 @@ export function TextInputConsole() {
             className="flex items-center gap-2 text-xs text-slate-500 transition-colors hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200"
           >
             <Upload className="size-3.5" />
-            Upload Document
+            {t.uploadFile}
           </button>
           <span className="text-xs text-slate-400">
-            {textContent.length} characters
+            {textContent.length} {t.characterCount}
           </span>
         </div>
       </div>
@@ -212,12 +214,12 @@ export function TextInputConsole() {
           {isScanning ? (
             <>
               <Scan className="size-5 animate-pulse" />
-              Analyzing...
+              {t.analyzing}
             </>
           ) : (
             <>
               <Scan className="size-5" />
-              Initialize Semantic Scan
+              {t.analyzeText}
             </>
           )}
         </span>

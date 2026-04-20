@@ -9,32 +9,33 @@ import {
   FileText,
   CheckCircle2,
 } from "lucide-react"
+import { useLanguage } from "./language-context"
 
-const toolCards = [
+const getToolCards = (t: ReturnType<typeof import("./language-context").useLanguage>["t"]) => [
   {
     icon: Image,
-    label: "Image Scan",
+    label: t.imageScan,
     href: "/image-detect",
     iconColor: "text-pink-500",
     bgGlow: "hover:shadow-pink-200/50",
   },
   {
     icon: Video,
-    label: "Video Scan",
+    label: t.videoScan,
     href: "/",
     iconColor: "text-[#A459B5]",
     bgGlow: "hover:shadow-purple-200/50",
   },
   {
     icon: AudioLines,
-    label: "Audio Scan",
+    label: t.audioScan,
     href: "/audio-detect",
     iconColor: "text-orange-500",
     bgGlow: "hover:shadow-orange-200/50",
   },
   {
     icon: FileText,
-    label: "Text Scan",
+    label: t.textScan,
     href: "/text-detect",
     iconColor: "text-[#0082FD]",
     bgGlow: "hover:shadow-blue-200/50",
@@ -48,6 +49,9 @@ const recentScans = [
 ]
 
 export function HomeDashboard() {
+  const { t } = useLanguage()
+  const toolCards = getToolCards(t)
+  
   return (
     <div className="scrollbar-hide flex-1 overflow-y-auto">
       {/* Bento Grid */}
@@ -58,10 +62,10 @@ export function HomeDashboard() {
             {/* Left Text */}
             <div className="flex-1 text-center md:text-left">
               <h1 className="text-3xl font-semibold text-slate-800 dark:text-white">
-                Welcome back. Let&apos;s verify your digital media.
+                {t.welcomeBack}
               </h1>
               <p className="mt-3 text-lg text-slate-500">
-                Drop any image, video, audio, or text file here for instant AI forensic analysis.
+                {t.dragDropOrClick}
               </p>
             </div>
 
@@ -70,7 +74,7 @@ export function HomeDashboard() {
               <div className="flex flex-col items-center gap-3">
                 <CloudUpload className="size-12 text-[#0082FD]" />
                 <span className="text-sm font-medium text-slate-500">
-                  Drag & drop or click to upload
+                  {t.dragDropOrClick}
                 </span>
               </div>
             </div>
@@ -93,7 +97,7 @@ export function HomeDashboard() {
 
         {/* Card 6: System Health - 2 Columns */}
         <div className="col-span-1 rounded-3xl bg-white p-6 shadow-xl shadow-indigo-100/50 md:col-span-2 dark:bg-[#161B26]/80 dark:backdrop-blur-2xl dark:border dark:border-transparent dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
-          <h2 className="text-lg font-semibold text-slate-800 dark:text-white">System Status</h2>
+          <h2 className="text-lg font-semibold text-slate-800 dark:text-white">{t.systemStatus}</h2>
           <div className="mt-6 flex items-center gap-3">
             <div className="size-4 animate-pulse rounded-full bg-emerald-400 shadow-[0_0_12px_rgba(52,211,153,0.6)]" />
             <span className="text-base text-slate-600 dark:text-zinc-300">
@@ -108,7 +112,7 @@ export function HomeDashboard() {
 
         {/* Card 7: Recent Activity - 2 Columns */}
         <div className="col-span-1 rounded-3xl bg-white p-6 shadow-xl shadow-indigo-100/50 md:col-span-2 dark:bg-[#161B26]/80 dark:backdrop-blur-2xl dark:border dark:border-transparent dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
-          <h2 className="text-lg font-semibold text-slate-800 dark:text-white">Recent Scans</h2>
+          <h2 className="text-lg font-semibold text-slate-800 dark:text-white">{t.recentScans}</h2>
           <div className="mt-4 flex flex-col gap-4">
             {recentScans.map((scan, index) => (
               <div

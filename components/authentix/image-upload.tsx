@@ -2,6 +2,7 @@
 
 import { useState, useCallback } from "react"
 import { CloudUpload, X, FileImage, Scan } from "lucide-react"
+import { useLanguage } from "./language-context"
 
 interface UploadedFile {
   name: string
@@ -10,6 +11,7 @@ interface UploadedFile {
 }
 
 export function ImageUpload() {
+  const { t } = useLanguage()
   const [isDragging, setIsDragging] = useState(false)
   const [uploadedFile, setUploadedFile] = useState<UploadedFile | null>({
     name: "sample_news_broadcast.png",
@@ -99,16 +101,14 @@ export function ImageUpload() {
         </div>
 
         <p className="text-center text-slate-700 dark:text-slate-300">
-          Drag & Drop image here
+          {t.dragDropOrClick}
         </p>
         <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
-          or click to browse
+          {t.supportedFormats}: PNG, JPG, WEBP
         </p>
 
         <div className="mt-4 flex items-center gap-2 text-xs text-slate-400 dark:text-slate-500">
-          <span>PNG, JPG, WEBP</span>
-          <span className="text-slate-300 dark:text-slate-600">•</span>
-          <span>Max 50MB</span>
+          <span>{t.maxFileSize}: 50MB</span>
         </div>
       </div>
 
@@ -187,12 +187,12 @@ export function ImageUpload() {
           {isScanning ? (
             <>
               <Scan className="size-5 animate-pulse" />
-              Scanning...
+              {t.analyzing}
             </>
           ) : (
             <>
               <Scan className="size-5" />
-              Initialize Image Scan
+              {t.analyzeImage}
             </>
           )}
         </span>

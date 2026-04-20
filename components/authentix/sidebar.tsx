@@ -12,15 +12,16 @@ import {
   Settings,
   MoreHorizontal,
 } from "lucide-react"
+import { useLanguage } from "./language-context"
 
-const navItems = [
-  { icon: Home, label: "Home", id: "home", href: "/home" },
-  { icon: Image, label: "Image Fake Detect", id: "image", href: "/image-detect" },
-  { icon: Video, label: "Video Fake Detect", id: "video", href: "/" },
-  { icon: AudioLines, label: "Audio Fake Detect", id: "audio", href: "/audio-detect" },
-  { icon: FileText, label: "Text Fake Detect", id: "text", href: "/text-detect" },
-  { icon: History, label: "Detection History", id: "history", href: "/history" },
-  { icon: Settings, label: "Protocol Settings", id: "settings", href: "/settings" },
+const getNavItems = (t: ReturnType<typeof import("./language-context").useLanguage>["t"]) => [
+  { icon: Home, label: t.home, id: "home", href: "/home" },
+  { icon: Image, label: t.imageFakeDetect, id: "image", href: "/image-detect" },
+  { icon: Video, label: t.videoFakeDetect, id: "video", href: "/" },
+  { icon: AudioLines, label: t.audioFakeDetect, id: "audio", href: "/audio-detect" },
+  { icon: FileText, label: t.textFakeDetect, id: "text", href: "/text-detect" },
+  { icon: History, label: t.detectionHistory, id: "history", href: "/history" },
+  { icon: Settings, label: t.protocolSettings, id: "settings", href: "/settings" },
 ]
 
 interface SidebarProps {
@@ -29,6 +30,9 @@ interface SidebarProps {
 }
 
 export function Sidebar({ activeItem = "video", onItemClick }: SidebarProps) {
+  const { t } = useLanguage()
+  const navItems = getNavItems(t)
+  
   return (
     <aside className="fixed left-0 top-0 z-40 flex h-screen w-64 flex-col border-r border-slate-200 bg-white/90 backdrop-blur-md dark:!border-transparent dark:!bg-[#0f0f1a]/90" translate="no">
       {/* Logo */}
@@ -85,11 +89,11 @@ export function Sidebar({ activeItem = "video", onItemClick }: SidebarProps) {
         {/* Protocol Status */}
         <div className="mb-4 rounded-xl bg-slate-50 p-4 dark:!bg-black/20">
           <p className="text-xs uppercase tracking-widest text-slate-500">
-            Protocol Status
+            {t.protocolStatus}
           </p>
           <div className="mt-2 flex items-center gap-2">
             <div className="size-2 animate-pulse rounded-full bg-emerald-500" />
-            <span className="text-sm text-slate-700 dark:!text-slate-300">Active & Secure</span>
+            <span className="text-sm text-slate-700 dark:!text-slate-300">{t.activeSecure}</span>
           </div>
         </div>
 
@@ -105,7 +109,7 @@ export function Sidebar({ activeItem = "video", onItemClick }: SidebarProps) {
           {/* Info */}
           <div className="flex flex-1 flex-col">
             <span className="text-sm font-medium text-slate-800 dark:!text-white">Song Yuanchang</span>
-            <span className="text-xs text-slate-500">Personal Account</span>
+            <span className="text-xs text-slate-500">{t.personalAccount}</span>
           </div>
           {/* More Icon */}
           <MoreHorizontal className="size-4 text-slate-400" />

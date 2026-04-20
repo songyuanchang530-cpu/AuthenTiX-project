@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { Search, FileText, Video, Image, Mic, ChevronRight } from "lucide-react"
+import { useLanguage } from "./language-context"
 
 const filterOptions = ["All", "Text", "Image", "Video", "Audio"] as const
 
@@ -81,6 +82,7 @@ const historyRecords = [
 ] as const
 
 export function HistoryList() {
+  const { t } = useLanguage()
   const [activeFilter, setActiveFilter] = useState<typeof filterOptions[number]>("All")
   const [searchQuery, setSearchQuery] = useState("")
 
@@ -99,7 +101,7 @@ export function HistoryList() {
           <Search className="absolute left-4 top-1/2 size-4 -translate-y-1/2 text-slate-400" />
           <input
             type="text"
-            placeholder="Search by filename, hash, or date..."
+            placeholder={t.searchHistory}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full rounded-full bg-slate-100 py-3 pl-11 pr-6 text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0082FD]/30 dark:bg-black/30 dark:text-white dark:placeholder:text-slate-500"
@@ -158,7 +160,7 @@ export function HistoryList() {
 
         {filteredRecords.length === 0 && (
           <div className="py-12 text-center">
-            <p className="text-sm text-slate-400">No records found matching your criteria.</p>
+            <p className="text-sm text-slate-400">{t.noResultsFound}</p>
           </div>
         )}
       </div>

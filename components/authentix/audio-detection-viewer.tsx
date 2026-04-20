@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { Play, Pause, AlertTriangle, Shield, Radio, Waves, Activity } from "lucide-react"
+import { useLanguage } from "./language-context"
 
 // Static waveform data to prevent hydration mismatch
 const WAVEFORM_DATA = [
@@ -27,6 +28,7 @@ const AUTHENTIC_END = 90
 const TOTAL_BARS = WAVEFORM_DATA.length
 
 export function AudioDetectionViewer() {
+  const { t, lang } = useLanguage()
   const [isPlaying, setIsPlaying] = useState(false)
   const [currentTime, setCurrentTime] = useState(14)
   const totalTime = 225
@@ -51,11 +53,11 @@ export function AudioDetectionViewer() {
           <div className="flex items-center gap-4 text-xs text-slate-500 dark:text-slate-400">
             <span className="flex items-center gap-1.5">
               <span className="size-2 rounded-full bg-red-500" />
-              Manipulated
+              {lang === "zh" ? "已篡改" : "Manipulated"}
             </span>
             <span className="flex items-center gap-1.5">
               <span className="size-2 rounded-full bg-blue-500" />
-              Authentic
+              {lang === "zh" ? "真实" : "Authentic"}
             </span>
           </div>
         </div>
@@ -222,7 +224,7 @@ export function AudioDetectionViewer() {
         <div className="flex items-center gap-3">
           <AlertTriangle className="size-5 text-red-500" />
           <div>
-            <span className="text-sm font-medium text-slate-800 dark:text-slate-100">Overall Authenticity Score</span>
+            <span className="text-sm font-medium text-slate-800 dark:text-slate-100">{t.authenticityScore}</span>
             <p className="text-xs text-slate-500 dark:text-slate-400">Voice Synthesis Detected</p>
           </div>
         </div>

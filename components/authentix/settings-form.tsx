@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { Copy, Plus } from "lucide-react"
+import { useLanguage } from "./language-context"
 
 const apiKeys = [
   { name: "Campus_AI_Assistant_Dev", key: "authx_live_••••••••••••••••8a9f" },
@@ -9,6 +10,7 @@ const apiKeys = [
 ]
 
 export function SettingsForm() {
+  const { t } = useLanguage()
   const [strictMode, setStrictMode] = useState(true)
   const [sensitivity, setSensitivity] = useState(80)
   const [workspaceName, setWorkspaceName] = useState("White Ocean AI Engine")
@@ -17,7 +19,7 @@ export function SettingsForm() {
     <div className="flex flex-col gap-10">
       {/* Section 1: Developer API Keys */}
       <section>
-        <h3 className="text-lg font-semibold text-slate-800 dark:!text-white">API Authentication</h3>
+        <h3 className="text-lg font-semibold text-slate-800 dark:!text-white">{t.apiAuthentication}</h3>
         <p className="mb-4 mt-1 text-sm text-slate-500">
           Manage keys for integrating AuthentiX core models into your applications.
         </p>
@@ -48,7 +50,7 @@ export function SettingsForm() {
 
       {/* Section 2: Global Detection Parameters */}
       <section>
-        <h3 className="text-lg font-semibold text-slate-800 dark:!text-white">System Thresholds</h3>
+        <h3 className="text-lg font-semibold text-slate-800 dark:!text-white">{t.systemThresholds}</h3>
         <p className="mb-4 mt-1 text-sm text-slate-500">
           Adjust the baseline sensitivity for the multi-modal detection models.
         </p>
@@ -56,7 +58,7 @@ export function SettingsForm() {
         <div className="flex flex-col gap-6">
           {/* Strict Mode Toggle */}
           <div className="flex items-center justify-between">
-            <span className="text-sm text-slate-700 dark:!text-slate-300">Strict Mode (Zero Tolerance)</span>
+            <span className="text-sm text-slate-700 dark:!text-slate-300">{t.strictMode}</span>
             <button
               onClick={() => setStrictMode(!strictMode)}
               className={cn(
@@ -78,7 +80,7 @@ export function SettingsForm() {
           {/* Sensitivity Slider */}
           <div>
             <label className="mb-3 block text-sm text-slate-700 dark:!text-slate-300">
-              RAG Context Hallucination Sensitivity
+              {t.ragSensitivity}
             </label>
             <div className="relative">
               <div className="h-1.5 rounded-full bg-slate-200 dark:!bg-white/10">
@@ -107,7 +109,7 @@ export function SettingsForm() {
 
       {/* Section 3: Environment Setup */}
       <section>
-        <h3 className="text-lg font-semibold text-slate-800 dark:!text-white">Workspace Configuration</h3>
+        <h3 className="text-lg font-semibold text-slate-800 dark:!text-white">{t.workspaceConfiguration}</h3>
         <p className="mb-4 mt-1 text-sm text-slate-500">
           Configure your workspace environment settings.
         </p>
@@ -128,7 +130,7 @@ export function SettingsForm() {
       {/* Bottom Action */}
       <div className="flex justify-end pt-4">
         <button className="rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 px-6 py-3 text-sm font-bold uppercase tracking-wider text-white shadow-lg shadow-indigo-200 transition-all hover:scale-[0.98] hover:shadow-indigo-300">
-          Save Configuration
+          {t.saveChanges}
         </button>
       </div>
     </div>

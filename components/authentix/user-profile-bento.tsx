@@ -3,8 +3,10 @@
 import { useState } from "react"
 import { ChevronDown, Sparkles, BookOpen, Languages } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { useLanguage } from "./language-context"
 
 export function UserProfileBento() {
+  const { t } = useLanguage()
   const [highContrast, setHighContrast] = useState(false)
   const [languageOpen, setLanguageOpen] = useState(false)
 
@@ -34,7 +36,7 @@ export function UserProfileBento() {
 
         {/* Edit Profile Button - pushed to bottom */}
         <button className="mt-auto w-full relative z-10 group rounded-2xl bg-slate-100 px-6 py-4 text-sm font-semibold uppercase tracking-wider text-slate-500 transition-all duration-300 hover:bg-gradient-to-r hover:from-[#0082FD] hover:to-[#A459B5] hover:text-white hover:shadow-lg hover:shadow-[#0082FD]/25 dark:bg-black/30 dark:text-slate-400">
-          Edit Profile
+          {t.editProfile}
         </button>
       </div>
 
@@ -47,23 +49,23 @@ export function UserProfileBento() {
             <span className="bg-gradient-to-r from-[#0082FD] to-[#A459B5] bg-clip-text text-4xl font-bold text-transparent">
               342
             </span>
-            <span className="text-slate-500 text-sm mt-1">Files Authenticated</span>
+            <span className="text-slate-500 text-sm mt-1">{t.filesAuthenticated}</span>
           </div>
 
           {/* Box B - Plan Status */}
           <div className="flex-1 rounded-3xl bg-white p-6 flex flex-col justify-center relative shadow-xl shadow-indigo-100/50 dark:bg-[#161B26]/80 dark:backdrop-blur-2xl dark:border dark:border-transparent dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
-            <span className="text-slate-500 text-sm">Current Plan</span>
+            <span className="text-slate-500 text-sm">{t.currentPlan}</span>
             <span className="text-slate-800 dark:text-white text-xl font-semibold mt-1">AuthentiX Edu Pro</span>
             <div className="absolute top-4 right-4 flex items-center gap-1.5 rounded-full bg-emerald-100 px-3 py-1 dark:bg-emerald-500/20">
               <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse dark:bg-emerald-400" />
-              <span className="text-emerald-600 dark:text-emerald-400 text-xs font-medium">Active</span>
+              <span className="text-emerald-600 dark:text-emerald-400 text-xs font-medium">{t.active}</span>
             </div>
           </div>
         </div>
 
         {/* Middle Row - Achievements/Badges */}
         <div className="w-full flex-1 rounded-3xl bg-white p-6 shadow-xl shadow-indigo-100/50 dark:bg-[#161B26]/80 dark:backdrop-blur-2xl dark:border dark:border-transparent dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
-          <h3 className="text-slate-800 dark:text-white text-sm font-medium mb-4">Active Modules & Badges</h3>
+          <h3 className="text-slate-800 dark:text-white text-sm font-medium mb-4">{t.activeModulesBadges}</h3>
           <div className="flex flex-wrap gap-3">
             {/* Badge 1 - White Ocean Debate Logic */}
             <div className="flex items-center gap-2 rounded-2xl bg-sky-50 px-4 py-3 transition-transform hover:scale-105 dark:bg-sky-500/10">
@@ -91,7 +93,7 @@ export function UserProfileBento() {
               <Languages className="w-5 h-5 text-slate-500 dark:text-zinc-400" />
             </div>
             <div>
-              <span className="text-slate-400 text-xs block">App Language</span>
+              <span className="text-slate-400 text-xs block">{t.appLanguage}</span>
               <div className="relative">
                 <button
                   onClick={() => setLanguageOpen(!languageOpen)}
@@ -113,7 +115,7 @@ export function UserProfileBento() {
 
           {/* High Contrast Toggle */}
           <div className="flex items-center gap-4">
-            <span className="text-slate-500 text-sm">High-Contrast Mode</span>
+            <span className="text-slate-500 text-sm">{t.highContrastMode}</span>
             <button
               onClick={() => setHighContrast(!highContrast)}
               className={cn(

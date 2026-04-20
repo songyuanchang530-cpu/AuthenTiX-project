@@ -13,8 +13,10 @@ import {
   Search,
   Lightbulb,
 } from "lucide-react"
+import { useLanguage } from "./language-context"
 
 export function AIAssistant() {
+  const { t } = useLanguage()
   return (
     <div className="absolute inset-0 z-20 flex h-full w-full flex-col overflow-hidden bg-white animate-in fade-in zoom-in-95 duration-200 ease-out dark:bg-slate-950">
         {/* Top Header Area */}
@@ -56,7 +58,7 @@ export function AIAssistant() {
 
           {/* Greeting */}
           <h1 className="text-2xl font-semibold text-slate-800 dark:text-white sm:text-3xl">
-            我能帮您什么？
+            {t.howCanIHelp}
           </h1>
 
           {/* Subtitle */}

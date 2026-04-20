@@ -2,6 +2,7 @@
 
 import { useState, useCallback } from "react"
 import { Mic, X, FileAudio, Scan } from "lucide-react"
+import { useLanguage } from "./language-context"
 
 interface UploadedFile {
   name: string
@@ -10,6 +11,7 @@ interface UploadedFile {
 }
 
 export function AudioUpload() {
+  const { t } = useLanguage()
   const [isDragging, setIsDragging] = useState(false)
   const [uploadedFile, setUploadedFile] = useState<UploadedFile | null>({
     name: "interview_recording.wav",
@@ -101,16 +103,14 @@ export function AudioUpload() {
         </div>
 
         <p className="text-center text-slate-700 dark:text-slate-300">
-          Drag & Drop audio file (.wav, .mp3) here
+          {t.dragDropOrClick}
         </p>
         <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
-          or click to browse
+          {t.supportedFormats}: WAV, MP3, OGG
         </p>
 
         <div className="mt-4 flex items-center gap-2 text-xs text-slate-400 dark:text-slate-500">
-          <span>WAV, MP3, OGG</span>
-          <span className="text-slate-300 dark:text-slate-600">•</span>
-          <span>Max 100MB</span>
+          <span>{t.maxFileSize}: 100MB</span>
         </div>
       </div>
 
@@ -196,12 +196,12 @@ export function AudioUpload() {
             {isScanning ? (
               <>
                 <Scan className="size-5 animate-pulse" />
-                Scanning...
+                {t.analyzing}
               </>
             ) : (
               <>
                 <Scan className="size-5" />
-                Initialize Audio Scan
+                {t.analyzeAudio}
               </>
             )}
           </span>
