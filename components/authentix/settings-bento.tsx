@@ -94,7 +94,62 @@ export function SettingsBento() {
         </div>
       </div>
 
-      {/* Card 3: Detection Sensitivity */}
+      {/* Card 3: Notifications & Alerts (moved here to be below Easy Login) */}
+      <div className="rounded-3xl bg-white p-6 shadow-xl shadow-indigo-100/50 dark:bg-[#161B26]/80 dark:backdrop-blur-2xl dark:border dark:border-transparent dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
+        <div className="mb-4 flex items-start gap-3">
+          <div className="flex size-10 items-center justify-center rounded-xl bg-amber-100 dark:bg-amber-500/20">
+            <Bell className="size-5 text-amber-600 dark:text-amber-400" />
+          </div>
+          <div>
+            <h3 className="text-lg font-semibold text-slate-800 dark:text-white">{t.alertPreferences}</h3>
+            <p className="text-xs text-slate-400">{t.notificationSettings}</p>
+          </div>
+        </div>
+
+        <div className="mt-6 space-y-4">
+          <div className="flex items-center justify-between">
+            <span className="text-sm text-slate-800 dark:text-white">{t.emailReports}</span>
+            <button
+              onClick={() => setEmailReports(!emailReports)}
+              className={cn(
+                "relative h-8 w-14 rounded-full transition-all duration-200",
+                emailReports
+                  ? "bg-gradient-to-r from-[#0082FD] to-[#A459B5]"
+                  : "bg-slate-300 dark:bg-white/20"
+              )}
+            >
+              <span
+                className={cn(
+                  "absolute top-1 size-6 rounded-full bg-white shadow-md transition-all duration-200",
+                  emailReports ? "left-7" : "left-1"
+                )}
+              />
+            </button>
+          </div>
+
+          <div className="flex items-center justify-between">
+            <span className="text-sm text-slate-800 dark:text-white">{t.realtimeWarnings}</span>
+            <button
+              onClick={() => setRealtimeWarnings(!realtimeWarnings)}
+              className={cn(
+                "relative h-8 w-14 rounded-full transition-all duration-200",
+                realtimeWarnings
+                  ? "bg-gradient-to-r from-[#0082FD] to-[#A459B5]"
+                  : "bg-slate-300 dark:bg-white/20"
+              )}
+            >
+              <span
+                className={cn(
+                  "absolute top-1 size-6 rounded-full bg-white shadow-md transition-all duration-200",
+                  realtimeWarnings ? "left-7" : "left-1"
+                )}
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Card 4: Detection Sensitivity */}
       <div className="rounded-3xl bg-white p-6 shadow-xl shadow-indigo-100/50 dark:bg-[#161B26]/80 dark:backdrop-blur-2xl dark:border dark:border-transparent dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
         <div className="mb-4 flex items-start gap-3">
           <div className="flex size-10 items-center justify-center rounded-xl bg-gradient-to-br from-[#0082FD] to-[#A459B5]">
@@ -163,60 +218,6 @@ export function SettingsBento() {
         </div>
       </div>
 
-      {/* Card 5: Notifications & Alerts */}
-      <div className="rounded-3xl bg-white p-6 shadow-xl shadow-indigo-100/50 dark:bg-[#161B26]/80 dark:backdrop-blur-2xl dark:border dark:border-transparent dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
-        <div className="mb-4 flex items-start gap-3">
-          <div className="flex size-10 items-center justify-center rounded-xl bg-amber-100 dark:bg-amber-500/20">
-            <Bell className="size-5 text-amber-600 dark:text-amber-400" />
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold text-slate-800 dark:text-white">{t.alertPreferences}</h3>
-            <p className="text-xs text-slate-400">{t.notificationSettings}</p>
-          </div>
-        </div>
-
-        <div className="mt-6 space-y-4">
-          <div className="flex items-center justify-between">
-            <span className="text-sm text-slate-800 dark:text-white">{t.emailReports}</span>
-            <button
-              onClick={() => setEmailReports(!emailReports)}
-              className={cn(
-                "relative h-8 w-14 rounded-full transition-all duration-200",
-                emailReports
-                  ? "bg-gradient-to-r from-[#0082FD] to-[#A459B5]"
-                  : "bg-slate-300 dark:bg-white/20"
-              )}
-            >
-              <span
-                className={cn(
-                  "absolute top-1 size-6 rounded-full bg-white shadow-md transition-all duration-200",
-                  emailReports ? "left-7" : "left-1"
-                )}
-              />
-            </button>
-          </div>
-
-          <div className="flex items-center justify-between">
-            <span className="text-sm text-slate-800 dark:text-white">{t.realtimeWarnings}</span>
-            <button
-              onClick={() => setRealtimeWarnings(!realtimeWarnings)}
-              className={cn(
-                "relative h-8 w-14 rounded-full transition-all duration-200",
-                realtimeWarnings
-                  ? "bg-gradient-to-r from-[#0082FD] to-[#A459B5]"
-                  : "bg-slate-300 dark:bg-white/20"
-              )}
-            >
-              <span
-                className={cn(
-                  "absolute top-1 size-6 rounded-full bg-white shadow-md transition-all duration-200",
-                  realtimeWarnings ? "left-7" : "left-1"
-                )}
-              />
-            </button>
-          </div>
-        </div>
       </div>
-    </div>
   )
 }
