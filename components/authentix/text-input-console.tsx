@@ -2,6 +2,7 @@
 
 import { useState, useCallback } from "react"
 import { FileText, X, Scan, Upload } from "lucide-react"
+import { useLanguage } from "./language-context"
 
 interface UploadedFile {
   name: string
@@ -10,6 +11,7 @@ interface UploadedFile {
 }
 
 export function TextInputConsole() {
+  const { t } = useLanguage()
   const [textContent, setTextContent] = useState("")
   const [isDragging, setIsDragging] = useState(false)
   const [uploadedFile, setUploadedFile] = useState<UploadedFile | null>(null)
@@ -98,45 +100,45 @@ export function TextInputConsole() {
         onDrop={handleDrop}
         className={`relative flex h-72 flex-col rounded-2xl p-2 transition-all duration-300 ${
           isDragging
-            ? "bg-indigo-50 ring-1 ring-indigo-300"
-            : "bg-slate-50"
+            ? "bg-indigo-50 ring-1 ring-indigo-300 dark:!bg-[#0082FD]/10 dark:!ring-[#0082FD]/30"
+            : "bg-slate-50 dark:!bg-[#0B0F19]"
         }`}
       >
         <textarea
           value={textContent}
           onChange={(e) => setTextContent(e.target.value)}
-          placeholder="Paste raw text, or drop a document (.txt, .pdf) for semantic analysis..."
-          className="flex-1 resize-none bg-transparent p-4 text-slate-700 placeholder:text-slate-400 focus:outline-none focus:ring-0"
+          placeholder={t.enterTextHere}
+          className="flex-1 resize-none bg-transparent p-4 text-slate-700 placeholder:text-slate-400 focus:outline-none focus:ring-0 dark:!text-slate-200 dark:!placeholder:text-slate-500"
         />
         
         {/* Drop overlay */}
         {isDragging && (
-          <div className="absolute inset-0 flex items-center justify-center rounded-2xl bg-indigo-50/90 backdrop-blur-sm">
+          <div className="absolute inset-0 flex items-center justify-center rounded-2xl bg-indigo-50/90 backdrop-blur-sm dark:bg-[#0082FD]/10">
             <div className="flex flex-col items-center gap-2">
-              <Upload className="size-10 text-indigo-500" />
-              <span className="text-sm text-indigo-600">Drop document here</span>
+              <Upload className="size-10 text-indigo-500 dark:text-[#0082FD]" />
+              <span className="text-sm text-indigo-600 dark:text-[#0082FD]">{t.dropDocumentHere}</span>
             </div>
           </div>
         )}
 
         {/* Character count */}
-        <div className="flex items-center justify-between border-t border-slate-200 px-4 py-2">
+        <div className="flex items-center justify-between border-t border-slate-200 px-4 py-2 dark:border-transparent">
           <button
             onClick={handleFileSelect}
-            className="flex items-center gap-2 text-xs text-slate-500 transition-colors hover:text-slate-700"
+            className="flex items-center gap-2 text-xs text-slate-500 transition-colors hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200"
           >
             <Upload className="size-3.5" />
-            Upload Document
+            {t.uploadFile}
           </button>
           <span className="text-xs text-slate-400">
-            {textContent.length} characters
+            {textContent.length} {t.characterCount}
           </span>
         </div>
       </div>
 
       {/* File Indicator */}
       {uploadedFile && (
-        <div className="flex items-center justify-between rounded-xl bg-slate-50 px-4 py-3 shadow-sm">
+        <div className="flex items-center justify-between rounded-xl bg-slate-50 px-4 py-3 shadow-sm dark:!bg-[#0B0F19]">
           <div className="flex items-center gap-3">
             <div className="rounded-lg bg-indigo-100 p-2">
               <FileText className="size-5 text-indigo-600" />
@@ -160,13 +162,13 @@ export function TextInputConsole() {
       )}
 
       {/* Advanced Parameters Panel */}
-      <div className="rounded-xl bg-slate-50 p-4">
-        <h4 className="mb-3 text-xs font-medium uppercase tracking-wider text-slate-500">
-          Advanced Parameters
+      <div className="rounded-xl bg-slate-50 p-4 dark:!bg-[#0B0F19]">
+        <h4 className="mb-3 text-xs font-medium uppercase tracking-wider text-slate-500 dark:!text-slate-400">
+          {t.advancedParameters}
         </h4>
         <div className="space-y-3">
           <label className="flex items-center justify-between">
-            <span className="text-sm text-slate-700">LLM Syntax Pattern Recognition</span>
+            <span className="text-sm text-slate-700 dark:!text-slate-300">{t.llmSyntaxPattern}</span>
             <button
               onClick={() => setSyntaxPattern(!syntaxPattern)}
               className={`relative h-6 w-11 rounded-full transition-colors ${
@@ -181,7 +183,7 @@ export function TextInputConsole() {
             </button>
           </label>
           <label className="flex items-center justify-between">
-            <span className="text-sm text-slate-700">RAG/Context Hallucination Check</span>
+            <span className="text-sm text-slate-700 dark:!text-slate-300">{t.ragHallucinationCheck}</span>
             <button
               onClick={() => setHallucinationCheck(!hallucinationCheck)}
               className={`relative h-6 w-11 rounded-full transition-colors ${
@@ -212,12 +214,12 @@ export function TextInputConsole() {
           {isScanning ? (
             <>
               <Scan className="size-5 animate-pulse" />
-              Analyzing...
+              {t.analyzing}
             </>
           ) : (
             <>
               <Scan className="size-5" />
-              Initialize Semantic Scan
+              {t.initializeTextScan}
             </>
           )}
         </span>
@@ -227,54 +229,54 @@ export function TextInputConsole() {
       </button>
 
       {/* Linguistic Diagnostics Panel */}
-      <div className="flex-1 rounded-xl bg-slate-50 p-5">
-        <h4 className="mb-5 text-[10px] font-medium uppercase tracking-widest text-slate-500">
-          Real-Time Linguistic Metrics
+      <div className="flex-1 rounded-xl bg-slate-50 p-5 dark:!bg-[#0B0F19]">
+        <h4 className="mb-5 text-[10px] font-medium uppercase tracking-widest text-slate-500 dark:!text-slate-400">
+          {t.realTimeLinguisticMetrics}
         </h4>
         <div className="space-y-5">
           {/* Perplexity Metric */}
           <div className="space-y-2">
             <div className="flex items-center justify-between">
-              <span className="text-xs text-slate-600">Perplexity (Predictability)</span>
+              <span className="text-xs text-slate-600 dark:!text-slate-300">{t.perplexity}</span>
               <span className="text-xs font-medium text-red-500">15%</span>
             </div>
-            <div className="h-1.5 w-full overflow-hidden rounded-full bg-slate-200">
+            <div className="h-1.5 w-full overflow-hidden rounded-full bg-slate-200 dark:!bg-black/40">
               <div
                 className="h-full rounded-full bg-gradient-to-r from-indigo-500 to-purple-500"
                 style={{ width: "15%" }}
               />
             </div>
-            <p className="text-[10px] text-slate-400">Low perplexity indicates highly predictable, AI-like patterns</p>
+            <p className="text-[10px] text-slate-400">{t.perplexityDesc}</p>
           </div>
 
           {/* Burstiness Metric */}
           <div className="space-y-2">
             <div className="flex items-center justify-between">
-              <span className="text-xs text-slate-600">Burstiness (Sentence Variance)</span>
+              <span className="text-xs text-slate-600 dark:!text-slate-300">{t.burstiness}</span>
               <span className="text-xs font-medium text-red-500">20%</span>
             </div>
-            <div className="h-1.5 w-full overflow-hidden rounded-full bg-slate-200">
+            <div className="h-1.5 w-full overflow-hidden rounded-full bg-slate-200 dark:!bg-black/40">
               <div
                 className="h-full rounded-full bg-gradient-to-r from-indigo-500 to-purple-500"
                 style={{ width: "20%" }}
               />
             </div>
-            <p className="text-[10px] text-slate-400">Low variance suggests uniform, machine-generated structure</p>
+            <p className="text-[10px] text-slate-400">{t.burstinessDesc}</p>
           </div>
 
           {/* Vocabulary Richness Metric */}
           <div className="space-y-2">
             <div className="flex items-center justify-between">
-              <span className="text-xs text-slate-600">Vocabulary Richness</span>
+              <span className="text-xs text-slate-600 dark:!text-slate-300">{t.vocabularyRichness}</span>
               <span className="text-xs font-medium text-blue-500">75%</span>
             </div>
-            <div className="h-1.5 w-full overflow-hidden rounded-full bg-slate-200">
+            <div className="h-1.5 w-full overflow-hidden rounded-full bg-slate-200 dark:!bg-black/40">
               <div
                 className="h-full rounded-full bg-slate-400"
                 style={{ width: "75%" }}
               />
             </div>
-            <p className="text-[10px] text-slate-400">Higher diversity indicates more natural language usage</p>
+            <p className="text-[10px] text-slate-400">{t.vocabularyRichnessDesc}</p>
           </div>
         </div>
       </div>

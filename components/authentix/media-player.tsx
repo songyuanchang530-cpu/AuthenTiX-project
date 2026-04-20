@@ -3,12 +3,13 @@
 import { useState } from "react"
 import { Play, Pause, SkipBack, SkipForward, Volume2 } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { useLanguage } from "./language-context"
 
-const subjects = [
-  { id: 1, label: "Subject A", color: "from-[#0082FD] to-cyan-400" },
-  { id: 2, label: "Subject B", color: "from-[#A459B5] to-pink-400" },
-  { id: 3, label: "Face #3", color: "from-orange-500 to-yellow-400" },
-  { id: 4, label: "Voice #1", color: "from-emerald-500 to-teal-400" },
+const getSubjects = (t: ReturnType<typeof import("./language-context").useLanguage>["t"]) => [
+  { id: 1, label: t.subjectA, color: "from-[#0082FD] to-cyan-400" },
+  { id: 2, label: t.subjectB, color: "from-[#A459B5] to-pink-400" },
+  { id: 3, label: `${t.faceA} #3`, color: "from-orange-500 to-yellow-400" },
+  { id: 4, label: `Voice #1`, color: "from-emerald-500 to-teal-400" },
 ]
 
 const timelineSegments = Array.from({ length: 45 }, (_, i) => ({
@@ -17,14 +18,16 @@ const timelineSegments = Array.from({ length: 45 }, (_, i) => ({
 }))
 
 export function MediaPlayer() {
+  const { t } = useLanguage()
+  const subjects = getSubjects(t)
   const [isPlaying, setIsPlaying] = useState(false)
   const [activeSubject, setActiveSubject] = useState(1)
   const [scrubberPosition, setScrubberPosition] = useState(35)
 
   return (
-    <div className="flex h-full flex-col rounded-3xl bg-white p-6 shadow-xl shadow-indigo-100/50 dark:bg-[#1a1a2e] dark:shadow-none">
+    <div className="flex h-full flex-col rounded-3xl bg-white p-6 shadow-xl shadow-indigo-100/50 dark:bg-[#161B26]/80 dark:backdrop-blur-2xl dark:border dark:border-transparent dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
       <div className="mb-4 flex items-center justify-between">
-        <h3 className="text-sm font-semibold text-slate-800 dark:text-white">Media Preview</h3>
+        <h3 className="text-sm font-semibold text-slate-800 dark:text-white">{t.mediaPreview}</h3>
         <span className="text-xs text-slate-400">VIDEO_SAMPLE_001.mp4</span>
       </div>
 
@@ -32,13 +35,13 @@ export function MediaPlayer() {
         {/* Video Player Area */}
         <div className="flex flex-1 flex-col">
           {/* Video placeholder */}
-          <div className="relative flex-1 overflow-hidden rounded-2xl bg-slate-100 dark:bg-zinc-900">
+          <div className="relative flex-1 overflow-hidden rounded-2xl bg-slate-100 dark:bg-black/30">
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="flex flex-col items-center gap-3">
                 <div className="rounded-full bg-slate-200 p-4 dark:bg-zinc-800">
                   <Play className="size-8 text-slate-400 dark:text-zinc-600" />
                 </div>
-                <span className="text-xs text-slate-400 dark:text-zinc-600">No media loaded</span>
+                <span className="text-xs text-slate-400 dark:text-zinc-600">{t.noMediaLoaded}</span>
               </div>
             </div>
             
@@ -78,7 +81,7 @@ export function MediaPlayer() {
             
             {/* Segments track */}
             <div 
-              className="relative h-8 cursor-pointer rounded-xl bg-slate-100 p-1 dark:bg-zinc-900"
+              className="relative h-8 cursor-pointer rounded-xl bg-slate-100 p-1 dark:bg-black/30"
               onClick={(e) => {
                 const rect = e.currentTarget.getBoundingClientRect()
                 const pos = ((e.clientX - rect.left) / rect.width) * 100
@@ -114,15 +117,15 @@ export function MediaPlayer() {
             <div className="mt-2 flex items-center gap-4">
               <div className="flex items-center gap-1.5">
                 <div className="size-2 rounded-sm bg-red-400/60" />
-                <span className="text-[10px] text-slate-500">Anomaly</span>
+                <span className="text-[10px] text-slate-500">{t.anomaly}</span>
               </div>
               <div className="flex items-center gap-1.5">
                 <div className="size-2 rounded-sm bg-amber-400/50" />
-                <span className="text-[10px] text-slate-500">Flagged</span>
+                <span className="text-[10px] text-slate-500">{t.flagged}</span>
               </div>
               <div className="flex items-center gap-1.5">
                 <div className="size-2 rounded-sm bg-slate-300 dark:bg-zinc-700" />
-                <span className="text-[10px] text-slate-500">Normal</span>
+                <span className="text-[10px] text-slate-500">{t.normal}</span>
               </div>
             </div>
           </div>
@@ -131,7 +134,7 @@ export function MediaPlayer() {
         {/* Subjects panel */}
         <div className="w-36">
           <h4 className="mb-3 text-xs uppercase tracking-wider text-slate-400">
-            Subjects
+            {t.subjects}
           </h4>
           <div className="flex flex-col gap-2">
             {subjects.map((subject) => (
@@ -141,8 +144,8 @@ export function MediaPlayer() {
                 className={cn(
                   "flex items-center gap-2 rounded-xl px-3 py-2 text-left transition-all",
                   activeSubject === subject.id
-                    ? "bg-slate-100 dark:bg-zinc-800"
-                    : "hover:bg-slate-50 dark:hover:bg-zinc-800/50"
+                    ? "bg-slate-100 dark:bg-[#0B0F19]"
+                    : "hover:bg-slate-50 dark:hover:bg-white/5"
                 )}
               >
                 <div

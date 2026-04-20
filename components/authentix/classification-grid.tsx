@@ -12,59 +12,62 @@ import {
   Layers,
   ShieldAlert,
 } from "lucide-react"
+import { useLanguage } from "./language-context"
 
-const modules = [
+const getModules = (t: ReturnType<typeof import("./language-context").useLanguage>["t"]) => [
   {
     id: "face-swap",
     icon: ScanFace,
-    label: "Face Swap Analysis",
-    description: "Deep neural face replacement detection",
+    label: t.faceSwapAnalysis,
+    description: t.faceSwapDesc,
   },
   {
     id: "lip-sync",
     icon: AudioWaveform,
-    label: "Lip Sync Detection",
-    description: "Audio-visual sync anomaly scanner",
+    label: t.lipSyncDetection,
+    description: t.lipSyncDesc,
   },
   {
     id: "voice-clone",
     icon: Mic,
-    label: "Voice Clone Check",
-    description: "Synthetic voice pattern recognition",
+    label: t.voiceCloneCheck,
+    description: t.voiceCloneDesc,
   },
   {
     id: "artifacts",
     icon: Layers,
-    label: "Contextual Artifacts",
-    description: "Environmental inconsistency detector",
+    label: t.contextualArtifacts,
+    description: t.contextualArtifactsDesc,
   },
   {
     id: "biometric",
     icon: Fingerprint,
-    label: "Biometric Markers",
-    description: "Micro-expression & gaze analysis",
+    label: t.biometricMarkers,
+    description: t.biometricMarkersDesc,
   },
   {
     id: "gaze",
     icon: Eye,
-    label: "Gaze Tracking",
-    description: "Eye movement pattern verification",
+    label: t.gazeTracking,
+    description: t.gazeTrackingDesc,
   },
   {
     id: "neural",
     icon: Brain,
-    label: "Neural Signature",
-    description: "GAN fingerprint extraction",
+    label: t.neuralSignature,
+    description: t.neuralSignatureDesc,
   },
   {
     id: "threat",
     icon: ShieldAlert,
-    label: "Threat Assessment",
-    description: "Risk level classification engine",
+    label: t.threatAssessment,
+    description: t.threatAssessmentDesc,
   },
 ]
 
 export function ClassificationGrid() {
+  const { t } = useLanguage()
+  const modules = getModules(t)
   const [activeModules, setActiveModules] = useState<string[]>([
     "face-swap",
     "voice-clone",
@@ -77,11 +80,11 @@ export function ClassificationGrid() {
   }
 
   return (
-    <div className="flex h-full flex-col rounded-3xl bg-white p-6 shadow-xl shadow-indigo-100/50 dark:bg-[#1a1a2e] dark:shadow-none">
+    <div className="flex h-full flex-col rounded-3xl bg-white p-6 shadow-xl shadow-indigo-100/50 dark:bg-[#161B26]/80 dark:backdrop-blur-2xl dark:border dark:border-transparent dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
       <div className="mb-4 flex items-center justify-between">
-        <h3 className="text-sm font-semibold text-slate-800 dark:text-white">Analysis Modules</h3>
+        <h3 className="text-sm font-semibold text-slate-800 dark:text-white">{t.analysisModules}</h3>
         <span className="text-xs text-slate-400">
-          {activeModules.length} selected
+          {activeModules.length} {t.selected}
         </span>
       </div>
 
@@ -95,8 +98,8 @@ export function ClassificationGrid() {
               className={cn(
                 "group relative flex flex-col items-start rounded-2xl p-4 text-left transition-all duration-200",
                 isActive
-                  ? "bg-gradient-to-br from-[#0082FD]/5 to-[#A459B5]/5 ring-1 ring-[#0082FD]/20"
-                  : "bg-slate-50 hover:bg-slate-100 dark:bg-zinc-900/50 dark:hover:bg-zinc-900"
+                  ? "bg-gradient-to-br from-[#0082FD]/5 to-[#A459B5]/5 ring-1 ring-[#0082FD]/20 dark:from-[#0082FD]/10 dark:to-[#A459B5]/10 dark:ring-[#0082FD]/30"
+                  : "bg-slate-50 hover:bg-slate-100 dark:bg-[#0B0F19] dark:hover:bg-[#0B0F19]/80"
               )}
             >
               <div className="relative z-10 flex w-full items-start justify-between">

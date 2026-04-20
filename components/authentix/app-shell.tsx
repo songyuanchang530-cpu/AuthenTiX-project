@@ -1,15 +1,18 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect, useCallback } from "react"
 import Link from "next/link"
+import { useRouter, usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
 import { useTheme } from "./theme-provider"
+import { useLanguage } from "./language-context"
 import {
   Home,
   Image,
   Video,
   AudioLines,
   FileText,
+  Sparkles,
   History,
   Settings,
   MoreHorizontal,
@@ -21,14 +24,15 @@ import {
   PanelLeft,
 } from "lucide-react"
 
-const navItems = [
-  { icon: Home, label: "Home", id: "home", href: "/home" },
-  { icon: Image, label: "Image Fake Detect", id: "image", href: "/image-detect" },
-  { icon: Video, label: "Video Fake Detect", id: "video", href: "/" },
-  { icon: AudioLines, label: "Audio Fake Detect", id: "audio", href: "/audio-detect" },
-  { icon: FileText, label: "Text Fake Detect", id: "text", href: "/text-detect" },
-  { icon: History, label: "Detection History", id: "history", href: "/history" },
-  { icon: Settings, label: "Protocol Settings", id: "settings", href: "/settings" },
+// Nav items will use translation keys
+const getNavItems = (t: ReturnType<typeof import("./language-context").useLanguage>["t"]) => [
+  { icon: Home, label: t.home, id: "home", href: "/home" },
+  { icon: Image, label: t.imageFakeDetect, id: "image", href: "/image-detect" },
+  { icon: Video, label: t.videoFakeDetect, id: "video", href: "/" },
+  { icon: AudioLines, label: t.audioFakeDetect, id: "audio", href: "/audio-detect" },
+  { icon: FileText, label: t.textFakeDetect, id: "text", href: "/text-detect" },
+  { icon: History, label: t.detectionHistory, id: "history", href: "/history" },
+  { icon: Settings, label: t.protocolSettings, id: "settings", href: "/settings" },
 ]
 
 interface AppShellProps {
@@ -37,19 +41,59 @@ interface AppShellProps {
   pageTitle: string
 }
 
+const AI_ASSISTANT_PATH = "/ai-assistant"
+const PREVIOUS_VIEW_KEY = "authentix-previous-view"
+const DEFAULT_VIEW = "/"
+
 export function AppShell({ children, activeItem = "video", pageTitle }: AppShellProps) {
   const [sidebarOpen, setSidebarOpen] = useState(true)
   const [showMenu, setShowMenu] = useState(false)
-  const [lang, setLang] = useState<"en" | "zh">("en")
+  const { lang, toggleLang, t } = useLanguage()
   const { theme, toggleTheme } = useTheme()
+  const router = useRouter()
+  const pathname = usePathname()
+  
+  const navItems = getNavItems(t)
+
+  const isAIAssistantActive = pathname === AI_ASSISTANT_PATH
+
+  // Save the current view when navigating away from AI Assistant (SSR-safe)
+  useEffect(() => {
+    try {
+      if (!isAIAssistantActive && pathname) {
+        // Only save non-AI-assistant paths
+        localStorage.setItem(PREVIOUS_VIEW_KEY, pathname)
+      }
+    } catch {
+      // localStorage not available - skip persistence
+    }
+  }, [pathname, isAIAssistantActive])
+
+  // Toggle handler with memory (SSR-safe)
+  const handleAIToggle = useCallback(() => {
+    try {
+      if (isAIAssistantActive) {
+        // Currently on AI Assistant, go back to previous view
+        const previousView = localStorage.getItem(PREVIOUS_VIEW_KEY) || DEFAULT_VIEW
+        router.push(previousView)
+      } else {
+        // Not on AI Assistant, save current view and go to AI Assistant
+        localStorage.setItem(PREVIOUS_VIEW_KEY, pathname || DEFAULT_VIEW)
+        router.push(AI_ASSISTANT_PATH)
+      }
+    } catch {
+      // localStorage not available - fallback to default behavior
+      router.push(isAIAssistantActive ? DEFAULT_VIEW : AI_ASSISTANT_PATH)
+    }
+  }, [isAIAssistantActive, pathname, router])
 
   return (
-    <div className="flex min-h-screen bg-[#f5f3ff] dark:bg-[#0f0f1a]">
-      {/* Sidebar */}
+    <div className="flex min-h-screen w-full relative items-start bg-slate-50 dark:bg-slate-950">
+      {/* Sidebar - Sticky to viewport, full height, independent scroll */}
       <aside
         className={cn(
-          "fixed left-0 top-0 z-40 flex h-screen flex-col border-r border-slate-200/60 bg-white/90 backdrop-blur-md transition-all duration-300 dark:border-slate-700/40 dark:bg-[#0f0f1a]/90",
-          sidebarOpen ? "w-64" : "w-0 overflow-hidden"
+          "sticky top-0 z-40 flex h-screen flex-col border-r border-slate-200/60 bg-white/90 backdrop-blur-xl transition-all duration-300 overflow-y-auto dark:border-transparent dark:bg-[#0f0f1a]/90",
+          sidebarOpen ? "w-64 min-w-[256px]" : "w-0 min-w-0 overflow-hidden"
         )}
         translate="no"
       >
@@ -66,7 +110,7 @@ export function AppShell({ children, activeItem = "video", pageTitle }: AppShell
           {/* Sidebar Toggle (inside) */}
           <button
             onClick={() => setSidebarOpen(false)}
-            className="flex size-8 items-center justify-center rounded-lg text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-600 dark:hover:bg-slate-800 dark:hover:text-slate-200"
+            className="flex size-8 items-center justify-center rounded-lg text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-600 dark:hover:bg-white/10 dark:hover:text-slate-200"
             aria-label="Collapse sidebar"
           >
             <PanelLeft className="size-5" />
@@ -82,25 +126,25 @@ export function AppShell({ children, activeItem = "video", pageTitle }: AppShell
                 key={item.id}
                 href={item.href}
                 className={cn(
-                  "group flex items-center gap-3 rounded-2xl px-4 py-3 text-left text-sm font-medium transition-all duration-200",
+                  "group flex items-center gap-3 rounded-2xl px-4 py-3 text-left text-sm font-medium transition-all duration-150",
                   isActive
-                    ? "bg-gradient-to-r from-[#0082FD]/10 to-[#A459B5]/10 shadow-sm"
-                    : "hover:bg-slate-100 dark:hover:bg-slate-800/50"
+                    ? "bg-blue-50 dark:bg-[#0082FD]/15 shadow-sm"
+                    : "hover:bg-slate-100 active:bg-slate-200 dark:hover:bg-white/5 dark:active:bg-white/10"
                 )}
               >
                 <item.icon
                   className={cn(
-                    "size-5 transition-colors",
+                    "size-5 transition-colors duration-150",
                     isActive
-                      ? "text-[#0082FD]"
+                      ? "text-blue-600 dark:text-blue-400"
                       : "text-slate-400 group-hover:text-slate-600 dark:text-slate-500 dark:group-hover:text-slate-300"
                   )}
                 />
                 <span
                   className={cn(
-                    "transition-colors",
+                    "transition-colors duration-150",
                     isActive
-                      ? "bg-gradient-to-r from-[#0082FD] to-[#A459B5] bg-clip-text text-transparent font-semibold"
+                      ? "text-blue-600 dark:text-blue-400 font-semibold"
                       : "text-slate-600 group-hover:text-slate-800 dark:text-slate-400 dark:group-hover:text-slate-200"
                   )}
                 >
@@ -111,51 +155,51 @@ export function AppShell({ children, activeItem = "video", pageTitle }: AppShell
           })}
         </nav>
 
-        {/* Bottom section */}
-        <div className="mt-auto px-4 pb-4">
+        {/* Bottom section - Anchored to absolute bottom of sidebar */}
+        <div className="mt-auto mb-4 px-4 pb-4 flex-shrink-0">
           {/* Protocol Status */}
-          <div className="mb-4 rounded-2xl bg-slate-50 p-4 dark:bg-slate-800/50">
+          <div className="mb-4 rounded-2xl bg-slate-50 p-4 dark:bg-[#0B0F19]">
             <p className="text-xs uppercase tracking-widest text-slate-400">
-              Protocol Status
+              {t.protocolStatus}
             </p>
             <div className="mt-2 flex items-center gap-2">
               <div className="size-2 animate-pulse rounded-full bg-emerald-400" />
-              <span className="text-sm text-slate-600 dark:text-slate-300">Active & Secure</span>
+              <span className="text-sm text-slate-600 dark:text-slate-300">{t.activeSecure}</span>
             </div>
           </div>
 
           {/* Account Block */}
           <Link
             href="/profile"
-            className="flex w-full items-center gap-3 rounded-2xl p-3 transition-colors hover:bg-slate-100 dark:hover:bg-slate-800/80"
+            className="flex w-full items-center gap-3 rounded-2xl p-3 transition-colors hover:bg-slate-100 dark:hover:bg-white/5"
           >
             <div className="flex size-9 items-center justify-center rounded-full bg-gradient-to-br from-[#0082FD] to-[#A459B5] text-xs font-bold text-white shadow-md">
               SY
             </div>
             <div className="flex flex-1 flex-col">
               <span className="text-sm font-medium text-slate-800 dark:text-white">Song Yuanchang</span>
-              <span className="text-xs text-slate-400">Personal Account</span>
+              <span className="text-xs text-slate-400">{t.personalAccount}</span>
             </div>
             <MoreHorizontal className="size-4 text-slate-400" />
           </Link>
         </div>
       </aside>
 
-      {/* Main content area */}
+      {/* Main content area - Grows to fill remaining space */}
       <main
         className={cn(
           "relative flex min-h-screen flex-1 flex-col transition-all duration-300",
-          sidebarOpen ? "ml-64" : "ml-0"
+          // No margin needed - flexbox handles positioning
         )}
       >
         {/* Sticky Header */}
-        <header className="sticky top-0 z-50 flex items-center justify-between border-b border-slate-200/60 bg-white/80 px-8 pb-4 pt-6 backdrop-blur-xl dark:border-slate-700/40 dark:bg-[#0f0f1a]/80">
+        <header className="sticky top-0 z-50 flex items-center justify-between border-b border-slate-200/60 bg-white/80 px-8 pb-4 pt-6 backdrop-blur-xl dark:border-transparent dark:bg-[#0f0f1a]/80">
           <div className="flex items-center gap-4">
             {/* Sidebar Toggle (when collapsed) */}
             {!sidebarOpen && (
               <button
                 onClick={() => setSidebarOpen(true)}
-                className="flex size-9 items-center justify-center rounded-lg text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-600 dark:hover:bg-slate-800 dark:hover:text-slate-200"
+                className="flex size-9 items-center justify-center rounded-lg text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-600 dark:hover:bg-white/10 dark:hover:text-slate-200"
                 aria-label="Expand sidebar"
               >
                 <PanelLeft className="size-5" />
@@ -169,10 +213,30 @@ export function AppShell({ children, activeItem = "video", pageTitle }: AppShell
 
           {/* Right Utilities */}
           <div className="flex items-center gap-3">
+            {/* AI Assistant Toggle Button */}
+            <button
+              onClick={handleAIToggle}
+              className={cn(
+                "relative flex cursor-pointer items-center gap-2 overflow-visible rounded-full px-4 py-2 text-sm font-medium transition-all duration-200 ease-out active:scale-95",
+                isAIAssistantActive
+                  ? "bg-gradient-to-r from-[#0082FD] to-[#A459B5] text-white shadow-md shadow-purple-500/20"
+                  : "bg-slate-100 text-slate-500 shadow-none hover:bg-slate-200 dark:bg-[#0B0F19] dark:text-slate-400 dark:hover:bg-[#0B0F19]/80"
+              )}
+              aria-label={isAIAssistantActive ? "Close AI Assistant" : "Open AI Assistant"}
+            >
+              {/* Always Online Notification Badge */}
+              <span className="absolute -right-1 -top-1 z-10 flex h-2.5 w-2.5">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75"></span>
+                <span className="relative inline-flex h-2.5 w-2.5 rounded-full border border-white bg-green-500 dark:border-transparent"></span>
+              </span>
+              <Sparkles className="size-4" />
+              AI 助手
+            </button>
+
             {/* Language Selector */}
             <button
-              onClick={() => setLang(lang === "en" ? "zh" : "en")}
-              className="flex items-center gap-2 rounded-full bg-slate-100 px-4 py-2 text-xs text-slate-600 transition-colors hover:bg-slate-200 dark:bg-slate-800/60 dark:text-slate-300 dark:hover:bg-slate-700"
+              onClick={toggleLang}
+              className="flex items-center gap-2 rounded-full bg-slate-100 px-4 py-2 text-xs text-slate-600 transition-colors hover:bg-slate-200 dark:bg-[#0B0F19] dark:text-slate-300 dark:hover:bg-[#0B0F19]/80"
             >
               <Globe className="size-3.5" />
               <span className={lang === "en" ? "text-slate-800 font-medium dark:text-white" : "text-slate-400"}>EN</span>
@@ -183,7 +247,7 @@ export function AppShell({ children, activeItem = "video", pageTitle }: AppShell
             {/* Theme Toggle */}
             <button
               onClick={toggleTheme}
-              className="flex size-9 items-center justify-center rounded-full bg-slate-100 text-slate-600 transition-colors hover:bg-slate-200 dark:bg-slate-800/60 dark:text-slate-300 dark:hover:bg-slate-700"
+              className="flex size-9 items-center justify-center rounded-full bg-slate-100 text-slate-600 transition-colors hover:bg-slate-200 dark:bg-[#0B0F19] dark:text-slate-300 dark:hover:bg-[#0B0F19]/80"
               aria-label="Toggle theme"
             >
               {theme === "dark" ? (
@@ -197,30 +261,30 @@ export function AppShell({ children, activeItem = "video", pageTitle }: AppShell
             <div className="relative">
               <button
                 onClick={() => setShowMenu(!showMenu)}
-                className="flex size-9 items-center justify-center rounded-full bg-slate-100 text-slate-500 transition-colors hover:bg-slate-200 hover:text-slate-700 dark:bg-slate-800/60 dark:text-slate-400 dark:hover:bg-slate-700 dark:hover:text-slate-200"
+                className="flex size-9 items-center justify-center rounded-full bg-slate-100 text-slate-500 transition-colors hover:bg-slate-200 hover:text-slate-700 dark:bg-[#0B0F19] dark:text-slate-400 dark:hover:bg-[#0B0F19]/80 dark:hover:text-slate-200"
               >
                 {showMenu ? <X className="size-4" /> : <MoreVertical className="size-4" />}
               </button>
 
               {showMenu && (
-                <div className="absolute right-0 top-full mt-2 w-44 overflow-hidden rounded-2xl bg-white p-1.5 shadow-xl shadow-slate-200/50 ring-1 ring-slate-100 dark:bg-slate-800/90 dark:shadow-none dark:ring-slate-700">
+                <div className="absolute right-0 top-full mt-2 w-44 overflow-hidden rounded-2xl bg-white p-1.5 shadow-xl shadow-slate-200/50 ring-1 ring-slate-100 dark:bg-[#1a1f2e] dark:shadow-[0_8px_30px_rgba(0,0,0,0.5)] dark:ring-transparent">
                   <a
                     href="#"
-                    className="block rounded-xl px-4 py-2.5 text-sm text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-800 dark:text-slate-400 dark:hover:bg-slate-700 dark:hover:text-white"
+                    className="block rounded-xl px-4 py-2.5 text-sm text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-800 dark:text-slate-400 dark:hover:bg-white/10 dark:hover:text-white"
                   >
-                    Privacy Policy
+                    {t.privacyPolicy}
                   </a>
                   <a
                     href="#"
-                    className="block rounded-xl px-4 py-2.5 text-sm text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-800 dark:text-slate-400 dark:hover:bg-slate-700 dark:hover:text-white"
+                    className="block rounded-xl px-4 py-2.5 text-sm text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-800 dark:text-slate-400 dark:hover:bg-white/10 dark:hover:text-white"
                   >
-                    Terms of Service
+                    {t.termsOfService}
                   </a>
                   <a
                     href="#"
-                    className="block rounded-xl px-4 py-2.5 text-sm text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-800 dark:text-slate-400 dark:hover:bg-slate-700 dark:hover:text-white"
+                    className="block rounded-xl px-4 py-2.5 text-sm text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-800 dark:text-slate-400 dark:hover:bg-white/10 dark:hover:text-white"
                   >
-                    Protocol Docs
+                    {t.protocolDocs}
                   </a>
                 </div>
               )}
@@ -228,8 +292,11 @@ export function AppShell({ children, activeItem = "video", pageTitle }: AppShell
           </div>
         </header>
 
-        {/* Page Content */}
-        <div className="flex min-h-[calc(100vh-100px)] flex-1 flex-col px-8 pb-8 pt-6">
+        {/* Page Content - With Apple-tier entrance animation for perceived performance */}
+        <div 
+          key={pathname}
+          className="relative flex min-h-[calc(100vh-100px)] flex-1 flex-col px-8 pb-8 pt-6 animate-in fade-in slide-in-from-bottom-2 duration-300 ease-out fill-mode-forwards"
+        >
           {children}
         </div>
       </main>

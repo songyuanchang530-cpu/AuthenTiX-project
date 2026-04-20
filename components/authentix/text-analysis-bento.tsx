@@ -2,6 +2,7 @@
 
 import { useState, useCallback } from "react"
 import { Upload, Sparkles, FileText, X } from "lucide-react"
+import { useLanguage } from "./language-context"
 
 interface UploadedFile {
   name: string
@@ -22,7 +23,7 @@ function CircularProgress({ percentage }: { percentage: number }) {
         {/* Background circle */}
         <circle
           stroke="currentColor"
-          className="text-slate-200 dark:text-zinc-800"
+          className="text-slate-200 dark:text-black/40"
           fill="transparent"
           strokeWidth={strokeWidth}
           r={normalizedRadius}
@@ -58,6 +59,7 @@ function CircularProgress({ percentage }: { percentage: number }) {
 }
 
 export function TextAnalysisBento() {
+  const { t } = useLanguage()
   const [textContent, setTextContent] = useState("")
   const [isDragging, setIsDragging] = useState(false)
   const [uploadedFile, setUploadedFile] = useState<UploadedFile | null>(null)
@@ -145,15 +147,15 @@ export function TextAnalysisBento() {
           onDragOver={handleDragOver}
           onDragLeave={handleDragLeave}
           onDrop={handleDrop}
-          className={`relative flex flex-1 flex-col rounded-3xl bg-white p-6 shadow-xl shadow-indigo-100/50 transition-all dark:bg-[#1a1a2e] dark:shadow-none ${
+          className={`relative flex flex-1 flex-col rounded-3xl bg-white p-6 shadow-xl shadow-indigo-100/50 transition-all dark:bg-[#161B26]/80 dark:backdrop-blur-2xl dark:border dark:border-transparent dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)] ${
             isDragging ? "ring-2 ring-[#0082FD]/50" : ""
           }`}
         >
           <textarea
             value={textContent}
             onChange={(e) => setTextContent(e.target.value)}
-            placeholder="Paste your text here, or upload a document..."
-            className="scrollbar-hide flex-1 resize-none bg-transparent text-lg leading-relaxed text-slate-700 placeholder:text-slate-400 focus:outline-none dark:text-zinc-200 dark:placeholder:text-zinc-600"
+            placeholder={t.pasteTextHere}
+            className="scrollbar-hide flex-1 resize-none bg-transparent text-lg leading-relaxed text-slate-700 placeholder:text-slate-400 focus:outline-none dark:!text-zinc-200 dark:!placeholder:text-zinc-500"
           />
 
           {/* Drop overlay */}
@@ -161,14 +163,14 @@ export function TextAnalysisBento() {
             <div className="absolute inset-0 flex items-center justify-center rounded-3xl bg-[#0082FD]/10 backdrop-blur-sm">
               <div className="flex flex-col items-center gap-3">
                 <Upload className="size-12 text-[#0082FD]" />
-                <span className="text-lg text-[#0082FD]">Drop file here</span>
+                <span className="text-lg text-[#0082FD]">{t.dropFileHere}</span>
               </div>
             </div>
           )}
 
           {/* File indicator */}
           {uploadedFile && (
-            <div className="mb-4 flex items-center gap-3 rounded-2xl bg-slate-100 p-3 dark:bg-zinc-800/50">
+            <div className="mb-4 flex items-center gap-3 rounded-2xl bg-slate-100 p-3 dark:!bg-[#0B0F19] dark:border dark:!border-transparent">
               <FileText className="size-5 text-[#0082FD]" />
               <div className="flex-1">
                 <p className="text-sm font-medium text-slate-800 dark:text-white">{uploadedFile.name}</p>
@@ -176,7 +178,7 @@ export function TextAnalysisBento() {
               </div>
               <button
                 onClick={() => setUploadedFile(null)}
-                className="rounded-full p-1.5 text-slate-400 transition-colors hover:bg-slate-200 hover:text-slate-600 dark:hover:bg-zinc-700 dark:hover:text-white"
+                className="rounded-full p-1.5 text-slate-400 transition-colors hover:bg-slate-200 hover:text-slate-600 dark:hover:bg-white/10 dark:hover:text-white"
               >
                 <X className="size-4" />
               </button>
@@ -187,13 +189,13 @@ export function TextAnalysisBento() {
           <div className="flex items-center justify-between pt-4">
             <button
               onClick={handleFileSelect}
-              className="flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm text-slate-500 transition-colors hover:bg-slate-100 hover:text-slate-700 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-200"
+              className="flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm text-slate-500 transition-colors hover:bg-slate-100 hover:text-slate-700 dark:text-slate-400 dark:hover:bg-white/10 dark:hover:text-slate-200"
             >
               <Upload className="size-4" />
-              Upload File
+              {t.uploadFileLower}
             </button>
             <span className="text-sm text-slate-400">
-              {textContent.length.toLocaleString()} characters
+              {textContent.length.toLocaleString()} {t.characters}
             </span>
           </div>
         </div>
@@ -205,19 +207,19 @@ export function TextAnalysisBento() {
           className={`group relative w-full overflow-hidden rounded-2xl py-5 text-lg font-bold uppercase tracking-wider transition-all duration-200 ${
             hasContent
               ? "bg-gradient-to-r from-[#0082FD] to-[#A459B5] text-white shadow-lg shadow-[#0082FD]/30 hover:scale-[0.98] hover:shadow-[0_0_60px_rgba(0,130,253,0.4)]"
-              : "cursor-not-allowed bg-slate-200 text-slate-400 dark:bg-zinc-800 dark:text-zinc-500"
+              : "cursor-not-allowed bg-slate-200 text-slate-400 dark:bg-[#0B0F19] dark:text-slate-500"
           }`}
         >
           <span className="relative z-10 flex items-center justify-center gap-3">
             {isAnalyzing ? (
               <>
                 <Sparkles className="size-6 animate-pulse" />
-                Analyzing...
+                {t.analyzing}
               </>
             ) : (
               <>
                 <Sparkles className="size-6" />
-                Analyze Text
+                {t.analyzeText}
               </>
             )}
           </span>
@@ -227,28 +229,28 @@ export function TextAnalysisBento() {
       {/* RIGHT COLUMN - Results & Reading Zone */}
       <div className="flex h-full flex-col gap-6 lg:col-span-7">
         {/* Visual Scorecard - Fixed height */}
-        <div className="flex items-center gap-8 rounded-3xl bg-white p-6 shadow-xl shadow-indigo-100/50 dark:bg-[#1a1a2e] dark:shadow-none">
+        <div className="flex items-center gap-8 rounded-3xl bg-white p-6 shadow-xl shadow-indigo-100/50 dark:bg-[#161B26]/80 dark:backdrop-blur-2xl dark:border dark:border-transparent dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
           {/* Circular Progress */}
           <CircularProgress percentage={85} />
 
           {/* Score Text */}
           <div className="flex-1">
-            <h2 className="text-2xl font-bold text-slate-800 dark:text-white">Likely Human-Written</h2>
-            <p className="mt-1 text-base text-slate-500">No major AI patterns detected.</p>
+            <h2 className="text-2xl font-bold text-slate-800 dark:text-white">{t.likelyHumanWritten}</h2>
+            <p className="mt-1 text-base text-slate-500">{t.noMajorAIPatterns}</p>
           </div>
         </div>
 
         {/* Reading Viewer - flex-1 to stretch and align with left column */}
-        <div className="relative flex flex-1 flex-col rounded-3xl bg-white p-8 shadow-xl shadow-indigo-100/50 dark:bg-[#1a1a2e] dark:shadow-none">
+        <div className="relative flex flex-1 flex-col rounded-3xl bg-white p-8 shadow-xl shadow-indigo-100/50 dark:bg-[#161B26]/80 dark:backdrop-blur-2xl dark:border dark:border-transparent dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
           {/* Legend */}
-          <div className="absolute right-6 top-6 flex items-center gap-4 rounded-full bg-slate-100 px-4 py-2 dark:bg-zinc-800/80">
+          <div className="absolute right-6 top-6 flex items-center gap-4 rounded-full bg-slate-100 px-4 py-2 dark:!bg-[#0B0F19] dark:border dark:!border-transparent">
             <div className="flex items-center gap-2">
               <div className="size-2.5 rounded-full bg-red-400" />
-              <span className="text-xs text-slate-500">AI Generated</span>
+              <span className="text-xs text-slate-500">{t.aiGenerated}</span>
             </div>
             <div className="flex items-center gap-2">
               <div className="size-2.5 rounded-full bg-[#0082FD]" />
-              <span className="text-xs text-slate-500">Human</span>
+              <span className="text-xs text-slate-500">{t.human}</span>
             </div>
           </div>
 
@@ -269,7 +271,7 @@ export function TextAnalysisBento() {
               ))
             ) : (
               <div className="flex h-full items-center justify-center text-slate-400">
-                <p>Your analyzed text will appear here...</p>
+                <p>{t.yourAnalyzedText}</p>
               </div>
             )}
           </div>

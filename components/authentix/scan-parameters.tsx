@@ -4,20 +4,29 @@ import { useState } from "react"
 import { cn } from "@/lib/utils"
 import { Checkbox } from "@/components/ui/checkbox"
 import { ChevronDown } from "lucide-react"
+import { useLanguage } from "./language-context"
 
-const subjects = ["All Subjects", "Subject A", "Subject B", "Face #3", "Voice #1"]
+const getSubjects = (t: ReturnType<typeof import("./language-context").useLanguage>["t"]) => [
+  t.allSubjects,
+  t.subjectA,
+  t.subjectB,
+  `${t.faceA} #3`,
+  `Voice #1`,
+]
 
 export function ScanParameters() {
+  const { t } = useLanguage()
+  const subjects = getSubjects(t)
   const [scanFullFile, setScanFullFile] = useState(true)
   const [startTime, setStartTime] = useState("00:00")
   const [endTime, setEndTime] = useState("03:45")
   const [sensitivity, setSensitivity] = useState(65)
-  const [selectedSubject, setSelectedSubject] = useState("All Subjects")
+  const [selectedSubject, setSelectedSubject] = useState(t.allSubjects)
   const [dropdownOpen, setDropdownOpen] = useState(false)
 
   return (
-    <div className="flex h-full flex-col rounded-3xl bg-white p-6 shadow-xl shadow-indigo-100/50 dark:bg-[#1a1a2e] dark:shadow-none">
-      <h3 className="mb-6 text-sm font-semibold text-slate-800 dark:text-white">Scan Parameters</h3>
+    <div className="flex h-full flex-col rounded-3xl bg-white p-6 shadow-xl shadow-indigo-100/50 dark:!bg-[#161B26]/80 dark:!shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
+      <h3 className="mb-6 text-sm font-semibold text-slate-800 dark:text-white">{t.scanParameters}</h3>
 
       <div className="flex flex-1 flex-col gap-5">
         {/* Scan Full File Checkbox */}
@@ -27,13 +36,13 @@ export function ScanParameters() {
             onCheckedChange={(checked) => setScanFullFile(checked as boolean)}
             className="border-slate-300 data-[state=checked]:border-[#0082FD] data-[state=checked]:bg-[#0082FD] dark:border-zinc-600"
           />
-          <span className="text-sm text-slate-600 dark:text-zinc-300">Scan Full File</span>
+          <span className="text-sm text-slate-600 dark:text-zinc-300">{t.scanFullFile}</span>
         </label>
 
         {/* Time Window Selection */}
         <div className={cn("transition-opacity", scanFullFile && "opacity-50")}>
           <label className="mb-2 block text-xs uppercase tracking-wider text-slate-400">
-            Time-Window Selection
+            {t.timeWindowSelection}
           </label>
           <div className="flex items-center gap-2">
             <input
@@ -42,7 +51,7 @@ export function ScanParameters() {
               onChange={(e) => setStartTime(e.target.value)}
               disabled={scanFullFile}
               placeholder="MM:SS"
-              className="w-full rounded-xl bg-slate-100 px-3 py-2.5 text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0082FD]/30 disabled:cursor-not-allowed dark:bg-zinc-900 dark:text-white dark:placeholder:text-zinc-600"
+              className="w-full rounded-xl bg-slate-100 px-3 py-2.5 text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0082FD]/30 disabled:cursor-not-allowed dark:!bg-black/30 dark:!text-white dark:placeholder:!text-zinc-500"
             />
             <span className="text-slate-400">to</span>
             <input
@@ -51,7 +60,7 @@ export function ScanParameters() {
               onChange={(e) => setEndTime(e.target.value)}
               disabled={scanFullFile}
               placeholder="MM:SS"
-              className="w-full rounded-xl bg-slate-100 px-3 py-2.5 text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0082FD]/30 disabled:cursor-not-allowed dark:bg-zinc-900 dark:text-white dark:placeholder:text-zinc-600"
+              className="w-full rounded-xl bg-slate-100 px-3 py-2.5 text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0082FD]/30 disabled:cursor-not-allowed dark:!bg-black/30 dark:!text-white dark:placeholder:!text-zinc-500"
             />
           </div>
         </div>
@@ -59,11 +68,11 @@ export function ScanParameters() {
         {/* Subject Focus Dropdown */}
         <div className="relative">
           <label className="mb-2 block text-xs uppercase tracking-wider text-slate-400">
-            Subject Focus
+            {t.subjectFocus}
           </label>
           <button
             onClick={() => setDropdownOpen(!dropdownOpen)}
-            className="flex w-full items-center justify-between rounded-xl bg-slate-100 px-3 py-2.5 text-sm text-slate-800 transition-colors hover:bg-slate-200 dark:bg-zinc-900 dark:text-white dark:hover:bg-zinc-800"
+            className="flex w-full items-center justify-between rounded-xl bg-slate-100 px-3 py-2.5 text-sm text-slate-800 transition-colors hover:bg-slate-200 dark:!bg-black/30 dark:!text-white dark:hover:!bg-white/10"
           >
             <span>{selectedSubject}</span>
             <ChevronDown
@@ -75,7 +84,7 @@ export function ScanParameters() {
           </button>
           
           {dropdownOpen && (
-            <div className="absolute left-0 right-0 top-full z-20 mt-1 rounded-xl bg-white py-1 shadow-xl ring-1 ring-slate-100 dark:bg-zinc-800 dark:ring-zinc-700">
+            <div className="absolute left-0 right-0 top-full z-20 mt-1 rounded-xl bg-white py-1 shadow-xl ring-1 ring-slate-100 dark:!bg-[#161B26] dark:!ring-transparent">
               {subjects.map((subject) => (
                 <button
                   key={subject}
@@ -84,7 +93,7 @@ export function ScanParameters() {
                     setDropdownOpen(false)
                   }}
                   className={cn(
-                    "w-full px-3 py-2 text-left text-sm transition-colors hover:bg-slate-100 dark:hover:bg-zinc-700",
+                    "w-full px-3 py-2 text-left text-sm transition-colors hover:bg-slate-100 dark:hover:bg-white/10",
                     selectedSubject === subject
                       ? "text-[#0082FD]"
                       : "text-slate-600 dark:text-zinc-300"
@@ -101,7 +110,7 @@ export function ScanParameters() {
         <div>
           <div className="mb-3 flex items-center justify-between">
             <label className="text-xs uppercase tracking-wider text-slate-400">
-              Detection Sensitivity
+              {t.detectionSensitivity}
             </label>
             <span className="text-xs font-semibold text-[#0082FD]">
               {sensitivity}%
@@ -110,7 +119,7 @@ export function ScanParameters() {
           
           <div className="relative">
             {/* Track */}
-            <div className="h-2 rounded-full bg-slate-200 dark:bg-zinc-800">
+            <div className="h-2 rounded-full bg-slate-200 dark:!bg-white/10">
               {/* Active track with gradient */}
               <div
                 className="h-full rounded-full bg-gradient-to-r from-[#0082FD] to-[#A459B5]"
@@ -130,15 +139,15 @@ export function ScanParameters() {
           </div>
           
           <div className="mt-2 flex justify-between text-[10px] text-slate-400">
-            <span>Low</span>
-            <span>Medium</span>
-            <span>High</span>
+            <span>{t.lowSensitivity}</span>
+            <span>{t.mediumSensitivity}</span>
+            <span>{t.highSensitivity}</span>
           </div>
         </div>
 
         {/* Primary Action Button */}
         <button className="mt-auto rounded-2xl bg-gradient-to-r from-[#0082FD] to-[#A459B5] px-6 py-4 text-sm font-semibold text-white shadow-lg shadow-[#0082FD]/25 transition-transform hover:scale-[0.98] active:scale-[0.96]">
-          AUTHORIZE DETAILED FRAME ANALYSIS
+          {t.authorizeDetailedScan}
         </button>
       </div>
     </div>

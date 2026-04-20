@@ -1,20 +1,22 @@
 "use client"
 
 import { AlertTriangle, Shield, Bot } from "lucide-react"
+import { useLanguage } from "./language-context"
 
 export function TextForensicViewer() {
+  const { t } = useLanguage()
   return (
-    <div className="relative flex h-full min-h-[500px] flex-col overflow-hidden rounded-2xl bg-white shadow-xl shadow-indigo-100/50">
+    <div className="relative flex h-full min-h-[500px] flex-col overflow-hidden rounded-3xl bg-white shadow-xl shadow-indigo-100/50 dark:!bg-[#161B26]/80 dark:backdrop-blur-2xl dark:border dark:border-transparent dark:!shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
       {/* Document Content */}
       <div className="flex-1 overflow-y-auto p-8 pb-28">
-        <div className="space-y-8 text-base leading-8 text-slate-700">
+        <div className="space-y-8 text-base leading-8 text-slate-700 dark:!text-slate-300">
           {/* Document Title */}
           <div className="mb-8">
             <h3 className="text-xs font-medium uppercase tracking-wider text-slate-500">
-              Document Analysis — Debate Transcript
+              {t.documentAnalysis}
             </h3>
             <p className="mt-1 text-xs text-slate-400">
-              Total words: 247 | Analyzed segments: 12
+              {t.totalWords}: 247 | {t.analyzedSegments}: 12
             </p>
           </div>
 
@@ -31,14 +33,14 @@ export function TextForensicViewer() {
             <span className="relative inline">
               {/* AI Detection Tooltip */}
               <span className="absolute -top-14 left-0 z-10 flex flex-col items-start">
-                <span className="whitespace-nowrap rounded-lg bg-white px-3 py-2 shadow-xl">
+                <span className="whitespace-nowrap rounded-lg bg-white px-3 py-2 shadow-xl dark:!bg-[#161B26]">
                   <span className="flex items-center gap-2">
                     <Bot className="size-3 text-red-500" />
-                    <span className="text-xs font-medium text-red-600">AI Generated</span>
+                    <span className="text-xs font-medium text-red-600">{t.aiGenerated}</span>
                     <span className="text-xs text-slate-300">|</span>
-                    <span className="text-xs text-slate-500">Probability: 96%</span>
+                    <span className="text-xs text-slate-500">{t.probability}: 96%</span>
                   </span>
-                  <span className="mt-0.5 block text-xs text-slate-400">Detected Model: GPT-4</span>
+                  <span className="mt-0.5 block text-xs text-slate-400">{t.detectedModel}: GPT-4</span>
                 </span>
                 <span className="ml-4 size-0 border-x-4 border-t-4 border-transparent border-t-white" />
               </span>
@@ -66,12 +68,12 @@ export function TextForensicViewer() {
             <span className="relative inline">
               {/* Authentic Tooltip */}
               <span className="absolute -top-12 left-0 z-10 flex flex-col items-start">
-                <span className="whitespace-nowrap rounded-lg bg-white px-3 py-2 shadow-xl">
+                <span className="whitespace-nowrap rounded-lg bg-white px-3 py-2 shadow-xl dark:!bg-[#161B26]">
                   <span className="flex items-center gap-2">
                     <Shield className="size-3 text-blue-500" />
-                    <span className="text-xs font-medium text-blue-600">Human Written</span>
+                    <span className="text-xs font-medium text-blue-600">{t.humanWritten}</span>
                     <span className="text-xs text-slate-300">|</span>
-                    <span className="text-xs text-slate-500">Confidence: 94%</span>
+                    <span className="text-xs text-slate-500">{t.confidence}: 94%</span>
                   </span>
                 </span>
                 <span className="ml-4 size-0 border-x-4 border-t-4 border-transparent border-t-white" />
@@ -103,19 +105,19 @@ export function TextForensicViewer() {
       </div>
 
       {/* Global Metric Bar */}
-      <div className="absolute bottom-0 left-0 right-0 flex items-center justify-between border-t border-slate-100 bg-white/90 p-5 backdrop-blur-md">
+      <div className="absolute bottom-0 left-0 right-0 flex items-center justify-between border-t border-slate-100 bg-white/90 p-5 backdrop-blur-md dark:!border-transparent dark:!bg-[#161B26]/90">
         <div className="flex items-center gap-3">
           <AlertTriangle className="size-4 text-amber-500" />
           <span className="text-sm">
-            <span className="text-slate-500">Status:</span>{" "}
-            <span className="font-medium text-amber-600">AI Intervention Detected</span>
+            <span className="text-slate-500">{t.status}:</span>{" "}
+            <span className="font-medium text-amber-600">{t.aiInterventionDetected}</span>
           </span>
         </div>
 
         <div className="flex items-center gap-4">
-          <span className="text-sm text-slate-500">Human Authorship Score</span>
+          <span className="text-sm text-slate-500">{t.humanAuthorshipScore}</span>
           <div className="flex items-center gap-3">
-            <div className="h-2 w-32 overflow-hidden rounded-full bg-slate-200">
+            <div className="h-2 w-32 overflow-hidden rounded-full bg-slate-200 dark:!bg-white/10">
               <div
                 className="h-full rounded-full bg-gradient-to-r from-red-500 to-amber-500"
                 style={{ width: "22%" }}

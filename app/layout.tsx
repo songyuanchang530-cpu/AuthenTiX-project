@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { ThemeProvider } from '@/components/authentix/theme-provider'
+import { LanguageProvider } from '@/components/authentix/language-context'
+import { AuthWrapper } from '@/components/authentix/auth-wrapper'
 import './globals.css'
 
 const inter = Inter({ 
@@ -42,10 +44,14 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className="[scrollbar-gutter:stable]">
       <body className={`${inter.variable} font-sans antialiased`} suppressHydrationWarning>
         <ThemeProvider>
-          {children}
+          <LanguageProvider>
+            <AuthWrapper>
+              {children}
+            </AuthWrapper>
+          </LanguageProvider>
         </ThemeProvider>
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>

@@ -2,8 +2,9 @@
 
 import { useState } from "react"
 import { Search, FileText, Video, Image, Mic, ChevronRight } from "lucide-react"
+import { useLanguage } from "./language-context"
 
-const filterOptions = ["All", "Text", "Image", "Video", "Audio"] as const
+type FilterKey = "all" | "text" | "image" | "video" | "audio"
 
 const historyRecords = [
   {
@@ -81,17 +82,26 @@ const historyRecords = [
 ] as const
 
 export function HistoryList() {
-  const [activeFilter, setActiveFilter] = useState<typeof filterOptions[number]>("All")
+  const { t } = useLanguage()
+  const [activeFilter, setActiveFilter] = useState<FilterKey>("all")
   const [searchQuery, setSearchQuery] = useState("")
+  
+  const filterOptions: { key: FilterKey; label: string }[] = [
+    { key: "all", label: t.all },
+    { key: "text", label: t.text },
+    { key: "image", label: t.images },
+    { key: "video", label: t.videos },
+    { key: "audio", label: t.audio },
+  ]
 
   const filteredRecords = historyRecords.filter((record) => {
-    const matchesFilter = activeFilter === "All" || record.type.toLowerCase() === activeFilter.toLowerCase()
+    const matchesFilter = activeFilter === "all" || record.type.toLowerCase() === activeFilter
     const matchesSearch = record.filename.toLowerCase().includes(searchQuery.toLowerCase())
     return matchesFilter && matchesSearch
   })
 
   return (
-    <div className="mt-8 rounded-3xl bg-white p-6 shadow-xl shadow-indigo-100/50 dark:bg-[#1a1a2e] dark:shadow-none">
+    <div className="mt-8 rounded-3xl bg-white p-6 shadow-xl shadow-indigo-100/50 dark:bg-[#161B26]/80 dark:backdrop-blur-2xl dark:border dark:border-transparent dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
       {/* Filter & Search Bar */}
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         {/* Search Input */}
@@ -99,10 +109,10 @@ export function HistoryList() {
           <Search className="absolute left-4 top-1/2 size-4 -translate-y-1/2 text-slate-400" />
           <input
             type="text"
-            placeholder="Search by filename, hash, or date..."
+            placeholder={t.searchHistory}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full rounded-full bg-slate-100 py-3 pl-11 pr-6 text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0082FD]/30 dark:bg-zinc-900/50 dark:text-white dark:placeholder:text-zinc-500"
+            className="w-full rounded-full bg-slate-100 py-3 pl-11 pr-6 text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0082FD]/30 dark:bg-black/30 dark:text-white dark:placeholder:text-slate-500"
           />
         </div>
 
@@ -110,15 +120,15 @@ export function HistoryList() {
         <div className="flex items-center gap-2">
           {filterOptions.map((filter) => (
             <button
-              key={filter}
-              onClick={() => setActiveFilter(filter)}
+              key={filter.key}
+              onClick={() => setActiveFilter(filter.key)}
               className={`rounded-full px-4 py-2 text-xs font-medium transition-all ${
-                activeFilter === filter
+                activeFilter === filter.key
                   ? "bg-gradient-to-r from-[#0082FD] to-[#A459B5] text-white"
-                  : "bg-slate-100 text-slate-500 hover:text-slate-700 dark:bg-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+                  : "bg-slate-100 text-slate-500 hover:text-slate-700 dark:bg-black/30 dark:text-slate-400 dark:hover:text-white"
               }`}
             >
-              {filter}
+              {filter.label}
             </button>
           ))}
         </div>
@@ -129,7 +139,7 @@ export function HistoryList() {
         {filteredRecords.map((record) => (
           <div
             key={record.id}
-            className="group flex cursor-pointer items-center justify-between rounded-2xl bg-slate-50 p-4 transition-colors hover:bg-slate-100 dark:bg-zinc-900/30 dark:hover:bg-zinc-900/80"
+            className="group flex cursor-pointer items-center justify-between rounded-2xl bg-slate-50 p-4 transition-colors hover:bg-slate-100 dark:bg-[#0B0F19] dark:hover:bg-[#0B0F19]/80"
           >
             {/* Left: Icon & Info */}
             <div className="flex items-center gap-4">
@@ -158,7 +168,7 @@ export function HistoryList() {
 
         {filteredRecords.length === 0 && (
           <div className="py-12 text-center">
-            <p className="text-sm text-slate-400">No records found matching your criteria.</p>
+            <p className="text-sm text-slate-400">{t.noResultsFound}</p>
           </div>
         )}
       </div>

@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { AlertTriangle, CheckCircle, User, Cpu, Scan } from "lucide-react"
+import { useLanguage } from "./language-context"
 
 interface BoundingBox {
   id: string
@@ -38,13 +39,20 @@ const mockBoundingBoxes: BoundingBox[] = [
 ]
 
 export function ImageDetectionViewer() {
+  const { t, lang } = useLanguage()
   const [selectedBox, setSelectedBox] = useState<string | null>("face-1")
+  
+  // Dynamic labels based on language
+  const faceLabels: Record<string, string> = {
+    "face-1": t.faceA,
+    "face-2": t.faceB,
+  }
 
   return (
     <div className="flex h-full flex-col gap-6">
       {/* Image Preview Card - Fixed height to match Upload zone on left */}
-      <div className="relative h-[280px] overflow-hidden rounded-3xl bg-white p-2 shadow-xl shadow-indigo-100/50">
-        <div className="relative h-full w-full overflow-hidden rounded-2xl bg-slate-100">
+      <div className="relative h-[280px] overflow-hidden rounded-3xl bg-white p-2 shadow-xl shadow-indigo-100/50 dark:bg-[#161B26]/80 dark:backdrop-blur-2xl dark:border dark:border-transparent dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
+        <div className="relative h-full w-full overflow-hidden rounded-2xl bg-slate-100 dark:bg-black/30">
           {/* Placeholder Image - News Broadcast Scene */}
           <div className="absolute inset-0 bg-gradient-to-br from-slate-200 via-slate-100 to-slate-200">
             {/* News desk simulation */}
@@ -58,10 +66,10 @@ export function ImageDetectionViewer() {
             <div className="absolute bottom-0 left-0 right-0 h-8 bg-red-500/10">
               <div className="flex h-full items-center px-4">
                 <span className="text-xs font-medium uppercase tracking-wider text-red-500/70">
-                  Breaking News
+                  {t.breakingNews}
                 </span>
                 <span className="ml-4 text-xs text-slate-400">
-                  Live Analysis Feed
+                  {t.liveAnalysisFeed}
                 </span>
               </div>
             </div>
@@ -133,7 +141,7 @@ export function ImageDetectionViewer() {
                       box.isFake ? "bg-red-500 animate-pulse" : "bg-blue-500"
                     }`}
                   />
-                  <span>{box.label}</span>
+                  <span>{faceLabels[box.id] || box.label}</span>
                 </div>
               </div>
             </div>
@@ -142,14 +150,14 @@ export function ImageDetectionViewer() {
       </div>
 
       {/* AI Insights & Face Detection Card - Matches Analysis Options on left */}
-      <div className="rounded-3xl bg-white p-6 shadow-xl shadow-indigo-100/50">
+      <div className="rounded-3xl bg-white p-6 shadow-xl shadow-indigo-100/50 dark:bg-[#161B26]/80 dark:backdrop-blur-2xl dark:border dark:border-transparent dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
         <div className="mb-4 flex items-center justify-between">
-          <h4 className="text-xs font-medium uppercase tracking-wider text-slate-500">
-            AI Insights & Face Detection
+          <h4 className="text-xs font-medium uppercase tracking-wider text-slate-500 dark:text-slate-400">
+            {t.aiInsightsFaceDetection}
           </h4>
           <div className="flex items-center gap-1.5">
             <Cpu className="size-3 text-indigo-400" />
-            <span className="text-[10px] text-slate-400">Vision-Pro Engine</span>
+            <span className="text-[10px] text-slate-400 dark:text-slate-500">{t.visionProEngine}</span>
           </div>
         </div>
 
@@ -162,19 +170,19 @@ export function ImageDetectionViewer() {
               className={`rounded-xl p-4 text-left transition-all ${
                 selectedBox === box.id
                   ? box.isFake
-                    ? "bg-red-50 ring-2 ring-red-200"
-                    : "bg-blue-50 ring-2 ring-blue-200"
-                  : "bg-slate-50 hover:bg-slate-100"
+                    ? "bg-red-50 ring-2 ring-red-200 dark:bg-red-500/10 dark:ring-red-500/30"
+                    : "bg-blue-50 ring-2 ring-blue-200 dark:bg-blue-500/10 dark:ring-blue-500/30"
+                  : "bg-slate-50 hover:bg-slate-100 dark:bg-[#0B0F19] dark:hover:bg-[#0B0F19]/80"
               }`}
             >
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <div className={`flex size-8 items-center justify-center rounded-lg ${
-                    box.isFake ? "bg-red-100" : "bg-blue-100"
+                    box.isFake ? "bg-red-100 dark:bg-red-500/20" : "bg-blue-100 dark:bg-blue-500/20"
                   }`}>
                     <User className={`size-4 ${box.isFake ? "text-red-500" : "text-blue-500"}`} />
                   </div>
-                  <span className="font-medium text-slate-800">{box.label}</span>
+                  <span className="font-medium text-slate-800 dark:text-slate-100">{faceLabels[box.id] || box.label}</span>
                 </div>
                 {box.isFake ? (
                   <AlertTriangle className="size-4 text-red-500" />
@@ -184,11 +192,11 @@ export function ImageDetectionViewer() {
               </div>
               
               <div className="mt-3 flex items-center justify-between">
-                <span className="text-xs text-slate-500">
-                  {box.isFake ? "Manipulated" : "Authentic"}
+                <span className="text-xs text-slate-500 dark:text-slate-400">
+                  {box.isFake ? t.manipulated : t.authentic}
                 </span>
                 <div className="flex items-center gap-2">
-                  <div className="h-1.5 w-16 overflow-hidden rounded-full bg-slate-200">
+                  <div className="h-1.5 w-16 overflow-hidden rounded-full bg-slate-200 dark:bg-black/40">
                     <div
                       className={`h-full rounded-full ${
                         box.isFake
@@ -198,7 +206,7 @@ export function ImageDetectionViewer() {
                       style={{ width: `${box.confidence}%` }}
                     />
                   </div>
-                  <span className="text-xs font-medium text-slate-600">{box.confidence}%</span>
+                  <span className="text-xs font-medium text-slate-600 dark:text-slate-300">{box.confidence}%</span>
                 </div>
               </div>
             </button>
@@ -206,44 +214,44 @@ export function ImageDetectionViewer() {
         </div>
 
         {/* Quick Stats */}
-        <div className="mt-4 flex items-center justify-around border-t border-slate-100 pt-4">
+        <div className="mt-4 flex items-center justify-around border-t border-slate-100 pt-4 dark:border-transparent">
           <div className="text-center">
-            <p className="text-xs text-slate-400">Resolution</p>
-            <p className="text-sm font-semibold text-slate-700">1080p HD</p>
+            <p className="text-xs text-slate-400">{t.resolution}</p>
+            <p className="text-sm font-semibold text-slate-700 dark:text-slate-200">1080p HD</p>
           </div>
-          <div className="h-8 w-px bg-slate-100" />
+          <div className="h-8 w-px bg-slate-100 dark:bg-black/40" />
           <div className="text-center">
-            <p className="text-xs text-slate-400">Artifacts</p>
-            <p className="text-sm font-semibold text-amber-600">2 Flagged</p>
+            <p className="text-xs text-slate-400">{t.artifacts}</p>
+            <p className="text-sm font-semibold text-amber-600 dark:text-amber-400">2 {t.flagged}</p>
           </div>
-          <div className="h-8 w-px bg-slate-100" />
+          <div className="h-8 w-px bg-slate-100 dark:bg-black/40" />
           <div className="text-center">
-            <p className="text-xs text-slate-400">Detection</p>
-            <p className="text-sm font-semibold text-red-600">Face Swap</p>
+            <p className="text-xs text-slate-400">{t.detection}</p>
+            <p className="text-sm font-semibold text-red-600 dark:text-red-400">{t.faceSwap}</p>
           </div>
         </div>
       </div>
 
       {/* Authenticity Score Bar - Aligns with button on left */}
-      <div className="mt-auto flex items-center justify-between rounded-xl bg-gradient-to-br from-red-50 to-orange-50 px-6 py-4">
+      <div className="mt-auto flex items-center justify-between rounded-xl bg-gradient-to-br from-red-50 to-orange-50 px-6 py-4 dark:from-red-500/10 dark:to-orange-500/10 dark:border dark:border-red-500/20">
         <div className="flex items-center gap-3">
-          <div className="flex size-10 items-center justify-center rounded-xl bg-white shadow-sm">
+          <div className="flex size-10 items-center justify-center rounded-xl bg-white shadow-sm dark:bg-[#0B0F19]">
             <Scan className="size-5 text-red-500" />
           </div>
           <div>
-            <span className="text-sm font-medium text-slate-800">Overall Authenticity Score</span>
-            <p className="text-xs text-slate-500">Face Swap Detected</p>
+            <span className="text-sm font-medium text-slate-800 dark:text-slate-100">{t.overallAuthenticityScore}</span>
+            <p className="text-xs text-slate-500 dark:text-slate-400">{t.faceSwapDetected}</p>
           </div>
         </div>
 
         <div className="flex items-center gap-3">
-          <div className="h-2.5 w-32 overflow-hidden rounded-full bg-white">
+          <div className="h-2.5 w-32 overflow-hidden rounded-full bg-white dark:bg-black/40">
             <div
               className="h-full bg-gradient-to-r from-red-500 to-orange-500"
               style={{ width: "14%" }}
             />
           </div>
-          <span className="text-lg font-bold text-red-600">14%</span>
+          <span className="text-lg font-bold text-red-600 dark:text-red-400">14%</span>
         </div>
       </div>
     </div>
