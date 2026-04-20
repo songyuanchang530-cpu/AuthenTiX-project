@@ -116,7 +116,7 @@ export function TextInputConsole() {
           <div className="absolute inset-0 flex items-center justify-center rounded-2xl bg-indigo-50/90 backdrop-blur-sm dark:bg-[#0082FD]/10">
             <div className="flex flex-col items-center gap-2">
               <Upload className="size-10 text-indigo-500 dark:text-[#0082FD]" />
-              <span className="text-sm text-indigo-600 dark:text-[#0082FD]">Drop document here</span>
+              <span className="text-sm text-indigo-600 dark:text-[#0082FD]">{t.dropDocumentHere}</span>
             </div>
           </div>
         )}
@@ -164,11 +164,11 @@ export function TextInputConsole() {
       {/* Advanced Parameters Panel */}
       <div className="rounded-xl bg-slate-50 p-4 dark:!bg-[#0B0F19]">
         <h4 className="mb-3 text-xs font-medium uppercase tracking-wider text-slate-500 dark:!text-slate-400">
-          Advanced Parameters
+          {t.advancedParameters}
         </h4>
         <div className="space-y-3">
           <label className="flex items-center justify-between">
-            <span className="text-sm text-slate-700 dark:!text-slate-300">LLM Syntax Pattern Recognition</span>
+            <span className="text-sm text-slate-700 dark:!text-slate-300">{t.llmSyntaxPattern}</span>
             <button
               onClick={() => setSyntaxPattern(!syntaxPattern)}
               className={`relative h-6 w-11 rounded-full transition-colors ${
@@ -183,7 +183,7 @@ export function TextInputConsole() {
             </button>
           </label>
           <label className="flex items-center justify-between">
-            <span className="text-sm text-slate-700 dark:!text-slate-300">RAG/Context Hallucination Check</span>
+            <span className="text-sm text-slate-700 dark:!text-slate-300">{t.ragHallucinationCheck}</span>
             <button
               onClick={() => setHallucinationCheck(!hallucinationCheck)}
               className={`relative h-6 w-11 rounded-full transition-colors ${
@@ -219,7 +219,7 @@ export function TextInputConsole() {
           ) : (
             <>
               <Scan className="size-5" />
-              {t.analyzeText}
+              {t.initializeTextScan}
             </>
           )}
         </span>
@@ -231,13 +231,13 @@ export function TextInputConsole() {
       {/* Linguistic Diagnostics Panel */}
       <div className="flex-1 rounded-xl bg-slate-50 p-5 dark:!bg-[#0B0F19]">
         <h4 className="mb-5 text-[10px] font-medium uppercase tracking-widest text-slate-500 dark:!text-slate-400">
-          Real-Time Linguistic Metrics
+          {t.realTimeLinguisticMetrics}
         </h4>
         <div className="space-y-5">
           {/* Perplexity Metric */}
           <div className="space-y-2">
             <div className="flex items-center justify-between">
-              <span className="text-xs text-slate-600 dark:!text-slate-300">Perplexity (Predictability)</span>
+              <span className="text-xs text-slate-600 dark:!text-slate-300">{t.perplexity}</span>
               <span className="text-xs font-medium text-red-500">15%</span>
             </div>
             <div className="h-1.5 w-full overflow-hidden rounded-full bg-slate-200 dark:!bg-black/40">
@@ -246,13 +246,13 @@ export function TextInputConsole() {
                 style={{ width: "15%" }}
               />
             </div>
-            <p className="text-[10px] text-slate-400">Low perplexity indicates highly predictable, AI-like patterns</p>
+            <p className="text-[10px] text-slate-400">{t.perplexityDesc}</p>
           </div>
 
           {/* Burstiness Metric */}
           <div className="space-y-2">
             <div className="flex items-center justify-between">
-              <span className="text-xs text-slate-600 dark:!text-slate-300">Burstiness (Sentence Variance)</span>
+              <span className="text-xs text-slate-600 dark:!text-slate-300">{t.burstiness}</span>
               <span className="text-xs font-medium text-red-500">20%</span>
             </div>
             <div className="h-1.5 w-full overflow-hidden rounded-full bg-slate-200 dark:!bg-black/40">
@@ -261,13 +261,13 @@ export function TextInputConsole() {
                 style={{ width: "20%" }}
               />
             </div>
-            <p className="text-[10px] text-slate-400">Low variance suggests uniform, machine-generated structure</p>
+            <p className="text-[10px] text-slate-400">{t.burstinessDesc}</p>
           </div>
 
           {/* Vocabulary Richness Metric */}
           <div className="space-y-2">
             <div className="flex items-center justify-between">
-              <span className="text-xs text-slate-600 dark:!text-slate-300">Vocabulary Richness</span>
+              <span className="text-xs text-slate-600 dark:!text-slate-300">{t.vocabularyRichness}</span>
               <span className="text-xs font-medium text-blue-500">75%</span>
             </div>
             <div className="h-1.5 w-full overflow-hidden rounded-full bg-slate-200 dark:!bg-black/40">
@@ -276,7 +276,7 @@ export function TextInputConsole() {
                 style={{ width: "75%" }}
               />
             </div>
-            <p className="text-[10px] text-slate-400">Higher diversity indicates more natural language usage</p>
+            <p className="text-[10px] text-slate-400">{t.vocabularyRichnessDesc}</p>
           </div>
         </div>
       </div>

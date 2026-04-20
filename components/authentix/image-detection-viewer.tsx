@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { AlertTriangle, CheckCircle, User, Cpu, Scan } from "lucide-react"
+import { useLanguage } from "./language-context"
 
 interface BoundingBox {
   id: string
@@ -38,7 +39,14 @@ const mockBoundingBoxes: BoundingBox[] = [
 ]
 
 export function ImageDetectionViewer() {
+  const { t, lang } = useLanguage()
   const [selectedBox, setSelectedBox] = useState<string | null>("face-1")
+  
+  // Dynamic labels based on language
+  const faceLabels: Record<string, string> = {
+    "face-1": t.faceA,
+    "face-2": t.faceB,
+  }
 
   return (
     <div className="flex h-full flex-col gap-6">
@@ -58,10 +66,10 @@ export function ImageDetectionViewer() {
             <div className="absolute bottom-0 left-0 right-0 h-8 bg-red-500/10">
               <div className="flex h-full items-center px-4">
                 <span className="text-xs font-medium uppercase tracking-wider text-red-500/70">
-                  Breaking News
+                  {t.breakingNews}
                 </span>
                 <span className="ml-4 text-xs text-slate-400">
-                  Live Analysis Feed
+                  {t.liveAnalysisFeed}
                 </span>
               </div>
             </div>
@@ -133,7 +141,7 @@ export function ImageDetectionViewer() {
                       box.isFake ? "bg-red-500 animate-pulse" : "bg-blue-500"
                     }`}
                   />
-                  <span>{box.label}</span>
+                  <span>{faceLabels[box.id] || box.label}</span>
                 </div>
               </div>
             </div>
@@ -145,11 +153,11 @@ export function ImageDetectionViewer() {
       <div className="rounded-3xl bg-white p-6 shadow-xl shadow-indigo-100/50 dark:bg-[#161B26]/80 dark:backdrop-blur-2xl dark:border dark:border-transparent dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
         <div className="mb-4 flex items-center justify-between">
           <h4 className="text-xs font-medium uppercase tracking-wider text-slate-500 dark:text-slate-400">
-            AI Insights & Face Detection
+            {t.aiInsightsFaceDetection}
           </h4>
           <div className="flex items-center gap-1.5">
             <Cpu className="size-3 text-indigo-400" />
-            <span className="text-[10px] text-slate-400 dark:text-slate-500">Vision-Pro Engine</span>
+            <span className="text-[10px] text-slate-400 dark:text-slate-500">{t.visionProEngine}</span>
           </div>
         </div>
 
@@ -174,7 +182,7 @@ export function ImageDetectionViewer() {
                   }`}>
                     <User className={`size-4 ${box.isFake ? "text-red-500" : "text-blue-500"}`} />
                   </div>
-                  <span className="font-medium text-slate-800 dark:text-slate-100">{box.label}</span>
+                  <span className="font-medium text-slate-800 dark:text-slate-100">{faceLabels[box.id] || box.label}</span>
                 </div>
                 {box.isFake ? (
                   <AlertTriangle className="size-4 text-red-500" />
@@ -185,7 +193,7 @@ export function ImageDetectionViewer() {
               
               <div className="mt-3 flex items-center justify-between">
                 <span className="text-xs text-slate-500 dark:text-slate-400">
-                  {box.isFake ? "Manipulated" : "Authentic"}
+                  {box.isFake ? t.manipulated : t.authentic}
                 </span>
                 <div className="flex items-center gap-2">
                   <div className="h-1.5 w-16 overflow-hidden rounded-full bg-slate-200 dark:bg-black/40">
@@ -208,18 +216,18 @@ export function ImageDetectionViewer() {
         {/* Quick Stats */}
         <div className="mt-4 flex items-center justify-around border-t border-slate-100 pt-4 dark:border-transparent">
           <div className="text-center">
-            <p className="text-xs text-slate-400">Resolution</p>
+            <p className="text-xs text-slate-400">{t.resolution}</p>
             <p className="text-sm font-semibold text-slate-700 dark:text-slate-200">1080p HD</p>
           </div>
           <div className="h-8 w-px bg-slate-100 dark:bg-black/40" />
           <div className="text-center">
-            <p className="text-xs text-slate-400">Artifacts</p>
-            <p className="text-sm font-semibold text-amber-600 dark:text-amber-400">2 Flagged</p>
+            <p className="text-xs text-slate-400">{t.artifacts}</p>
+            <p className="text-sm font-semibold text-amber-600 dark:text-amber-400">2 {t.flagged}</p>
           </div>
           <div className="h-8 w-px bg-slate-100 dark:bg-black/40" />
           <div className="text-center">
-            <p className="text-xs text-slate-400">Detection</p>
-            <p className="text-sm font-semibold text-red-600 dark:text-red-400">Face Swap</p>
+            <p className="text-xs text-slate-400">{t.detection}</p>
+            <p className="text-sm font-semibold text-red-600 dark:text-red-400">{t.faceSwap}</p>
           </div>
         </div>
       </div>
@@ -231,8 +239,8 @@ export function ImageDetectionViewer() {
             <Scan className="size-5 text-red-500" />
           </div>
           <div>
-            <span className="text-sm font-medium text-slate-800 dark:text-slate-100">Overall Authenticity Score</span>
-            <p className="text-xs text-slate-500 dark:text-slate-400">Face Swap Detected</p>
+            <span className="text-sm font-medium text-slate-800 dark:text-slate-100">{t.overallAuthenticityScore}</span>
+            <p className="text-xs text-slate-500 dark:text-slate-400">{t.faceSwapDetected}</p>
           </div>
         </div>
 

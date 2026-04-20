@@ -163,6 +163,164 @@ const translations = {
     learnMore: "Learn More",
     getStarted: "Get Started",
     tryNow: "Try Now",
+    
+    // Image Detection Viewer - Analysis Card
+    analysisOptions: "Analysis Options",
+    deepFaceAnalysis: "Deep Face Analysis",
+    artifactDetection: "Artifact Detection",
+    
+    // Image Detection Viewer - AI Insights
+    aiInsightsFaceDetection: "AI Insights & Face Detection",
+    visionProEngine: "Vision-Pro Engine",
+    faceA: "Face A",
+    faceB: "Face B",
+    manipulated: "Manipulated",
+    authentic: "Authentic",
+    
+    // Image Detection Viewer - Metrics
+    resolution: "Resolution",
+    artifacts: "Artifacts",
+    detection: "Detection",
+    faceSwap: "Face Swap",
+    flagged: "Flagged",
+    
+    // News Feed
+    breakingNews: "Breaking News",
+    liveAnalysisFeed: "Live Analysis Feed",
+    
+    // Overall Score
+    overallAuthenticityScore: "Overall Authenticity Score",
+    faceSwapDetected: "Face Swap Detected",
+    
+    // Action Buttons
+    initializeImageScan: "Initialize Image Scan",
+    initializeVideoScan: "Initialize Video Scan",
+    initializeAudioScan: "Initialize Audio Scan",
+    initializeTextScan: "Initialize Text Scan",
+    
+    // Video Detection
+    subjectTracking: "Subject Tracking",
+    frameByFrameAnalysis: "Frame-by-Frame Analysis",
+    audioVideoSync: "Audio-Video Sync",
+    temporalAnomalies: "Temporal Anomalies",
+    timeline: "Timeline",
+    subjects: "Subjects",
+    primarySubject: "Primary Subject",
+    secondarySubject: "Secondary Subject",
+    suspiciousFrames: "Suspicious Frames",
+    analysisSummary: "Analysis Summary",
+    
+    // Audio Detection
+    voiceCloneDetection: "Voice Clone Detection",
+    spectralAnalysis: "Spectral Analysis",
+    voiceprintMatch: "Voiceprint Match",
+    backgroundAnomalies: "Background Anomalies",
+    waveformAnalysis: "Waveform Analysis",
+    frequencySpectrum: "Frequency Spectrum",
+    voiceSignature: "Voice Signature",
+    
+    // Text Detection
+    aiGeneratedContent: "AI-Generated Content",
+    plagiarismCheck: "Plagiarism Check",
+    semanticAnalysis: "Semantic Analysis",
+    styleConsistency: "Style Consistency",
+    perplexityScore: "Perplexity Score",
+    burstinessScore: "Burstiness Score",
+    humanLikelihood: "Human Likelihood",
+    
+    // Common Labels
+    enabled: "Enabled",
+    disabled: "Disabled",
+    on: "On",
+    off: "Off",
+    yes: "Yes",
+    no: "No",
+    none: "None",
+    all: "All",
+    selected: "Selected",
+    
+    // Time
+    now: "Now",
+    today: "Today",
+    yesterday: "Yesterday",
+    lastWeek: "Last Week",
+    lastMonth: "Last Month",
+    
+    // Classification Grid Modules
+    analysisModules: "Analysis Modules",
+    selected: "selected",
+    faceSwapAnalysis: "Face Swap Analysis",
+    faceSwapDesc: "Deep neural face replacement detection",
+    lipSyncDetection: "Lip Sync Detection",
+    lipSyncDesc: "Audio-visual sync anomaly scanner",
+    voiceCloneCheck: "Voice Clone Check",
+    voiceCloneDesc: "Synthetic voice pattern recognition",
+    contextualArtifacts: "Contextual Artifacts",
+    contextualArtifactsDesc: "Environmental inconsistency detector",
+    biometricMarkers: "Biometric Markers",
+    biometricMarkersDesc: "Micro-expression & gaze analysis",
+    gazeTracking: "Gaze Tracking",
+    gazeTrackingDesc: "Eye movement pattern verification",
+    neuralSignature: "Neural Signature",
+    neuralSignatureDesc: "GAN fingerprint extraction",
+    threatAssessment: "Threat Assessment",
+    threatAssessmentDesc: "Risk level classification engine",
+    
+    // Media Player
+    mediaPreview: "Media Preview",
+    noMediaLoaded: "No media loaded",
+    anomaly: "Anomaly",
+    normal: "Normal",
+    subjectA: "Subject A",
+    subjectB: "Subject B",
+    
+    // Audio Detection Viewer
+    audioWaveformAnalysis: "Audio Waveform Analysis",
+    aiVoiceClone: "AI Voice Clone",
+    acousticFingerprint: "Acoustic Fingerprint & Metadata",
+    poweredBy: "Powered by White Ocean Engine",
+    bitrate: "Bitrate",
+    frequency: "Frequency",
+    synthesis: "Synthesis",
+    voiceSynthesisDetected: "Voice Synthesis Detected",
+    likely: "Likely",
+    
+    // Scan Parameters
+    scanParameters: "Scan Parameters",
+    scanFullFile: "Scan Full File",
+    timeWindowSelection: "Time-Window Selection",
+    subjectFocus: "Subject Focus",
+    allSubjects: "All Subjects",
+    detectionSensitivity: "Detection Sensitivity",
+    authorizeDetailedScan: "Authorize Detailed Frame Analysis",
+    lowSensitivity: "Low",
+    mediumSensitivity: "Medium",
+    highSensitivity: "High",
+    
+    // Text Analysis Console
+    advancedParameters: "Advanced Parameters",
+    llmSyntaxPattern: "LLM Syntax Pattern Recognition",
+    ragHallucinationCheck: "RAG/Context Hallucination Check",
+    dropDocumentHere: "Drop document here",
+    realTimeLinguisticMetrics: "Real-Time Linguistic Metrics",
+    perplexity: "Perplexity (Predictability)",
+    perplexityDesc: "Low perplexity indicates highly predictable, AI-like patterns",
+    burstiness: "Burstiness (Sentence Variance)",
+    burstinessDesc: "Low variance suggests uniform, machine-generated structure",
+    vocabularyRichness: "Vocabulary Richness",
+    vocabularyRichnessDesc: "Higher diversity indicates more natural language usage",
+    
+    // Text Forensic Viewer
+    documentAnalysis: "Document Analysis — Debate Transcript",
+    totalWords: "Total words",
+    analyzedSegments: "Analyzed segments",
+    aiGenerated: "AI Generated",
+    probability: "Probability",
+    detectedModel: "Detected Model",
+    humanWritten: "Human Written",
+    status: "Status",
+    aiInterventionDetected: "AI Intervention Detected",
+    humanAuthorshipScore: "Human Authorship Score",
   },
   zh: {
     // Navigation
@@ -321,6 +479,164 @@ const translations = {
     learnMore: "了解更多",
     getStarted: "开始使用",
     tryNow: "立即尝试",
+    
+    // Image Detection Viewer - Analysis Card
+    analysisOptions: "分析选项",
+    deepFaceAnalysis: "深度人脸分析",
+    artifactDetection: "伪影检测",
+    
+    // Image Detection Viewer - AI Insights
+    aiInsightsFaceDetection: "AI 洞察与人脸检测",
+    visionProEngine: "Vision-Pro 引擎",
+    faceA: "人脸 A",
+    faceB: "人脸 B",
+    manipulated: "已被篡改",
+    authentic: "真实",
+    
+    // Image Detection Viewer - Metrics
+    resolution: "分辨率",
+    artifacts: "伪影数量",
+    detection: "检测类型",
+    faceSwap: "AI 换脸",
+    flagged: "已标记",
+    
+    // News Feed
+    breakingNews: "最新动态",
+    liveAnalysisFeed: "实时分析源",
+    
+    // Overall Score
+    overallAuthenticityScore: "综合真实性评分",
+    faceSwapDetected: "检测到面部替换",
+    
+    // Action Buttons
+    initializeImageScan: "启动图像扫描",
+    initializeVideoScan: "启动视频扫描",
+    initializeAudioScan: "启动音频扫描",
+    initializeTextScan: "启动文本扫描",
+    
+    // Video Detection
+    subjectTracking: "主体追踪",
+    frameByFrameAnalysis: "逐帧分析",
+    audioVideoSync: "音视频同步",
+    temporalAnomalies: "时间异常",
+    timeline: "时间线",
+    subjects: "主体",
+    primarySubject: "主要主体",
+    secondarySubject: "次要主体",
+    suspiciousFrames: "可疑帧",
+    analysisSummary: "分析摘要",
+    
+    // Audio Detection
+    voiceCloneDetection: "声音克隆检测",
+    spectralAnalysis: "频谱分析",
+    voiceprintMatch: "声纹匹配",
+    backgroundAnomalies: "背景异常",
+    waveformAnalysis: "波形分析",
+    frequencySpectrum: "频率频谱",
+    voiceSignature: "声纹签名",
+    
+    // Text Detection
+    aiGeneratedContent: "AI 生成内容",
+    plagiarismCheck: "抄袭检测",
+    semanticAnalysis: "语义分析",
+    styleConsistency: "风格一致性",
+    perplexityScore: "困惑度评分",
+    burstinessScore: "突发性评分",
+    humanLikelihood: "人类可能性",
+    
+    // Common Labels
+    enabled: "已启用",
+    disabled: "已禁用",
+    on: "开",
+    off: "关",
+    yes: "是",
+    no: "否",
+    none: "无",
+    all: "全部",
+    selected: "已选择",
+    
+    // Time
+    now: "现在",
+    today: "今天",
+    yesterday: "昨天",
+    lastWeek: "上周",
+    lastMonth: "上月",
+    
+    // Classification Grid Modules
+    analysisModules: "分析模块",
+    selected: "已选择",
+    faceSwapAnalysis: "换脸分析",
+    faceSwapDesc: "深度神经网络面部替换检测",
+    lipSyncDetection: "唇形同步检测",
+    lipSyncDesc: "音视频同步异常扫描器",
+    voiceCloneCheck: "声音克隆检测",
+    voiceCloneDesc: "合成语音模式识别",
+    contextualArtifacts: "上下文伪影",
+    contextualArtifactsDesc: "环境不一致性检测器",
+    biometricMarkers: "生物识别标记",
+    biometricMarkersDesc: "微表情与注视分析",
+    gazeTracking: "注视追踪",
+    gazeTrackingDesc: "眼动模式验证",
+    neuralSignature: "神经特征",
+    neuralSignatureDesc: "GAN 指纹提取",
+    threatAssessment: "威胁评估",
+    threatAssessmentDesc: "风险等级分类引擎",
+    
+    // Media Player
+    mediaPreview: "媒体预览",
+    noMediaLoaded: "未加载媒体",
+    anomaly: "异常",
+    normal: "正常",
+    subjectA: "主体 A",
+    subjectB: "主体 B",
+    
+    // Audio Detection Viewer
+    audioWaveformAnalysis: "音频波形分析",
+    aiVoiceClone: "AI 声音克隆",
+    acousticFingerprint: "声纹指纹与元数据",
+    poweredBy: "由 White Ocean 引擎提供支持",
+    bitrate: "比特率",
+    frequency: "频率",
+    synthesis: "合成可能性",
+    voiceSynthesisDetected: "检测到声音合成",
+    likely: "可能性",
+    
+    // Scan Parameters
+    scanParameters: "扫描参数",
+    scanFullFile: "扫描完整文件",
+    timeWindowSelection: "时间窗口选择",
+    subjectFocus: "主体聚焦",
+    allSubjects: "所有主体",
+    detectionSensitivity: "检测灵敏度",
+    authorizeDetailedScan: "授权详细帧分析",
+    lowSensitivity: "低",
+    mediumSensitivity: "中",
+    highSensitivity: "高",
+    
+    // Text Analysis Console
+    advancedParameters: "高级参数",
+    llmSyntaxPattern: "LLM 语法模式识别",
+    ragHallucinationCheck: "RAG/上下文幻觉检测",
+    dropDocumentHere: "拖放文档至此",
+    realTimeLinguisticMetrics: "实时语言学指标",
+    perplexity: "困惑度（可预测性）",
+    perplexityDesc: "低困惑度表示高度可预测的 AI 生成模式",
+    burstiness: "突发性（句式变化）",
+    burstinessDesc: "低变化性表明句式结构均匀，可能为机器生成",
+    vocabularyRichness: "词汇丰富度",
+    vocabularyRichnessDesc: "多样性越高表示语言使用越自然",
+    
+    // Text Forensic Viewer
+    documentAnalysis: "文档分析 — 辩论记录",
+    totalWords: "总词数",
+    analyzedSegments: "已分析片段",
+    aiGenerated: "AI 生成",
+    probability: "概率",
+    detectedModel: "检测到的模型",
+    humanWritten: "人类撰写",
+    status: "状态",
+    aiInterventionDetected: "检测到 AI 干预",
+    humanAuthorshipScore: "人类著作评分",
   },
 } as const
 

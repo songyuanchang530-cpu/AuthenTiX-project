@@ -48,7 +48,7 @@ export function AudioDetectionViewer() {
         {/* Waveform Title */}
         <div className="mb-4 flex items-center justify-between">
           <h4 className="text-xs font-medium uppercase tracking-wider text-slate-500 dark:text-slate-400">
-            Audio Waveform Analysis
+            {t.audioWaveformAnalysis}
           </h4>
           <div className="flex items-center gap-4 text-xs text-slate-500 dark:text-slate-400">
             <span className="flex items-center gap-1.5">
@@ -115,7 +115,7 @@ export function AudioDetectionViewer() {
             <div className="rounded-lg bg-white px-3 py-2 shadow-lg dark:bg-[#161B26] dark:border dark:border-transparent">
               <div className="flex items-center gap-2">
                 <AlertTriangle className="size-3 text-red-500" />
-                <span className="text-xs font-medium text-red-600 dark:text-red-400">AI Voice Clone</span>
+                <span className="text-xs font-medium text-red-600 dark:text-red-400">{t.aiVoiceClone}</span>
               </div>
               <p className="mt-0.5 text-xs text-slate-500 dark:text-slate-400">Confidence: 92%</p>
             </div>
@@ -130,7 +130,7 @@ export function AudioDetectionViewer() {
             <div className="rounded-lg bg-white px-3 py-2 shadow-lg dark:bg-[#161B26] dark:border dark:border-transparent">
               <div className="flex items-center gap-2">
                 <Shield className="size-3 text-blue-500" />
-                <span className="text-xs font-medium text-blue-600 dark:text-blue-400">Authentic</span>
+                <span className="text-xs font-medium text-blue-600 dark:text-blue-400">{t.authentic}</span>
               </div>
               <p className="mt-0.5 text-xs text-slate-500 dark:text-slate-400">Confidence: 88%</p>
             </div>
@@ -181,9 +181,9 @@ export function AudioDetectionViewer() {
       <div className="rounded-3xl bg-white p-6 shadow-xl shadow-indigo-100/50 dark:bg-[#161B26]/80 dark:backdrop-blur-2xl dark:border dark:border-transparent dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
         <div className="mb-4 flex items-center justify-between">
           <h4 className="text-xs font-medium uppercase tracking-wider text-slate-500 dark:text-slate-400">
-            Acoustic Fingerprint & Metadata
+            {t.acousticFingerprint}
           </h4>
-          <span className="text-[10px] text-slate-400 dark:text-slate-500">Powered by White Ocean Engine</span>
+          <span className="text-[10px] text-slate-400 dark:text-slate-500">{t.poweredBy}</span>
         </div>
         
         <div className="grid grid-cols-3 gap-4">
@@ -192,7 +192,7 @@ export function AudioDetectionViewer() {
               <Radio className="size-5 text-indigo-500" />
             </div>
             <div>
-              <p className="text-xs uppercase tracking-wider text-slate-400">Bitrate</p>
+              <p className="text-xs uppercase tracking-wider text-slate-400">{t.bitrate}</p>
               <p className="text-sm font-semibold text-slate-700 dark:text-slate-200">320 kbps</p>
             </div>
           </div>
@@ -202,7 +202,7 @@ export function AudioDetectionViewer() {
               <Waves className="size-5 text-purple-500" />
             </div>
             <div>
-              <p className="text-xs uppercase tracking-wider text-slate-400">Frequency</p>
+              <p className="text-xs uppercase tracking-wider text-slate-400">{t.frequency}</p>
               <p className="text-sm font-semibold text-slate-700 dark:text-slate-200">20Hz - 18kHz</p>
             </div>
           </div>
@@ -212,8 +212,8 @@ export function AudioDetectionViewer() {
               <Activity className="size-5 text-amber-500" />
             </div>
             <div>
-              <p className="text-xs uppercase tracking-wider text-slate-400">Synthesis</p>
-              <p className="text-sm font-semibold text-amber-600 dark:text-amber-400">67% Likely</p>
+              <p className="text-xs uppercase tracking-wider text-slate-400">{t.synthesis}</p>
+              <p className="text-sm font-semibold text-amber-600 dark:text-amber-400">67% {t.likely}</p>
             </div>
           </div>
         </div>
@@ -225,7 +225,7 @@ export function AudioDetectionViewer() {
           <AlertTriangle className="size-5 text-red-500" />
           <div>
             <span className="text-sm font-medium text-slate-800 dark:text-slate-100">{t.authenticityScore}</span>
-            <p className="text-xs text-slate-500 dark:text-slate-400">Voice Synthesis Detected</p>
+            <p className="text-xs text-slate-500 dark:text-slate-400">{t.voiceSynthesisDetected}</p>
           </div>
         </div>
 

@@ -143,11 +143,11 @@ export function ImageUpload() {
       {/* Analysis Options */}
       <div className="rounded-xl bg-slate-50 p-4 dark:!bg-[#0B0F19] dark:border dark:!border-transparent">
         <h4 className="mb-3 text-xs font-medium uppercase tracking-wider text-slate-500 dark:text-slate-400">
-          Analysis Options
+          {t.analysisOptions}
         </h4>
         <div className="space-y-3">
           <label className="flex items-center justify-between">
-            <span className="text-sm text-slate-700 dark:text-slate-300">Deep Face Analysis</span>
+            <span className="text-sm text-slate-700 dark:text-slate-300">{t.deepFaceAnalysis}</span>
             <input
               type="checkbox"
               defaultChecked
@@ -155,7 +155,7 @@ export function ImageUpload() {
             />
           </label>
           <label className="flex items-center justify-between">
-            <span className="text-sm text-slate-700 dark:text-slate-300">Artifact Detection</span>
+            <span className="text-sm text-slate-700 dark:text-slate-300">{t.artifactDetection}</span>
             <input
               type="checkbox"
               defaultChecked
@@ -163,7 +163,7 @@ export function ImageUpload() {
             />
           </label>
           <label className="flex items-center justify-between">
-            <span className="text-sm text-slate-700 dark:text-slate-300">Metadata Analysis</span>
+            <span className="text-sm text-slate-700 dark:text-slate-300">{t.metadataAnalysis}</span>
             <input
               type="checkbox"
               className="size-4 rounded border-slate-300 bg-white text-indigo-600 focus:ring-indigo-500/50 dark:!border-transparent dark:!bg-black/40"
@@ -192,7 +192,7 @@ export function ImageUpload() {
           ) : (
             <>
               <Scan className="size-5" />
-              {t.analyzeImage}
+              {t.initializeImageScan}
             </>
           )}
         </span>

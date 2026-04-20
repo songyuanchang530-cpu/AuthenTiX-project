@@ -145,11 +145,11 @@ export function AudioUpload() {
       {/* Settings Panel */}
       <div className="rounded-xl bg-slate-50 p-4 dark:!bg-[#0B0F19] dark:border dark:!border-transparent">
         <h4 className="mb-3 text-xs font-medium uppercase tracking-wider text-slate-500 dark:text-slate-400">
-          Scan Options
+          {t.analysisOptions}
         </h4>
         <div className="space-y-3">
           <label className="flex items-center justify-between">
-            <span className="text-sm text-slate-700 dark:text-slate-300">Deep Voice Clone Scan</span>
+            <span className="text-sm text-slate-700 dark:text-slate-300">{t.voiceCloneDetection}</span>
             <button
               onClick={() => setDeepVoiceClone(!deepVoiceClone)}
               className={`relative h-6 w-11 rounded-full transition-colors ${
@@ -164,7 +164,7 @@ export function AudioUpload() {
             </button>
           </label>
           <label className="flex items-center justify-between">
-            <span className="text-sm text-slate-700 dark:text-slate-300">Background Noise Anomaly Check</span>
+            <span className="text-sm text-slate-700 dark:text-slate-300">{t.backgroundAnomalies}</span>
             <button
               onClick={() => setNoiseAnomaly(!noiseAnomaly)}
               className={`relative h-6 w-11 rounded-full transition-colors ${
@@ -201,7 +201,7 @@ export function AudioUpload() {
             ) : (
               <>
                 <Scan className="size-5" />
-                {t.analyzeAudio}
+                {t.initializeAudioScan}
               </>
             )}
           </span>
